@@ -5,7 +5,6 @@ session_start();
 $adminErr="";
 if (isset($_POST['but_submit'])) {
     $uname = $_POST['uname'];
-    
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM `user` WHERE `uname`='$uname' AND `password`='$password'";
@@ -36,9 +35,7 @@ if (isset($_POST['but_submit'])) {
         else if( $row1['role']=='petboarding'){
             header("Location:pet_boarding/petboarding-Dashboard.php");
         }
-        // else{
-           
-        //     $adminErr = "You are not an Admin";        }
+       
         }
         
     
