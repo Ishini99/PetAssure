@@ -1,0 +1,354 @@
+@import url('font-inter.css');
+:root {
+  --primarycolor:#4b4c4e9f;
+  --primarycolorhover: #006dd3;
+  --btnice:#D8EBFA;
+  --btnnicetext:#1b62b3;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    border-spacing: 0;
+    font-family: 'Inter', sans-serif;
+    
+}
+
+*, ::after, ::before{
+    box-sizing: border-box;
+}
+
+
+/*------custom-scroll-bar - from w3schools.com------------------*/
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 12px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+
+
+
+
+
+
+/* -----------Buttons---------------*/
+.btn{
+    cursor: pointer;
+    padding: 8px 20px;
+    outline: none;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+}
+
+
+.btn:hover{
+    background-color: ;
+    box-shadow: none;
+    transition: all 0.5s;
+    font-family: 'Inter', sans-serif;
+
+}
+
+
+.btn-primary{
+    background-color: #4b4c4e9f ;
+    border: 1px solid #c9cbce9f ;
+    color: #fff ;
+    box-shadow: 0 3px 5px 0 rgba(57,108,240,0.3);
+}
+
+.btn-primary-soft{
+    /*border: 1px solid rgba(57,108,240,0.1) ;*/    color: #000000;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    /*box-shadow: 0 3px 5px 0 rgba(57,108,240,0.3)*/
+}
+
+
+.btn-primary-soft:hover{
+    background-color: #4b4c4e9f ;
+    /*border: 1px solid rgba(57,108,240,0.1) ;*/
+    color: #fff ;
+    box-shadow: 0 3px 5px 0 rgba(57,108,240,0.3);
+}
+
+
+.btn-in-text{
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.non-style-link:link, .non-style-link:visited, .non-style-link:hover, .non-style-link:active{
+    text-decoration: none;
+    color: rgb(43, 43, 43);
+}
+
+
+
+
+.btn-label{
+    margin-left: 10px;
+    padding: 12px 12px;
+    outline: none;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    border-radius: 5px;
+    background-color: #f0f0f073;
+    border: 1px solid rgba(57,108,240,0.1) ;
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+
+
+.table-headin{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px;
+    border-bottom: 3px solid var(--primarycolor);
+}
+
+
+.sub-table{
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+  
+}
+
+.filter-container{
+width: 92.5%;
+border: 1px solid #ebebeb;
+border-radius: 8px;
+margin-bottom: 20px;
+border-spacing: 0;
+padding: 0;
+}
+
+.filter-container-items{
+margin-top: 7.5px;
+margin-left: 20px;
+
+
+}
+
+
+        
+
+
+
+
+.btn-primary-gray{
+  background-color: #fff;
+  border: 2px solid #c9cbce9f;
+  color: #212529d0;
+  box-shadow: 0 3px 5px 0 rgba(95, 95, 97, 0.3);
+}
+
+
+
+.btn-primary-gray:hover{
+  background-color: #5185ffa9;
+  box-shadow: 0 3px 5px 0 rgba(95, 95, 97, 0.3);
+}
+
+
+
+.button-icon{
+  
+  background-position: 10px 50%;
+  background-repeat: no-repeat;
+  transition: 0.5s;
+  padding: 8px 20px 8px 40px;
+}
+
+
+
+
+
+
+
+
+.menu-icon-dashbord:hover,.menu-icon-dashbord-active{
+  color: var(--primarycolor);
+
+  background-image: url('../img/icons/dashboard-hover.svg');
+}
+
+
+.menu-icon-doctor:hover,.menu-icon-doctor-active{
+  color: var(--primarycolor);
+  background-image: url('../img/icons/doctors-hover.svg');
+}
+.menu-icon-schedule:hover,.menu-icon-schedule-active{
+  color: var(--primarycolor);
+  
+  background-image: url('../img/icons/schedule-hover.svg');
+}
+.menu-icon-appoinment:hover,.menu-icon-appoinment-active{
+  color: var(--primarycolor);
+  
+  background-image: url('../img/icons/book-hover.svg');
+}
+.menu-icon-patient:hover,.menu-icon-patient-active{
+  color: var(--primarycolor);
+  
+  background-image: url('../img/icons/patients-hover.svg');
+}
+
+.menu-icon-settings:hover,.menu-icon-settings-active{
+  color: var(--primarycolor);
+  
+  background-image: url('../img/icons/settings-iceblue.svg');
+}
+
+.menu-icon-session:hover,.menu-icon-session-active{
+  color: var(--primarycolor);
+  
+  background-image: url('../img/icons/session-iceblue.svg');
+}
+.menu-icon-home:hover,.menu-icon-home-active{
+  color: var(--primarycolor);
+  
+  background-image: url('../img/icons/home-iceblue.svg');
+}
+
+
+
+
+
+.btn-icon-back{
+  background-image: url('../img/icons/back-iceblue.svg');
+  background-position: 18px 50%;
+  background-repeat: no-repeat;
+  transition: 0.5s;
+  padding: 8px 20px 8px 40px;
+}
+
+.btn-icon-back:hover{
+  background-image: url('../img/icons/back-white.svg');
+}
+
+
+.btn-edit{
+  background-image: url('../img/icons/edit-iceblue.svg');
+}
+.btn-edit:hover{
+  background-image: url('../img/icons/edit-white.svg');
+}
+
+.btn-view{
+  background-image: url('../img/icons/view-iceblue.svg');
+}
+.btn-view:hover{
+  background-image: url('../img/icons/view-white.svg');
+}
+
+.btn-delete{
+  background-image: url('../img/icons/delete-iceblue.svg');
+}
+.btn-delete:hover{
+  background-image: url('../img/icons/delete-white.svg');
+}
+
+.btn-filter{
+  background-image: url('../img/icons/filter-iceblue.svg');
+  background-position: 15px 50%;
+}
+.btn-filter:hover{
+  background-image: url('../img/icons/filter-white.svg');
+}
+
+
+
+
+.dashboard-items{
+  background-color: #cbcbcd9f;
+  border: 2px solid #82868d9f;
+  border-radius: 7px;
+  color: #0a0b0c9f;
+  /*background-color: #d8ebfa25 ;*/
+  box-shadow: 0 3px 5px 0 rgba(95, 95, 97, 0.3);
+}
+
+
+.h1-dashboard{
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 0;
+  padding-top: 20px;
+}
+
+.h3-dashboard{
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #212529e3;
+}
+
+.dashboard-icons{
+  background-color: rgba(184, 184, 184, 0.247);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 7px;
+  margin-left: 40px;
+  margin-right: 0px;
+  
+}
+.dashboard-icons-setting{
+  background-color: rgba(184, 184, 184, 0.247);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 7px;
+  margin-left: 5px;
+  margin-right: 20px;
+  
+}
+
+.setting-tabs:hover{
+  background-color: #d6d6d657;
+}
+
+
+.doctor-header{
+  background-image: url(../img/ss.png);
+  color: rgba(0, 0, 0, 0.87);
+  background-size: 110%;
+  border-radius: 40px;
+
+  background-repeat: no-repeat;
+  padding: 29px;
+  padding-left: 35px;
+}
+
+.patient-header{
+  background-image: url(../img/b3.jpg);
+}
+
