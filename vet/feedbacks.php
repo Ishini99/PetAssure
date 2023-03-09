@@ -64,11 +64,11 @@ FROM feedback";
                         <i class="uil uil-calender"></i>
                         <span class="link-name">Appointments</span>
                     </a></li>
-                    <li><a href="feedbacks.php">
+                <li><a href="feedbacks.php">
                         <i class="uil uil-comments"></i>
                         <span class="link-name">Feedbacks</span>
                     </a></li>
-                
+
                 <li><a href="freeConsultation.php">
                         <i class="uil uil-chat"></i>
                         <span class="link-name">Free Consultation</span>
@@ -79,7 +79,7 @@ FROM feedback";
             </ul>
 
             <ul class="logout-mode">
-                <li><a href="../loginnew.php">
+                <li><a href="../logout.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Logout</span>
                     </a></li>
@@ -94,11 +94,11 @@ FROM feedback";
             <i class="uil uil-bars sidebar-toggle"></i>
         </div>
         <div style="padding-bottom: 20px;"></div>
-       
-           
+
+
         </nav>
-        
-      
+
+
 
         <center>
             <h2>Feedbacks</h2>
@@ -107,12 +107,12 @@ FROM feedback";
                 <thead>
                     <tr>
                         <th>Date</th>
-                        
+
                         <th>Client Name</th>
                         <th>Rating</th>
 
                         <th>Message</th>
-
+                        <th>Cancel</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -124,8 +124,8 @@ FROM feedback";
                         <td><?php echo $rows['submit_date'];?></td>
                         <td><?php echo $rows['name'];?></td>
                         <td>
-                        <ul style="list-style: none; display: flex;">
-    <?php
+                            <ul style="list-style: none; display: flex;">
+                                <?php
         $rating = $rows['rating'];
         $starNumber = intval($rating);
 
@@ -141,14 +141,15 @@ FROM feedback";
             $x++;
         }
     ?>
-</ul>
+                            </ul>
 
-</td>
-      <td><?php echo $rows['content'];?></td>
+                        </td>
+                        <td><?php echo $rows['content'];?></td>
+                        <td> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
 
 
 
-                       
+
 
 
                     </tr>
