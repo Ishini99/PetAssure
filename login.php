@@ -5,6 +5,7 @@ session_start();
 $adminErr="";
 if (isset($_POST['but_submit'])) {
     $uname = $_POST['uname'];
+    
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM `user` WHERE `uname`='$uname' AND `password`='$password'";
