@@ -94,7 +94,10 @@ AND serviceprovider.spid = '$spid'";
                             <i class="uil uil-comments"></i>
                             <span class="link-name">Feedbacks</span>
                         </a></li>
-
+                    <li><a href="freeConsultation.php">
+                            <i class="uil uil-chat"></i>
+                            <span class="link-name">Free Consultation</span>
+                        </a></li>
 
                 </ul>
 
