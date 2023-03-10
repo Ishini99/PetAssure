@@ -207,7 +207,7 @@ if(isset($_SESSION["userid"]) ){
 ?>
                                             </div><br>
                                             <div class="h3-dashboard">
-                                                Consulted Pets &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                Pets &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </div>
                                         </div>
                                         <div class="btn-icon-back dashboard-icons"
@@ -256,57 +256,6 @@ if(isset($_SESSION["userid"]) ){
 
                                 </td>
 
-                                <td style="width: 25%;">
-                                    <div class="dashboard-items"
-                                        style="padding:16px;margin:auto;width:95%;display: flex;">
-                                        <div>
-                                            <div class="h1-dashboard_avg">
-
-                                                <div class="star-list">
-                                                    <?php
-        // 1. Establish a database connection
-        require '../config/db.php';
-        
-        // 2. Prepare and execute the query
-        $query = "SELECT AVG(rating) AS average_value FROM feedback";
-        $query_run = mysqli_query($con, $query);
-
-        // 3. Check for errors
-        if (!$query_run) {
-            die('Query Error: ' . mysqli_error($con));
-        }
-
-        // 4. Retrieve the result
-        $result = mysqli_fetch_assoc($query_run);
-        $average_value = $result['average_value'];
-        $starNumber = intval($average_value);
-
-        // 5. Display the result
-        for ($x = 1; $x <= $starNumber; $x++) {
-            echo '<li><i class="fa fa-star"></i></li>';
-        }
-        if ($average_value - $starNumber >= 0.5) {
-            echo '<li><i class="fa fa-star-half-o"></i></li>';
-            $x++;
-        }
-        while ($x <= 5) {
-            echo '<li><i class="fa fa-star-o"></i></li>';
-            $x++;
-        }
-    ?>
-                                                </div>
-
-
-                                            </div><br>
-                                            <div class="h3-dashboard">
-                                                Current Rate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            </div>
-                                        </div>
-                                        <div class="btn-icon-back dashboard-icons"
-                                            style="margin-left: 0px;background-image: url('img/icons/session-iceblue.svg');">
-                                        </div>
-                                    </div>
-                                </td>
 
                             </tr>
                         </table>

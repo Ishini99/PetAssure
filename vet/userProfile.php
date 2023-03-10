@@ -1,7 +1,7 @@
 <?php
 require '../config/db.php';
 session_start();
-$nic ="";
+$userid ="";
 if(isset($_SESSION["userid"]) ){
    $userid = $_SESSION["userid"];
 }else{

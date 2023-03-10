@@ -1,16 +1,15 @@
 <?php
 require '../config/db.php';
 session_start();
-$nic ="";
-if(isset($_SESSION["spid"]) ){
-   $spid =$_SESSION["spid"];
+$userid ="";
+if(isset($_SESSION["userid"]) ){
+   $userid = $_SESSION["userid"];
 }else{
    //header("location:login.php");
 }
 
-  $sql = "SELECT * FROM serviceprovider WHERE spid = '$spid'" ;
-
-  ($result = mysqli_query($con, $sql));
+$sql = "SELECT * FROM user WHERE userid = '$userid'";
+$result = mysqli_query($con, $sql);
 ?>
 
 
@@ -115,10 +114,23 @@ if(isset($_SESSION["spid"]) ){
                     </center>
 
                     <center>
-                        <button class="form_btn2"
-                            onclick="location.href='updateProfile.php?details=<?php echo $rows['details']; ?> &fname=<?php echo $rows['fname']; ?> &spid=<?php echo $rows['spid']; ?> &nic=<?php echo $rows['nic']; ?> &district=<?php echo $rows['district']; ?> &email=<?php echo $rows['email']; ?> &uname=<?php echo $rows['uname']; ?> &mobile=<?php echo $rows['mobile']; ?>'">Update</button>
-                        <button class="form_btn2" type="button" onclick="adminRequest()" id="btnEnable">Request to
-                            Delete</button>
+                        <form action="updateProfile.php" method="post">
+                            <input type="hidden" name="details" value="<?php echo $rows['details']; ?>">
+                            <input type="hidden" name="fname" value="<?php echo $rows['fname']; ?>">
+                            <input type="hidden" name="spid" value="<?php echo $rows['userid']; ?>">
+                            <input type="hidden" name="nic" value="<?php echo $rows['nic']; ?>">
+                            <input type="hidden" name="district" value="<?php echo $rows['district']; ?>">
+                            <input type="hidden" name="email" value="<?php echo $rows['email']; ?>">
+                            <input type="hidden" name="uname" value="<?php echo $rows['uname']; ?>">
+                            <input type="hidden" name="mobile" value="<?php echo $rows['mobile']; ?>">
+                            <button class="form_btn2" type="submit">Update</button>
+                            <button class="form_btn2" type="button" onclick="adminRequest()" id="btnEnable">Request to
+                                Delete</button>
+                        </form>
+
+
+
+
                     </center>
 
 

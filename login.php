@@ -128,12 +128,14 @@ if (isset($_POST['but_submit'])) {
                         <br>
 
 
-                        <div class="formlabel">New User? <a class="createlink" href="signup.php">
-                                <strong?>Sign Up now</strong>
+                        <div class="formlabel">New User? <a class="createlink" href="index.php">
+                                <strong>Sign Up </strong>
+
                             </a><br>
 
 
                         </div>
+
 
                     </form>
 
