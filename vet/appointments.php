@@ -2,15 +2,31 @@
 require '../config/db.php';
 session_start();
 $spid ="";
+$userid="";
 if(isset($_SESSION["userid"]) ){
-   $nic =$_SESSION["userid"];
+   $userid =$_SESSION["userid"];
 }else{
    //header("location:login.php");
 }
-   $sql = "SELECT *
-FROM feedback";
-($result = mysqli_query($con, $sql));
+$query = "SELECT spid FROM serviceprovider WHERE userid = '$userid'";
 
+$result = mysqli_query($con, $query);
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $spid = $row['spid'];
+} else {
+    
+}
+$sql = "SELECT *
+FROM appointment
+INNER JOIN serviceprovider
+ON appointment.spid = serviceprovider.spid
+AND serviceprovider.spid = '$spid'";
+
+
+
+
+($result = mysqli_query($con, $sql));
 ?>
 
 <!DOCTYPE html>
@@ -230,7 +246,7 @@ if ($_POST) {
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
 
-    $sql = "INSERT INTO appointment (spid,appoDate,startTime,endTime) VALUES ('$spid','$appoDate','$startTime','$endTime');";
+    $sql = "INSERT INTO appointment (userid,spid,appoDate,startTime,endTime) VALUES ('$userid','$spid','$appoDate','$startTime','$endTime');";
     if (mysqli_query($con, $sql)) {
         echo '<script type="text/javascript"> alert("Session was added.")</script>';
         echo "<meta http-equiv='refresh' content='0'>";
