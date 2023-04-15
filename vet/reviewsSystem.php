@@ -36,33 +36,47 @@ if (isset($_GET['page_id'])) {
         $stmt->execute([$_GET['page_id'], $_POST['name'], $_POST['content'], $_POST['rating']]);
         exit('Your review has been submitted! <br><b>Thank You</b>');
     }
-    // Get all reviews by the Page ID ordered by the submit date
-    $stmt = $pdo->prepare('SELECT * FROM feedback WHERE page_id = ? ORDER BY submit_date DESC');
-    $stmt->execute([$_GET['page_id']]);
-    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // Get the overall rating and total amount of reviews
+    
     $stmt = $pdo->prepare('SELECT AVG(rating) AS overall_rating, COUNT(*) AS total_reviews FROM feedback WHERE page_id = ?');
     $stmt->execute([$_GET['page_id']]);
     $reviews_info = $stmt->fetch(PDO::FETCH_ASSOC);
 } else {
     exit('Please provide the page ID.');
 }
-?><html>
+?>
+<!DOCTYPE html>
+<html>
 
-<head></head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
 
 <body>
 
-    <div class="overall_rating">
-        
-        <span class="num"><?=number_format($reviews_info['overall_rating'], 1)?></span>
-        <span class="stars"><?=str_repeat('&#9733;', round($reviews_info['overall_rating']))?></span>
-        <span class="total"><?=$reviews_info['total_reviews']?> reviews</span>
-    </div>
-    <a href="#" class="write_review_btn">Write Review</a>
-    <div class="write_review">
 
-    
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Give Rating</button>
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+
+            </div>
+
+            <div class="container">
+
+                <div class="overall_rating">
+                    <span class="num"><?=number_format($reviews_info['overall_rating'], 1)?></span>
+                    <span class="stars"><?=str_repeat('&#9733;', round($reviews_info['overall_rating']))?></span>
+                    <span class="total"><?=$reviews_info['total_reviews']?> reviews</span>
+                </div>
+                <a href="#" class="write_review_btn">Write Review</a>
+                <div class="write_review">
+        </form>
+
         <form>
             <input name="name" type="text" placeholder="Your Name" required>
             <input name="rating" type="number" min="1" max="5" placeholder="Rating (1-5)" required>
@@ -70,9 +84,24 @@ if (isset($_GET['page_id'])) {
             <button type="submit">Submit Review</button>
         </form>
     </div>
-   
-</body>
 
-</head>
+
+
+
+    </div>
+
+    <script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    </script>
+
+</body>
 
 </html>

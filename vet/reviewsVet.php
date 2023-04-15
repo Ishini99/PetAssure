@@ -36,68 +36,84 @@ if (isset($_GET['page_id'])) {
         $stmt->execute([$_GET['page_id'], $_POST['name'], $_POST['content'], $_POST['rating']]);
         exit('Your review has been submitted! <br><b>Thank You</b>');
     }
-    
+    // Get all reviews by the Page ID ordered by the submit date
+    $stmt = $pdo->prepare('SELECT * FROM feedback WHERE page_id = ? ORDER BY submit_date DESC');
+    $stmt->execute([$_GET['page_id']]);
+    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Get the overall rating and total amount of reviews
     $stmt = $pdo->prepare('SELECT AVG(rating) AS overall_rating, COUNT(*) AS total_reviews FROM feedback WHERE page_id = ?');
     $stmt->execute([$_GET['page_id']]);
     $reviews_info = $stmt->fetch(PDO::FETCH_ASSOC);
 } else {
     exit('Please provide the page ID.');
 }
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+?><html>
 
-</head>
+<head></head>
+
 <body>
 
-
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Give Rating</button>
-
-<div id="id01" class="modal">
-  
-<form class="modal-content animate" action="" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-    
-    </div>
-
-    <div class="container">
-      
     <div class="overall_rating">
+
         <span class="num"><?=number_format($reviews_info['overall_rating'], 1)?></span>
         <span class="stars"><?=str_repeat('&#9733;', round($reviews_info['overall_rating']))?></span>
         <span class="total"><?=$reviews_info['total_reviews']?> reviews</span>
     </div>
     <a href="#" class="write_review_btn">Write Review</a>
     <div class="write_review">
-    </form>
+
 
         <form>
             <input name="name" type="text" placeholder="Your Name" required>
             <input name="rating" type="number" min="1" max="5" placeholder="Rating (1-5)" required>
             <textarea name="content" placeholder="Write your review here..." required></textarea>
-            <button  type="submit">Submit Review</button>
+            <button type="submit">Submit Review</button>
         </form>
     </div>
-   
-      
-    
-  
-</div>
+    <?php foreach ($reviews as $review): ?>
+    <div class="review">
+        <h3 class="name"><?=htmlspecialchars($review['name'], ENT_QUOTES)?></h3>
+        <div>
+            <span class="rating"><?=str_repeat('&#9733;', $review['rating'])?></span>
+            <?php
+            $date = $review['submit_date'];
+$now = time();
+$difference = $now - strtotime($date);
 
-<script>
-// Get the modal
-var modal = document.getElementById('id01');
+// $seconds = $difference;
+// $minutes = round($difference / 60);
+// $hours = round($difference / 3600);
+// $days = round($difference / 86400);
+// $weeks = round($difference / 604800);
+// $months = round($difference / 2419200);
+// $years = round($difference / 29030400);
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
+// if ($seconds <= 60) {
+//     $time_elapsed = "just now";
+// } elseif ($minutes <= 60) {
+//     $time_elapsed = $minutes == 1 ? "1 minute ago" : "$minutes minutes ago";
+// } elseif ($hours <= 24) {
+//     $time_elapsed = $hours == 1 ? "1 hour ago" : "$hours hours ago";
+// } elseif ($days <= 7) {
+//     $time_elapsed = $days == 1 ? "1 day ago" : "$days days ago";
+// } elseif ($weeks <= 4) {
+//     $time_elapsed = $weeks == 1 ? "1 week ago" : "$weeks weeks ago";
+// } elseif ($months <= 12) {
+//     $time_elapsed = $months == 1 ? "1 month ago" : "$months months ago";
+// } else {
+//     $time_elapsed = $years == 1 ? "1 year ago" : "$years years ago";
+// }
+?>
+            <!-- <span class="date"><?php echo $time_elapsed; ?> </span> -->
+
+
+        </div>
+        <p class="content"><?=htmlspecialchars($review['content'], ENT_QUOTES)?></p>
+    </div>
+    <?php endforeach ?>
 
 </body>
+
+</head>
+
 </html>
