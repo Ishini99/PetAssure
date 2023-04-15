@@ -7,11 +7,32 @@ if(isset($_SESSION["userid"]) ){
 }else{
    //header("location:login.php");
 }
-   $sql = "SELECT *
+
+$sql = "SELECT *
 FROM feedback";
-($result = mysqli_query($con, $sql));
+$result = mysqli_query($con, $sql);
+
+// check if the trash icon is clicked
+if(isset($_GET['delete_id'])) {
+    // get the feedback ID to be deleted
+    $delete_id = $_GET['delete_id'];
+
+    // prepare the SQL statement to delete the feedback record
+    $delete_sql = "DELETE FROM feedback WHERE fid = $delete_id";
+
+    // execute the SQL statement
+    if (mysqli_query($con, $delete_sql)) {
+        // feedback record deleted successfully
+        echo "<script>alert('Feedback deleted successfully!');</script>";
+        header("Location: feedbacks.php");
+    } else {
+        // error deleting feedback record
+        echo "<script>alert('Error deleting feedback: " . mysqli_error($con) . "');</script>";
+    }
+}
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -103,49 +124,54 @@ FROM feedback";
         <center>
             <h2>Feedbacks</h2>
             <br><br>
+
             <table class="styled-table">
                 <thead>
                     <tr>
                         <th>Date</th>
-
                         <th>Client Name</th>
                         <th>Rating</th>
-
                         <th>Message</th>
                         <th>Cancel</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                while($rows=$result->fetch_assoc())
-                {
-            ?>
+        while($rows = $result->fetch_assoc()) {
+        ?>
                     <tr class="active-row">
                         <td><?php echo $rows['submit_date'];?></td>
                         <td><?php echo $rows['name'];?></td>
                         <td>
                             <ul style="list-style: none; display: flex;">
                                 <?php
-        $rating = $rows['rating'];
-        $starNumber = intval($rating);
+                    $rating = $rows['rating'];
+                    $starNumber = intval($rating);
 
-        for ($x = 1; $x <= $starNumber; $x++) {
-            echo '<li><i class="fa fa-star"></i></li>';
-        }
-        if (strpos($rating, '.') !== false) {
-            echo '<li><i class="fa fa-star-half-o"></i></li>';
-            $x++;
-        }
-        while ($x <= 5) {
-            echo '<li><i class="fa fa-star-o"></i></li>';
-            $x++;
-        }
-    ?>
+                    for ($x = 1; $x <= $starNumber; $x++) {
+                        echo '<li><i class="fa fa-star"></i></li>';
+                    }
+
+                    if (strpos($rating, '.') !== false) {
+                        echo '<li><i class="fa fa-star-half-o"></i></li>';
+                        $x++;
+                    }
+
+                    while ($x <= 5) {
+                        echo '<li><i class="fa fa-star-o"></i></li>';
+                        $x++;
+                    }
+                    ?>
                             </ul>
-
                         </td>
                         <td><?php echo $rows['content'];?></td>
-                        <td> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+
+                        <td>
+                            <a href="?delete_id=<?php echo $rows['fid']; ?>"
+                                onclick="return confirm('Are you sure you want to delete this feedback record?')">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
+                        </td>
 
 
 
@@ -154,12 +180,14 @@ FROM feedback";
 
                     </tr>
                     <?php
-                }
-            ?>
-
-
+        }
+        ?>
                 </tbody>
             </table>
+
+
+
+
         </center>
 
 
