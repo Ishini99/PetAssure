@@ -42,14 +42,6 @@ if(isset($_SESSION["userid"]) ){
     .styled-table tr {
         border-bottom: 1px solid #A6A6A6;
     }
-
-    /* Set default font styles */
-    /* body {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-} */
     </style>
 
 
@@ -201,8 +193,8 @@ if(isset($_SESSION["userid"]) ){
                                                 Notifications &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </div>
                                         </div>
-                                        <div class="btn-icon-back dashboard-icons"
-                                            style="background-image: url('img/icons/doctors-hover.svg');"></div>
+                                        <div class="btn-icon-back dashboard-icons" style="background-image: url('');">
+                                        </div>
                                     </div>
                                 </td>
 
@@ -237,8 +229,8 @@ if(isset($_SESSION["userid"]) ){
                                                 Consulted Pets &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </div>
                                         </div>
-                                        <div class="btn-icon-back dashboard-icons"
-                                            style="background-image: url('icon/veterinarian-svgrepo-comsvg');"></div>
+                                        <div class="btn-icon-back dashboard-icons" style="background-image: url('');">
+                                        </div>
                                     </div>
                                 </td>
 
@@ -277,7 +269,7 @@ if(isset($_SESSION["userid"]) ){
                                             </div>
                                         </div>
                                         <div class="btn-icon-back dashboard-icons"
-                                            style="margin-left: 0px;background-image: url(''icon/calendar-10-svgrepo-com.svg');">
+                                            style="margin-left: 0px;background-image: url('/images/0567c66917061177a7df6c35c0028444.jpg');">
                                         </div>
                                     </div>
 
@@ -330,7 +322,7 @@ if(isset($_SESSION["userid"]) ){
                                             </div>
                                         </div>
                                         <div class="btn-icon-back dashboard-icons"
-                                            style="margin-left: 0px;background-image: url('img/icons/session-iceblue.svg');">
+                                            style="margin-left: 0px;background-image: url();">
                                         </div>
                                     </div>
                                 </td>
