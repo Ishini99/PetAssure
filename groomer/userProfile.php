@@ -12,9 +12,6 @@ $sql = "SELECT * FROM user WHERE userid = '$userid'";
 $result = mysqli_query($con, $sql);
 ?>
 
-
-
-
 <html>
 
 <head>
@@ -47,8 +44,7 @@ $result = mysqli_query($con, $sql);
                 <a href="../index.php" class="font">HOME</a>
                 <a href="groomerDashboard.php" class="font">DASHBOARD</a>
 
-                <a href="
-                ../logout.php" class="font">LOG OUT </a>
+                <a href="../logout.php" class="font">LOG OUT </a>
             </div>
         </div>
         <div>
@@ -57,7 +53,7 @@ $result = mysqli_query($con, $sql);
 
 
                     <center>
-                        <table class="styled-table" cellspacing="0" cellpadding="30">
+                        <table class="styled-table1">
                             <?php
     $rows = mysqli_query($con, "SELECT * FROM groomerimage");
     foreach ($rows as $row) :
@@ -65,6 +61,7 @@ $result = mysqli_query($con, $sql);
                             <td>
                                 <img src="groomer_img/<?php echo $row['image']; ?>" width="100" height="150"
                                     title="<?php echo $row['image']; ?>">
+
                             </td>
                             <?php endforeach; ?>
                         </table>
@@ -101,10 +98,7 @@ $result = mysqli_query($con, $sql);
                                     <td>UserName</td>
                                     <td><?php echo $rows['uname']; ?></td>
                                 </tr>
-                                <tr>
-                                    <td>Password</td>
-                                    <td><?php echo $rows['password']; ?></td>
-                                </tr>
+
                                 <tr>
                                     <td>Description</td>
                                     <td><?php echo $rows['details']; ?></td>
