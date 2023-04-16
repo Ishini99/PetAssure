@@ -23,7 +23,7 @@ if(isset($_GET['delete_id'])) {
     // execute the SQL statement
     if (mysqli_query($con, $delete_sql)) {
         // feedback record deleted successfully
-        echo "<script>alert('Feedback deleted successfully!');</script>";
+       
         header("Location: feedbacks.php");
     } else {
         // error deleting feedback record

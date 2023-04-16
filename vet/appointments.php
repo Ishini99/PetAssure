@@ -23,7 +23,28 @@ INNER JOIN serviceprovider
 ON appointment.spid = serviceprovider.spid
 AND serviceprovider.spid = '$spid'";
 
+$sql = "SELECT *
+FROM appointment";
+$result = mysqli_query($con, $sql);
 
+// check if the trash icon is clicked
+if(isset($_GET['delete_id'])) {
+   
+    $delete_id = $_GET['delete_id'];
+
+    
+    $delete_sql = "DELETE FROM appointment WHERE appNo = $delete_id";
+
+   
+    if (mysqli_query($con, $delete_sql)) {
+       
+       
+        header("Location: appointments.php");
+    } else {
+        // error deleting feedback record
+        echo "<script>alert('Error deleting : " . mysqli_error($con) . "');</script>";
+    }
+}
 
 
 ($result = mysqli_query($con, $sql));
@@ -217,8 +238,12 @@ AND serviceprovider.spid = '$spid'";
                                         </td>
                                         <td><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </td>
-                                        <td> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
-
+                                        <td>
+                                            <a href="?delete_id=<?php echo $rows['appNo']; ?>"
+                                                onclick="return confirm('Are you sure you want to delete this  record?')">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
 
                                     </tr>
                                     <?php endforeach; ?>
