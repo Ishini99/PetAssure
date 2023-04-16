@@ -3,6 +3,8 @@ require '../config/db.php';
 session_start();
 $spid ="";
 $userid="";
+
+
 if(isset($_SESSION["userid"]) ){
    $userid =$_SESSION["userid"];
 }else{
