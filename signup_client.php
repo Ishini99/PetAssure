@@ -9,7 +9,7 @@ $address="";
 $district="";
 $uname =" ";
 $password = "";
-
+$role="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -22,7 +22,6 @@ $district= $_POST['district'];
 $uname = $_POST['uname'];
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
-
 
 
 

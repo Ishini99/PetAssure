@@ -32,7 +32,7 @@ $confirm_password = $_POST['confirm_password'];
 
 
     // Insert data into user table
-    $sql_user = "INSERT INTO user (fname,nic, mobile, role,email, address,uname,password,district,details) VALUES ('$fname' ,'$nic','$mobile','$stype','$email','$address','$uname','$password','$district','$details')";
+    $sql_user = "INSERT INTO user (fname,nic, mobile, role,email, address,uname,password,district) VALUES ('$fname' ,'$nic','$mobile','$stype','$email','$address','$uname','$password','$district')";
     
    
     if (mysqli_query($con, $sql_user)) {
@@ -43,7 +43,7 @@ $confirm_password = $_POST['confirm_password'];
             $userid = mysqli_insert_id($con);
     
             // Insert data into serviceprovider table
-            $sql_serviceprovider = "INSERT INTO serviceprovider (userid, proofs) VALUES ('$userid', '$myfile')";
+            $sql_serviceprovider = "INSERT INTO serviceprovider (userid, proofs,details) VALUES ('$userid', '$myfile','$details')";
     
             if (mysqli_query($con, $sql_serviceprovider)) {
                 echo '<script type="text/javascript"> alert("Congratulations. Your account was created.")</script>';
