@@ -17,6 +17,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 } else {
     
 }
+
 $sql = "SELECT *
 FROM appointment
 INNER JOIN serviceprovider
