@@ -84,7 +84,7 @@ if(isset($_SESSION["userid"]) ){
                         <span class="link-name">Feedbacks</span>
                     </a></li>
 
-                <li><a href="freeConsultation.php">
+                <li><a href="chat/Main/Index.php">
                         <i class="uil uil-chat"></i>
                         <span class="link-name">Free Consultation</span>
                     </a></li>
