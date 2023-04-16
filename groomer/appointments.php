@@ -227,7 +227,6 @@ AND serviceprovider.spid = '$spid'";
 
                         <?php
 //add shedule form
-$userid = $_SESSION['userid'];
 $spid = "";
 $query = "SELECT spid FROM serviceprovider WHERE userid = '$userid'";
 
@@ -243,7 +242,7 @@ if ($_POST) {
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
 
-    $sql = "INSERT INTO appointment (userid,spid,appoDate,startTime,endTime) VALUES ('$userid','$spid','$appoDate','$startTime','$endTime');";
+    $sql = "INSERT INTO appointment (spid,appoDate,startTime,endTime) VALUES ('$spid','$appoDate','$startTime','$endTime');";
     if (mysqli_query($con, $sql)) {
         echo '<script type="text/javascript"> alert("Session was added.")</script>';
         echo "<meta http-equiv='refresh' content='0'>";
