@@ -3,6 +3,8 @@ require '../config/db.php';
 session_start();
 $spid ="";
 $userid="";
+
+
 if(isset($_SESSION["userid"]) ){
    $userid =$_SESSION["userid"];
 }else{
@@ -17,34 +19,14 @@ if ($result && mysqli_num_rows($result) > 0) {
 } else {
     
 }
+
 $sql = "SELECT *
 FROM appointment
 INNER JOIN serviceprovider
 ON appointment.spid = serviceprovider.spid
 AND serviceprovider.spid = '$spid'";
 
-$sql = "SELECT *
-FROM appointment";
-$result = mysqli_query($con, $sql);
 
-// check if the trash icon is clicked
-if(isset($_GET['delete_id'])) {
-   
-    $delete_id = $_GET['delete_id'];
-
-    
-    $delete_sql = "DELETE FROM appointment WHERE appNo = $delete_id";
-
-   
-    if (mysqli_query($con, $delete_sql)) {
-       
-       
-        header("Location: appointments.php");
-    } else {
-        // error deleting feedback record
-        echo "<script>alert('Error deleting : " . mysqli_error($con) . "');</script>";
-    }
-}
 
 
 ($result = mysqli_query($con, $sql));
@@ -148,13 +130,13 @@ if(isset($_GET['delete_id'])) {
                         <p class="heading-sub12" style="padding: 0;font-size: 16px;color: black ; margin-right: -60px;">
                             <?php 
 
-                        date_default_timezone_set('Asia/Kolkata');
+date_default_timezone_set('Asia/Kolkata');
 
-                        $today = date('Y-m-d');
-                        echo $today;
+$today = date('Y-m-d');
+echo $today;
 
 
-                        ?>
+?>
                         </p>
                     </td>
                     <td width="2%">
@@ -204,17 +186,17 @@ if(isset($_GET['delete_id'])) {
                                 </thead>
                                 <tbody>
                                     <?php
-                    
-                    
-   
-                    $rows = mysqli_query($con,   
-                    $sql = "SELECT appointment.appoDate, appointment.startTime, appointment.endTime, user.fname,user.mobile
-                    FROM appointment
-                    LEFT JOIN user ON appointment.userid = user.userid
-                    INNER JOIN serviceprovider ON appointment.spid = serviceprovider.spid
-                    WHERE serviceprovider.spid = '$spid'
-                    ORDER BY appointment.appoDate DESC, appointment.startTime DESC"
-                    ); ?>
+
+
+
+$rows = mysqli_query($con,   
+$sql = "SELECT appointment.appoDate, appointment.startTime, appointment.endTime, user.fname,user.mobile
+FROM appointment
+LEFT JOIN user ON appointment.userid = user.userid
+INNER JOIN serviceprovider ON appointment.spid = serviceprovider.spid
+WHERE serviceprovider.spid = '$spid'
+ORDER BY appointment.appoDate DESC, appointment.startTime DESC"
+); ?>
                                     <?php foreach ($rows as $row) : ?>
 
                                     <tr>
@@ -238,12 +220,8 @@ if(isset($_GET['delete_id'])) {
                                         </td>
                                         <td><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </td>
-                                        <td>
-                                            <a href="?delete_id=<?php echo $rows['appNo']; ?>"
-                                                onclick="return confirm('Are you sure you want to delete this  record?')">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
+                                        <td> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+
 
                                     </tr>
                                     <?php endforeach; ?>
@@ -255,31 +233,30 @@ if(isset($_GET['delete_id'])) {
 
                         <?php
 //add shedule form
-$userid = $_SESSION['userid'];
 $spid = "";
 $query = "SELECT spid FROM serviceprovider WHERE userid = '$userid'";
 
 $result = mysqli_query($con, $query);
 if ($result && mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $spid = $row['spid'];
+$row = mysqli_fetch_assoc($result);
+$spid = $row['spid'];
 } else {
 
 }                    
 if ($_POST) {  
-    $appoDate = $_POST["appoDate"];
-    $startTime = $_POST["startTime"];
-    $endTime = $_POST["endTime"];
+$appoDate = $_POST["appoDate"];
+$startTime = $_POST["startTime"];
+$endTime = $_POST["endTime"];
 
-    $sql = "INSERT INTO appointment (userid,spid,appoDate,startTime,endTime) VALUES ('$userid','$spid','$appoDate','$startTime','$endTime');";
-    if (mysqli_query($con, $sql)) {
-        echo '<script type="text/javascript"> alert("Session was added.")</script>';
-        echo "<meta http-equiv='refresh' content='0'>";
-        exit();
-    } else {
-        echo '<script type="text/javascript"> alert(" Try again.")</script>';
-    }
-    mysqli_close($con);
+$sql = "INSERT INTO appointment (spid,appoDate,startTime,endTime) VALUES ('$spid','$appoDate','$startTime','$endTime');";
+if (mysqli_query($con, $sql)) {
+echo '<script type="text/javascript"> alert("Session was added.")</script>';
+echo "<meta http-equiv='refresh' content='0'>";
+exit();
+} else {
+echo '<script type="text/javascript"> alert(" Try again.")</script>';
+}
+mysqli_close($con);
 }
 ?>
 
