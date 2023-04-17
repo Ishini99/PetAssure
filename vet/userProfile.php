@@ -18,16 +18,7 @@ $result = mysqli_query($con, $sql);
     <link rel="stylesheet" href="../css/Userprofile_i.css">
 
     <title>User Profile</title>
-    <script>
-    function adminRequest() {
-        var adminText = "Your account has been requested to be deleted.";
-        alert(adminText);
-    }
-    </script>
 
-    <style>
-
-    </style>
 
 </head>
 
@@ -118,8 +109,9 @@ $result = mysqli_query($con, $sql);
                             <input type="hidden" name="uname" value="<?php echo $rows['uname']; ?>">
                             <input type="hidden" name="mobile" value="<?php echo $rows['mobile']; ?>">
                             <button class="form_btn2" type="submit">Update</button>
-                            <button class="form_btn2" type="button" onclick="adminRequest()" id="btnEnable">Request to
-                                Delete</button>
+                            <a href="./notifications/deleteAccount.php">
+                                <button class="form_btn2" type="button">Request to Delete</button>
+                            </a>
                         </form>
 
 
