@@ -13,6 +13,7 @@ $stype ="";
 $details ="";
 $myfile="";
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
 $fname = $_POST['fname'];
@@ -27,8 +28,6 @@ $stype = $_POST['stype'];
 $myfile=$_POST['myfile'];
 $details =trim($_POST['details']);
 $confirm_password = $_POST['confirm_password'];
-
-
 
 
     // Insert data into user table
