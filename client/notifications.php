@@ -33,7 +33,7 @@ $result = mysqli_query($con, $sql);
 </head>
 
 <body class="body-scroller">
-    <nav>
+    <nav> 
         <div class="logo-name">
             <div class="logo-image">
                 <img src="../images/logo.png" alt="">

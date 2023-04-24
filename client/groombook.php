@@ -1,8 +1,9 @@
- <?php
+
+<?php
 require_once('../config/db.php');
 session_start();
 
-if (isset($_GET)) {
+if (isset($_GET['id'])) {
     // print_r($_GET['id']);die();
     $ap_id = $_GET['id'];
     echo "<script> 
@@ -13,6 +14,22 @@ if (isset($_GET)) {
 $sql = "SELECT * FROM user";
 $result = mysqli_query($con, $sql);
 ?> 
+
+
+<script>
+
+window.onload = function (){
+  const element = document.getElementById('tablehead');
+  console.log(element);
+  element.scrollIntoView({block:"end"});
+}
+
+//   $(window).load(function(){ 
+//     console.log("Test");
+//     $('html,body').animate({ scrollTop: $('#').offset().top - 100 }, 'slow'); 
+// });
+</script>
+
 
 <?php
 // session_start();
@@ -57,6 +74,8 @@ $result = mysqli_query($con, $sql);
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
     <title>PetAssure</title>
     <style>
     .styled-table {
@@ -80,6 +99,7 @@ $result = mysqli_query($con, $sql);
 </head>
 
 <body class="body-scroller">
+
 
     <nav>
         <div class="logo-name">
@@ -206,12 +226,12 @@ if ($result = mysqli_query($con, $sql))
 <center>
 <div class="app-table">
     <div>
-            <h2 class="appoi">My Appointments</h2>
+            <h2 class="appoi" id="app" >My Appointments</h2>
  </div>
 
 <br><br>
-            <table class="styled-table1">
-                <thead>
+            <table  class="styled-table1">
+                <thead id="tablehead">
                     <tr>
                         <th>Appointment No</th>
 

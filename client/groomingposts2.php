@@ -4,7 +4,8 @@ require_once('../config/db.php');
 
 session_start();
 
-$sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
+
+$sql = "SELECT * FROM user WHERE role IN ('veterinarian', 'groomer', 'pet boarding', 'pet sitting')";
     $result = $con->query($sql);
  
 ?>
@@ -113,6 +114,11 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
     <div
      
     >
+    <?php
+          $sql = "SELECT * FROM user WHERE role IN ('veterinarian', 'groomer', 'pet boarding', 'pet sitting')";
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc())}?>
 
     <div class="posts" >
       <div class="product-card" id="product-card">
@@ -134,7 +140,8 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
   
           <div class="product-details">
               <div id="hide_on_hover">
-                  <p class="book-title">HACHIKO GROOMERS</p>
+                  <p class="book-title"> <?php  echo "<h2>" . $row['fname'] . "</h2>";?>
+</p>
                   <p class="author"></p>
                   <span class="rating"> 4.5
                         <p class="fa fa-star"></p> (105)
@@ -163,61 +170,7 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
                   </div>
               </div>
           
-              <div class="product-card" id="product-card">
-                <img src="../images/groom3.jpg" class="product-card-thumbnail-image">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img class="scale-down" src="../images/groom5.jpg">
-                        </div>
-                        <div class="swiper-slide">
-                            <!-- <img class="scale-down" src="https://images.unsplash.com/photo-1470859624578-4bb57890378a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"> -->
-                        </div>
-                        <div class="swiper-slide">
-                            <!-- <img class="scale-down" src="https://images.unsplash.com/photo-1508169351866-777fc0047ac5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="pagination"></div>
-        
-                <div class="product-details">
-                    <div id="hide_on_hover">
-                        <p class="book-title">BOW BOW GROOMERS</p>
-                        <p class="author"></p>
-                        <span class="rating"> 4.5
-                              <p class="fa fa-star"></p> (124)
-                        </span>
-                    </div>
-                    <div id="show_on_hover">
-                        <!-- <i class="material-icons heart">favorite</i> -->
-                        <!-- <button class="btn add-to-card">Add To Card</button> -->
-                    </div>
-                    <div class="not_change_on_hover">
-                        <div class="product-quality">
-                            <!-- <div class="input-chip active"> -->
-                              <a href="./groombook.php"> <button class="btn add-to-card">BOOK NOW</button></a>
-                            </div>
-                            <!-- <div class="input-chip">
-                                <!-- <input type="radio">Good  -->
-                            </div>
-                             <div class="input-chip">
-                                <!-- <input type="radio">Acceptable -->
-                            </div> 
-                        </div>
-                        <div class="price">
-                            <span class="new-price"> 1000/= </span>
-                            <!-- <span> <del class="original-price"> ₹20 </del> </span> -->
-                            <!-- <span class="discount"> (50% Off)</span> -->
-                        </div>
-                    </div>
-
-                    
-      
-        
-                
-          
-            </div>
-        </div>
+              
 
   
           
