@@ -422,7 +422,7 @@ nav.close ~ .dashboard .top{
     color: #212529e3;
   }
  
-  .menu-icon-dashbord:hover,.menu-icon-dashbord-active{
+  /* .menu-icon-dashbord:hover,.menu-icon-dashbord-active{
     color: var(--primarycolor);
   
     background-image: url('../img/icons/dashboard-hover.svg');
@@ -443,9 +443,9 @@ nav.close ~ .dashboard .top{
   color: var(--primarycolor);
   
   background-image: url('icon/settings-iceblue.svg');
-}
+} */
 
-
+/* 
 .btn-icon-back{
     background-image: url('../img/icons/back-iceblue.svg');
     background-position: 18px 50%;
@@ -456,7 +456,7 @@ nav.close ~ .dashboard .top{
   
   .btn-icon-back:hover{
     background-image: url('../img/icons/back-white.svg');
-  }
+  } */
 .dashboard-icons{
     background-color: rgba(184, 184, 184, 0.247);
     padding-top: 30px;
