@@ -23,7 +23,7 @@ if(isset($_GET['delete_id'])) {
     // execute the SQL statement
     if (mysqli_query($con, $delete_sql)) {
         // feedback record deleted successfully
-        echo "<script>alert('Feedback deleted successfully!');</script>";
+       
         header("Location: feedbacks.php");
     } else {
         // error deleting feedback record
@@ -43,11 +43,12 @@ if(isset($_GET['delete_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+
     <link rel="stylesheet" href="../css/vet_feedbacks.css">
     <script src="https://kit.fontawesome.com/ffeda24502.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>PetAssure</title>
 
 
@@ -124,8 +125,8 @@ if(isset($_GET['delete_id'])) {
         <center>
             <h2>Feedbacks</h2>
             <br><br>
-
-            <table class="styled-table">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Names..">
+            <table id="myTable" class="styled-table">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -203,7 +204,26 @@ if(isset($_GET['delete_id'])) {
 
 
         <script src="script.js"></script>
-
+        <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        </script>
     </section>
 
     <div class="footerr" style="position:absolute; z-index: -1; width: 99%;">

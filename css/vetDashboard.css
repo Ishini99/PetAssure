@@ -421,7 +421,7 @@ nav.close ~ .dashboard .top{
     font-weight: 500;
     color: #212529e3;
   }
-/*  
+ 
   .menu-icon-dashbord:hover,.menu-icon-dashbord-active{
     color: var(--primarycolor);
   
@@ -443,7 +443,7 @@ nav.close ~ .dashboard .top{
   color: var(--primarycolor);
   
   background-image: url('icon/settings-iceblue.svg');
-} */
+}
 
 
 .btn-icon-back{

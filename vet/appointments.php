@@ -3,6 +3,8 @@ require '../config/db.php';
 session_start();
 $spid ="";
 $userid="";
+
+
 if(isset($_SESSION["userid"]) ){
    $userid =$_SESSION["userid"];
 }else{
@@ -17,6 +19,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 } else {
     
 }
+
 $sql = "SELECT *
 FROM appointment
 INNER JOIN serviceprovider
@@ -127,13 +130,13 @@ AND serviceprovider.spid = '$spid'";
                         <p class="heading-sub12" style="padding: 0;font-size: 16px;color: black ; margin-right: -60px;">
                             <?php 
 
-                        date_default_timezone_set('Asia/Kolkata');
+date_default_timezone_set('Asia/Kolkata');
 
-                        $today = date('Y-m-d');
-                        echo $today;
+$today = date('Y-m-d');
+echo $today;
 
 
-                        ?>
+?>
                         </p>
                     </td>
                     <td width="2%">
@@ -183,17 +186,17 @@ AND serviceprovider.spid = '$spid'";
                                 </thead>
                                 <tbody>
                                     <?php
-                    
-                    
-   
-                    $rows = mysqli_query($con,   
-                    $sql = "SELECT appointment.appoDate, appointment.startTime, appointment.endTime, user.fname,user.mobile
-                    FROM appointment
-                    LEFT JOIN user ON appointment.userid = user.userid
-                    INNER JOIN serviceprovider ON appointment.spid = serviceprovider.spid
-                    WHERE serviceprovider.spid = '$spid'
-                    ORDER BY appointment.appoDate DESC, appointment.startTime DESC"
-                    ); ?>
+
+
+
+$rows = mysqli_query($con,   
+$sql = "SELECT appointment.appoDate, appointment.startTime, appointment.endTime, user.fname,user.mobile
+FROM appointment
+LEFT JOIN user ON appointment.userid = user.userid
+INNER JOIN serviceprovider ON appointment.spid = serviceprovider.spid
+WHERE serviceprovider.spid = '$spid'
+ORDER BY appointment.appoDate DESC, appointment.startTime DESC"
+); ?>
                                     <?php foreach ($rows as $row) : ?>
 
                                     <tr>
@@ -230,31 +233,30 @@ AND serviceprovider.spid = '$spid'";
 
                         <?php
 //add shedule form
-$userid = $_SESSION['userid'];
 $spid = "";
 $query = "SELECT spid FROM serviceprovider WHERE userid = '$userid'";
 
 $result = mysqli_query($con, $query);
 if ($result && mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $spid = $row['spid'];
+$row = mysqli_fetch_assoc($result);
+$spid = $row['spid'];
 } else {
 
 }                    
 if ($_POST) {  
-    $appoDate = $_POST["appoDate"];
-    $startTime = $_POST["startTime"];
-    $endTime = $_POST["endTime"];
+$appoDate = $_POST["appoDate"];
+$startTime = $_POST["startTime"];
+$endTime = $_POST["endTime"];
 
-    $sql = "INSERT INTO appointment (userid,spid,appoDate,startTime,endTime) VALUES ('$userid','$spid','$appoDate','$startTime','$endTime');";
-    if (mysqli_query($con, $sql)) {
-        echo '<script type="text/javascript"> alert("Session was added.")</script>';
-        echo "<meta http-equiv='refresh' content='0'>";
-        exit();
-    } else {
-        echo '<script type="text/javascript"> alert(" Try again.")</script>';
-    }
-    mysqli_close($con);
+$sql = "INSERT INTO appointment (spid,appoDate,startTime,endTime) VALUES ('$spid','$appoDate','$startTime','$endTime');";
+if (mysqli_query($con, $sql)) {
+echo '<script type="text/javascript"> alert("Session was added.")</script>';
+echo "<meta http-equiv='refresh' content='0'>";
+exit();
+} else {
+echo '<script type="text/javascript"> alert(" Try again.")</script>';
+}
+mysqli_close($con);
 }
 ?>
 
