@@ -41,7 +41,7 @@ AND serviceprovider.spid = '$spid'";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <link rel="stylesheet" href="../css/vet_appointments.css">
+    <link rel="stylesheet" href="../css/groomer_appointments.css">
     <script src="https://kit.fontawesome.com/ffeda24502.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -64,7 +64,7 @@ AND serviceprovider.spid = '$spid'";
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="vetDashboard.php">
+                <li><a href="groomerDashboard.php">
                         <i class="uil uil-dashboard"></i>
                         <span class="link-name">Dashboard</span> </a></li>
                 <li><a href="userProfile.php">
@@ -88,10 +88,7 @@ AND serviceprovider.spid = '$spid'";
                         <span class="link-name">Feedbacks</span>
                     </a></li>
 
-                <li><a href="freeConsultation.php">
-                        <i class="uil uil-chat"></i>
-                        <span class="link-name">Free Consultation</span>
-                    </a></li>
+
 
 
 
@@ -130,13 +127,13 @@ AND serviceprovider.spid = '$spid'";
                         <p class="heading-sub12" style="padding: 0;font-size: 16px;color: black ; margin-right: -60px;">
                             <?php 
 
-date_default_timezone_set('Asia/Kolkata');
+                        date_default_timezone_set('Asia/Kolkata');
 
-$today = date('Y-m-d');
-echo $today;
+                        $today = date('Y-m-d');
+                        echo $today;
 
 
-?>
+                        ?>
                         </p>
                     </td>
                     <td width="2%">
@@ -186,17 +183,17 @@ echo $today;
                                 </thead>
                                 <tbody>
                                     <?php
-
-
-
-$rows = mysqli_query($con,   
-$sql = "SELECT appointment.appoDate, appointment.startTime, appointment.endTime, user.fname,user.mobile
-FROM appointment
-LEFT JOIN user ON appointment.userid = user.userid
-INNER JOIN serviceprovider ON appointment.spid = serviceprovider.spid
-WHERE serviceprovider.spid = '$spid'
-ORDER BY appointment.appoDate DESC, appointment.startTime DESC"
-); ?>
+                    
+                    
+   
+                    $rows = mysqli_query($con,   
+                    $sql = "SELECT appointment.appoDate, appointment.startTime, appointment.endTime, user.fname,user.mobile
+                    FROM appointment
+                    LEFT JOIN user ON appointment.userid = user.userid
+                    INNER JOIN serviceprovider ON appointment.spid = serviceprovider.spid
+                    WHERE serviceprovider.spid = '$spid'
+                    ORDER BY appointment.appoDate DESC, appointment.startTime DESC"
+                    ); ?>
                                     <?php foreach ($rows as $row) : ?>
 
                                     <tr>
@@ -238,25 +235,25 @@ $query = "SELECT spid FROM serviceprovider WHERE userid = '$userid'";
 
 $result = mysqli_query($con, $query);
 if ($result && mysqli_num_rows($result) > 0) {
-$row = mysqli_fetch_assoc($result);
-$spid = $row['spid'];
+    $row = mysqli_fetch_assoc($result);
+    $spid = $row['spid'];
 } else {
 
 }                    
 if ($_POST) {  
-$appoDate = $_POST["appoDate"];
-$startTime = $_POST["startTime"];
-$endTime = $_POST["endTime"];
+    $appoDate = $_POST["appoDate"];
+    $startTime = $_POST["startTime"];
+    $endTime = $_POST["endTime"];
 
-$sql = "INSERT INTO appointment (spid,appoDate,startTime,endTime) VALUES ('$spid','$appoDate','$startTime','$endTime');";
-if (mysqli_query($con, $sql)) {
-echo '<script type="text/javascript"> alert("Session was added.")</script>';
-echo "<meta http-equiv='refresh' content='0'>";
-exit();
-} else {
-echo '<script type="text/javascript"> alert(" Try again.")</script>';
-}
-mysqli_close($con);
+    $sql = "INSERT INTO appointment (spid,appoDate,startTime,endTime) VALUES ('$spid','$appoDate','$startTime','$endTime');";
+    if (mysqli_query($con, $sql)) {
+        echo '<script type="text/javascript"> alert("Session was added.")</script>';
+        echo "<meta http-equiv='refresh' content='0'>";
+        exit();
+    } else {
+        echo '<script type="text/javascript"> alert(" Try again.")</script>';
+    }
+    mysqli_close($con);
 }
 ?>
 
