@@ -89,10 +89,16 @@ AND serviceprovider.spid = '$spid'";
                     </a></li>
 
 
-
+                    <li><a href="freeConsultation.php">
+                        <i class="uil uil-chat"></i>
+                        <span class="link-name">Free Consultation</span>
+                    </a></li>
 
 
             </ul>
+             
+            
+
 
             <ul class="logout-mode">
                 <li><a href="../logout.php">

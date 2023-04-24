@@ -90,17 +90,13 @@ $result = mysqli_query($con, $sql);
                                     <td><?php echo $rows['uname']; ?></td>
                                 </tr>
 
-                                <tr>
-                                    <td>Description</td>
-                                    <td><?php echo $rows['details']; ?></td>
-                                </tr>
                             </tbody>
                         </table>
                     </center>
 
                     <center>
                         <form action="updateProfile.php" method="post">
-                            <input type="hidden" name="details" value="<?php echo $rows['details']; ?>">
+                          
                             <input type="hidden" name="fname" value="<?php echo $rows['fname']; ?>">
                             <input type="hidden" name="spid" value="<?php echo $rows['userid']; ?>">
                             <input type="hidden" name="nic" value="<?php echo $rows['nic']; ?>">

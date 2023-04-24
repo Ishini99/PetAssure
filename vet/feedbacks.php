@@ -12,25 +12,6 @@ $sql = "SELECT *
 FROM feedback";
 $result = mysqli_query($con, $sql);
 
-// check if the trash icon is clicked
-if(isset($_GET['delete_id'])) {
-    // get the feedback ID to be deleted
-    $delete_id = $_GET['delete_id'];
-
-    // prepare the SQL statement to delete the feedback record
-    $delete_sql = "DELETE FROM feedback WHERE fid = $delete_id";
-
-    // execute the SQL statement
-    if (mysqli_query($con, $delete_sql)) {
-        // feedback record deleted successfully
-       
-        header("Location: feedbacks.php");
-    } else {
-        // error deleting feedback record
-        echo "<script>alert('Error deleting feedback: " . mysqli_error($con) . "');</script>";
-    }
-}
-
 ?>
 
 
@@ -133,7 +114,7 @@ if(isset($_GET['delete_id'])) {
                         <th>Client Name</th>
                         <th>Rating</th>
                         <th>Message</th>
-                        <th>Cancel</th>
+                        <!-- <th>Cancel</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -167,12 +148,12 @@ if(isset($_GET['delete_id'])) {
                         </td>
                         <td><?php echo $rows['content'];?></td>
 
-                        <td>
+                        <!-- <td>
                             <a href="?delete_id=<?php echo $rows['fid']; ?>"
                                 onclick="return confirm('Are you sure you want to delete this feedback record?')">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </a>
-                        </td>
+                        </td> -->
 
 
 
