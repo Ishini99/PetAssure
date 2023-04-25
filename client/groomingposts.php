@@ -115,6 +115,13 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
     >
 
     <div class="posts" >
+    <?php
+    $sql = "SELECT * FROM user WHERE role IN ('groomer')";
+    $result = $con->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) { 
+    ?>
       <div class="product-card" id="product-card">
           <img src="../images/groom2.jpg" class="product-card-thumbnail-image">
           <div class="swiper-container">
@@ -134,10 +141,10 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
   
           <div class="product-details">
               <div id="hide_on_hover">
-                  <p class="book-title">HACHIKO GROOMERS</p>
+                  <p class="book-title"><?php echo "<h2>" . $row['uname'] . "</h2>"; ?></p>
                   <p class="author"></p>
                   <span class="rating"> 4.5
-                        <p class="fa fa-star"></p> (105)
+                        <p class="fa fa-star"></p>
                   </span>
               </div>
               <div id="show_on_hover">
@@ -157,11 +164,16 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
                       </div> 
                   </div>
                   <div class="price">
-                      <span class="new-price"> 1000/= </span>
+                      <!-- <span class="new-price"> </span> -->
                       <!-- <span> <del class="original-price"> ₹20 </del> </span> -->
-                      <!-- <span class="discount"> (50% Off)</span> -->
+                      <span class="discount"> <?php echo "<p>" . $row['district'] . "</p>"; ?></span> 
                   </div>
               </div>
+              <?php
+        }
+    }
+    $con->close();
+    ?>
           
               <div class="product-card" id="product-card">
                 <img src="../images/groom3.jpg" class="product-card-thumbnail-image">
