@@ -7,14 +7,32 @@ if(isset($_SESSION["spid"]) ){
 }else{
    //header("location:login.php");
 }
-$sql = "SELECT *
-FROM appointment
 
+$sql = "SELECT appointment.appNo, appointment.appoDate, appointment.description ,user.fname, user.mobile
+FROM appointment
 INNER JOIN user
 ON appointment.userid = user.userid";
 
+$result = mysqli_query($con, $sql);
 
-($result = mysqli_query($con, $sql));
+// check if the trash icon is clicked
+if(isset($_GET['delete_id'])) {
+    // get the feedback ID to be deleted
+    $delete_id = $_GET['delete_id'];
+
+    // prepare the SQL statement to delete the feedback record
+    $delete_sql = "DELETE FROM appointment WHERE appNo = $delete_id";
+
+    // execute the SQL statement
+    if (mysqli_query($con, $delete_sql)) {
+        // feedback record deleted successfully
+       
+        header("Location: history.php");
+    } else {
+        // error deleting feedback record
+        echo "<script>alert('Error deleting feedback: " . mysqli_error($con) . "');</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -104,6 +122,7 @@ ON appointment.userid = user.userid";
         <center>
             <h2> Consulted Pets</h2>
             <br><br>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Names..">
             <table class="styled-table">
                 <thead>
                     <tr>
@@ -111,32 +130,36 @@ ON appointment.userid = user.userid";
                         <th>Appoinment Date</th>
                         <th>Client Name</th>
                         <th>Mobile Number</th>
-
-                        <th>Description</th>
+<th>Description</th>
+                        <th>Delete</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                while($rows=$result->fetch_assoc())
-                {
-            ?>
-                    <tr class="active-row">
-                        <td><?php echo $rows['appNo'];?></td>
-                        <td><?php echo $rows['appoDate'];?></td>
-                        <td><?php echo $rows['fname'];?></td>
-                        <td><?php echo $rows['mobile'];?></td>
+                    
+<?php
+while($rows = mysqli_fetch_assoc($result)) {
+?>
+    <tr class="active-row">
+        <td><?php echo $rows['appNo'];?></td>
+        <td><?php echo $rows['appoDate'];?></td>
+        <td><?php echo $rows['fname'];?></td>
+        <td><?php echo $rows['mobile'];?></td>
+        <td><?php echo $rows['description'];?></td>
+        <td>
+            <a href="?delete_id=<?php echo $rows['appNo']; ?>"
+                onclick="return confirm('Are you sure you want to delete this feedback record?')">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </a>
+        </td>
+    </tr>
+<?php
+}
+?>
 
 
 
-                        <td><?php echo $rows['description'];?></td>
 
-
-
-                    </tr>
-                    <?php
-                }
-            ?>
 
 
                 </tbody>
@@ -152,7 +175,26 @@ ON appointment.userid = user.userid";
 
 
         <script src="../js/script.js"></script>
-
+        <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        </script
     </section>
 
     <div class="footerr" style="position:absolute; z-index: -1; width: 99%;">
