@@ -20,7 +20,7 @@ if (isset($_POST['but_submit'])) {
         if( $row1['role']=='admin'){        
             header("Location:Admin/Admin/AdminClientDash.php");
         }
-        else if( $row1['role']=='client'){
+        else if( $row1['role']=='Client' || $row1['role']=='client' ){
             header("Location:client/services1.php");
         }
         else if( $row1['role']=='petgrooming'){

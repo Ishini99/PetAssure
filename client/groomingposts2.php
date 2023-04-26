@@ -118,7 +118,9 @@ $sql = "SELECT * FROM user WHERE role IN ('veterinarian', 'groomer', 'pet boardi
           $sql = "SELECT * FROM user WHERE role IN ('veterinarian', 'groomer', 'pet boarding', 'pet sitting')";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc())}?>
+        while($row = $result->fetch_assoc());
+      }
+        ?>
 
     <div class="posts" >
       <div class="product-card" id="product-card">
@@ -157,7 +159,7 @@ $sql = "SELECT * FROM user WHERE role IN ('veterinarian', 'groomer', 'pet boardi
                        <a href="groombook.php"> <button class="btn add-to-card">BOOK NOW</button></a>
                       </div>
                       <!-- <div class="input-chip">
-                          <!-- <input type="radio">Good  -->
+                           <input type="radio">Good  -->
                       </div>
                        <div class="input-chip">
                           <!-- <input type="radio">Acceptable -->
