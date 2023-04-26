@@ -120,81 +120,75 @@ if(isset($_GET['delete_id'])) {
         <div style="padding-bottom: 20px;"></div>
 
         <center>
-            <h2> Consulted Pets</h2>
-            <br><br>
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Names..">
-            <table class="styled-table">
-                <thead>
-                    <tr>
-                        <th>Appointment No</th>
-                        <th>Appoinment Date</th>
-                        <th>Client Name</th>
-                        <th>Mobile Number</th>
-<th>Description</th>
-                        <th>Delete</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    
-<?php
-while($rows = mysqli_fetch_assoc($result)) {
-?>
-    <tr class="active-row">
+  <h2> Consulted Pets</h2>
+  <br><br>
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Names..">
+  <table class="styled-table" id="myTable">
+    <thead>
+      <tr>
+        <th>Appointment No</th>
+        <th>Appointment Date</th>
+        <th>Client Name</th>
+        <th>Mobile Number</th>
+        <th>Description</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      while($rows = mysqli_fetch_assoc($result)) {
+      ?>
+      <tr class="active-row">
         <td><?php echo $rows['appNo'];?></td>
         <td><?php echo $rows['appoDate'];?></td>
         <td><?php echo $rows['fname'];?></td>
         <td><?php echo $rows['mobile'];?></td>
         <td><?php echo $rows['description'];?></td>
         <td>
-            <a href="?delete_id=<?php echo $rows['appNo']; ?>"
-                onclick="return confirm('Are you sure you want to delete this feedback record?')">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-            </a>
+          <a href="?delete_id=<?php echo $rows['appNo']; ?>"
+            onclick="return confirm('Are you sure you want to delete this feedback record?')">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </a>
         </td>
-    </tr>
-<?php
-}
-?>
+      </tr>
+      <?php
+      }
+      ?>
+    </tbody>
+  </table>
+</center>
 
-
-
-
-
-
-                </tbody>
-            </table>
-        </center>
-
-
-
-        </div>
-        </div>
-
-
-
-
-        <script src="../js/script.js"></script>
-        <script>
-        function myFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
+<script>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      if (tr[i].getElementsByTagName("td").length > 0) {
+        var match = false;
+        td = tr[i].getElementsByTagName("td");
+        for (var j = 0; j < td.length; j++) {
+          if (td[j]) {
+            txtValue = td[j].textContent || td[j].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              match = true;
+              break;
             }
+          }
         }
-        </script
+        if (match) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+
+
     </section>
 
     <div class="footerr" style="position:absolute; z-index: -1; width: 99%;">
