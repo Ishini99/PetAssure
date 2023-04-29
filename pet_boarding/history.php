@@ -25,8 +25,6 @@ if(isset($_SESSION["spid"]) ){
 
     <title>PetAssure</title>
 
-
-
 </head>
 
 <body class="body-scroller">
