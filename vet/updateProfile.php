@@ -13,12 +13,12 @@ $mobile = isset($_POST['mobile']) ? $_POST['mobile'] : '';
 $uname = isset($_POST['uname']) ? $_POST['uname'] : '';
 $district = isset($_POST['district']) ? $_POST['district'] : '';
 $email = isset($_POST['email']) ? $_POST['email'] : '';
-$details = isset($_POST['details']) ? $_POST['details'] : '';
+// $details = isset($_POST['details']) ? $_POST['details'] : '';
 require '../config/db.php';
 
 // Updating user profile details
 if (isset($_POST['update'])) {
-    $query =  "UPDATE user SET fname='$fname', district='$district', email='$email', mobile='$mobile', uname='$uname', details='$details' WHERE userid = '$userid'";
+    $query =  "UPDATE user SET fname='$fname', district='$district', email='$email', mobile='$mobile', uname='$uname' WHERE userid = '$userid'";
     $sql = mysqli_query($con, $query);
     if ($sql) {
         echo "<script>alert('Record update successfully')</script>";
@@ -186,10 +186,7 @@ if(isset($_POST["delete"])){
                     <input type="text" name="uname" value="<?php echo $uname; ?>" required class="form-input">
                 </div>
 
-                <div class="form-group">
-                    <div class="form-label">Description:</div>
-                    <input type="text" name="details" value="<?php echo $details; ?>" required class="form-input">
-                </div>
+               
 
                 <div class="form-group">
                     <button type="submit" name="update" class="btn">Update Profile</button>

@@ -18,7 +18,7 @@
         </div>
         <script>
         const reviews_page_id = 1;
-        fetch("reviewsSystem.php?page_id=" + reviews_page_id).then(response => response.text()).then(data => {
+        fetch("reviews.php?page_id=" + reviews_page_id).then(response => response.text()).then(data => {
             document.querySelector(".reviews").innerHTML = data;
             document.querySelector(".reviews .write_review_btn").onclick = event => {
                 event.preventDefault();

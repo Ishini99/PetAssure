@@ -31,12 +31,18 @@ function time_elapsed_string($datetime, $full = false) {
 // Page ID needs to exist, this is used to determine which reviews are for which page.
 if (isset($_GET['page_id'])) {
     if (isset($_POST['name'], $_POST['rating'], $_POST['content'])) {
+
         // Insert a new review (user submitted form)
         $stmt = $pdo->prepare('INSERT INTO feedback (page_id, name, content, rating, submit_date) VALUES (?,?,?,?,NOW())');
         $stmt->execute([$_GET['page_id'], $_POST['name'], $_POST['content'], $_POST['rating']]);
         exit('Your review has been submitted! <br><b>Thank You</b>');
+
     }
-    
+     // Get all reviews by the Page ID ordered by the submit date
+    $stmt = $pdo->prepare('SELECT * FROM feedback WHERE page_id = ? ORDER BY submit_date DESC');
+    $stmt->execute([$_GET['page_id']]);
+    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Get the overall rating and total amount of reviews
     $stmt = $pdo->prepare('SELECT AVG(rating) AS overall_rating, COUNT(*) AS total_reviews FROM feedback WHERE page_id = ?');
     $stmt->execute([$_GET['page_id']]);
     $reviews_info = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -89,7 +95,24 @@ if (isset($_GET['page_id'])) {
 
 
     </div>
+</div>
 
+    <?php foreach ($reviews as $review): ?>
+    <div class="review">
+        <h3 class="name"><?=htmlspecialchars($review['name'], ENT_QUOTES)?></h3>
+        <div>
+            <span class="rating"><?=str_repeat('&#9733;', $review['rating'])?></span>
+            <?php
+            $date = $review['submit_date'];
+$now = time();
+$difference = $now - strtotime($date);
+
+?>
+
+        </div>
+        <p class="content"><?=htmlspecialchars($review['content'], ENT_QUOTES)?></p>
+    </div>
+    <?php endforeach ?>
     <script>
     // Get the modal
     var modal = document.getElementById('id01');
