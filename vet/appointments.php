@@ -64,7 +64,7 @@ AND serviceprovider.spid = '$spid'";
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="groomerDashboard.php">
+                <li><a href="vetDashboard.php">
                         <i class="uil uil-dashboard"></i>
                         <span class="link-name">Dashboard</span> </a></li>
                 <li><a href="userProfile.php">
@@ -88,12 +88,10 @@ AND serviceprovider.spid = '$spid'";
                         <span class="link-name">Feedbacks</span>
                     </a></li>
 
-
-                    <li><a href="freeConsultation.php">
+                <li><a href="freeConsultation.php">
                         <i class="uil uil-chat"></i>
                         <span class="link-name">Free Consultation</span>
                     </a></li>
-
 
             </ul>
              
