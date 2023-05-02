@@ -4,20 +4,35 @@ $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
 $DATABASE_NAME = 'petassure';
+
+
+
+
 try {
     $pdo = new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
 } catch (PDOException $exception) {
     // If there is an error with the connection, stop the script and display the error.
     exit('Failed to connect to database!');
 }
+
+
+
+
+
 // Below function will convert datetime to time elapsed string.
+
+
 function time_elapsed_string($datetime, $full = false) {
+
+
     $now = new DateTime;
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);
     $diff->w = floor($diff->d / 7);
     $diff->d -= $diff->w * 7;
     $string = array('y' => 'year', 'm' => 'month', 'w' => 'week', 'd' => 'day', 'h' => 'hour', 'i' => 'minute', 's' => 'second');
+
+
     foreach ($string as $k => &$v) {
         if ($diff->$k) {
             $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
@@ -25,23 +40,37 @@ function time_elapsed_string($datetime, $full = false) {
             unset($string[$k]);
         }
     }
+
+
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
+
+
+
 // Page ID needs to exist, this is used to determine which reviews are for which page.
 if (isset($_GET['page_id'])) {
     if (isset($_POST['name'], $_POST['rating'], $_POST['content'])) {
 
+
+
+        
         // Insert a new review (user submitted form)
         $stmt = $pdo->prepare('INSERT INTO feedback (page_id, name, content, rating, submit_date) VALUES (?,?,?,?,NOW())');
         $stmt->execute([$_GET['page_id'], $_POST['name'], $_POST['content'], $_POST['rating']]);
         exit('Your review has been submitted! <br><b>Thank You</b>');
 
     }
+
+
+    
      // Get all reviews by the Page ID ordered by the submit date
     $stmt = $pdo->prepare('SELECT * FROM feedback WHERE page_id = ? ORDER BY submit_date DESC');
     $stmt->execute([$_GET['page_id']]);
     $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
     // Get the overall rating and total amount of reviews
     $stmt = $pdo->prepare('SELECT AVG(rating) AS overall_rating, COUNT(*) AS total_reviews FROM feedback WHERE page_id = ?');
     $stmt->execute([$_GET['page_id']]);

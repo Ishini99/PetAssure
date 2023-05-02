@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Reviews System</title>
+    <title>PetAssure</title>
     <link href="../css/vet_Reviews.css" rel="stylesheet" type="text/css">
     <link href="../css/vet_Reviews2.css" rel="stylesheet" type="text/css">
 </head>
@@ -18,7 +18,7 @@
         </div>
         <script>
         const reviews_page_id = 1;
-        fetch("reviews.php?page_id=" + reviews_page_id).then(response => response.text()).then(data => {
+        fetch("reviewsVet.php?page_id=" + reviews_page_id).then(response => response.text()).then(data => {
             document.querySelector(".reviews").innerHTML = data;
             document.querySelector(".reviews .write_review_btn").onclick = event => {
                 event.preventDefault();
@@ -27,7 +27,7 @@
             };
             document.querySelector(".reviews .write_review form").onsubmit = event => {
                 event.preventDefault();
-                fetch("reviewsSystem.php?page_id=" + reviews_page_id, {
+                fetch("reviewsVet.php?page_id=" + reviews_page_id, {
                     method: 'POST',
                     body: new FormData(document.querySelector(".reviews .write_review form"))
                 }).then(response => response.text()).then(data => {
