@@ -1,0 +1,156 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/profile.css">
+
+    <title>Login</title>
+   
+
+    <style>
+        body {
+            background-image: url("Images/bg2.png");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        </style>
+       
+</head>
+<body>
+
+<div class="flex">
+    <div class="brdr">
+    <div class="card">
+
+     <div class="upper">
+
+       <img src="images/cover.jpg" class="img-fluid">
+       
+     </div>
+
+     <div class="user text-center">
+
+       <div class="profile">
+
+         <img src="images/propic.png" class="rounded-circle" width="100">
+         
+       </div>
+
+     </div>
+
+
+     <div class="mt-5 text-center">
+
+        <div class="title">
+            <br>
+       <h4 class="mb-0">Benjamin Tims</h4>
+       <span class="text-muted align-items-center d-block mb-2">Los Angles</span>
+            <br>
+       <button class="btn btn-primary btn-sm follow">Follow</button>
+    </div>
+
+      
+
+         <div class="stats">
+           <h6 class="mb-0">Followers</h6>
+           <span>8,797</span>
+
+         </div>
+
+
+         <div class="stats">
+           <h6 class="mb-0">Projects</h6>
+           <span>142</span>
+
+         </div>
+
+
+         <div class="stats">
+           <h6 class="mb-0">Ranks</h6>
+           <span>129</span>
+
+         </div>
+         
+  
+       
+     </div>
+      
+    </div>
+</div>
+<div class="brdr">
+    <div class="card">
+
+     <div class="upper">
+
+       <img src="images/cover.jpg" class="img-fluid">
+       
+     </div>
+
+     <div class="user text-center">
+
+       <div class="profile">
+
+         <img src="images/propic.png" class="rounded-circle" width="100">
+         
+       </div>
+
+     </div>
+
+     <?php
+     include "connect.php";
+       $sql = "SELECT `hotelname`, `rating`, `district`, `comments`, `mobile`, `email` FROM `feedback`;";
+     $result = mysqli_query($conn,$sql);
+     $resultcheck = mysqli_num_rows($result);
+       ?>
+   
+       <?php while ($row = mysqli_fetch_array($result)){?>
+         <tr class ="pagerr">
+         <td><?php echo $row['hotelname']?></td>
+         <td><?php echo $row['rating']?></td>
+         <td><?php echo $row['district']?></td>
+         <td><?php echo $row['comments']?></td>
+         <td><?php echo $row['mobile']?></td>
+         <td><?php echo $row['email']?></td>
+         </tr>
+         <?php } ?>
+         
+     <div class="mt-5 text-center">
+
+        <div class="title">
+            <br>
+       <h4 class="mb-0">Benjamin Tims</h4>
+       <span class="text-muted align-items-center d-block mb-2">Los Angles</span>
+            <br>
+       <button class="btn btn-primary btn-sm follow">Follow</button>
+    </div>
+         <div class="stats">
+           <h6 class="mb-0">Followers</h6>
+           <span>8,797</span>
+
+         </div>
+
+
+         <div class="stats">
+           <h6 class="mb-0">Projects</h6>
+           <span>142</span>
+
+         </div>
+
+
+         <div class="stats">
+           <h6>Ranks</h6>
+           <h4>129</h4>
+
+         </div>
+         
+  
+       
+     </div>
+      
+    </div>
+</div>
+<div>
+  </div>
+</body>
+</html>
