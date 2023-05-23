@@ -126,6 +126,10 @@ if ($result && mysqli_num_rows($result) > 0)
           <tr>
             <th>Package No</th>
             <th>Package Name</th>
+<<<<<<< HEAD
+=======
+            <th>Package Type</th>
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
             <th>Prices</th>
             <th>Services</th>
             <th>Date</th>
@@ -145,6 +149,12 @@ if ($result && mysqli_num_rows($result) > 0)
                 <?php echo $rows['package_name']; ?>
               </td>
               <td>
+<<<<<<< HEAD
+=======
+                <?php echo $rows['package_type']; ?>
+              </td>
+              <td>
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
                 <?php echo $rows['price']; ?>
               </td>
               <td>
@@ -161,6 +171,10 @@ if ($result && mysqli_num_rows($result) > 0)
                       <input type="hidden" name="id" value="<?php echo $rows['id']; ?>">
 
                       <input type="hidden" name="package_name" value="<?php echo $rows['package_name']; ?>">
+<<<<<<< HEAD
+=======
+                      <input type="hidden" name="package_name" value="<?php echo $rows['package_type']; ?>">
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
                       <input type="hidden" name="price" value="<?php echo $rows['price']; ?>">
                       <input type="hidden" name="description" value="<?php echo $rows['description']; ?>">
 

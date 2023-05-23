@@ -6,6 +6,15 @@ $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
 $DATABASE_NAME = 'petassure';
 
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:client/reviewsVet.php
+========
+
+
+
+>>>>>>>> 0db3d1641deba66d1c6084948fe6c79c2c42a949:vet/reviewsVet.php
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
 try {
     $pdo = new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
 } catch (PDOException $exception) {
@@ -13,6 +22,10 @@ try {
     exit('Failed to connect to database!');
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:client/reviewsVet.php
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
 session_start();
 
 $spid = "";
@@ -24,6 +37,14 @@ if (isset($_SESSION["userid"])) {
     exit('Please log in to access this page.');
  }
  
+<<<<<<< HEAD
+=======
+========
+
+
+
+>>>>>>>> 0db3d1641deba66d1c6084948fe6c79c2c42a949:vet/reviewsVet.php
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
 
 // Below function will convert datetime to time elapsed string.
 
@@ -60,6 +81,10 @@ if (isset($_GET['page_id'])) {
 
 
 
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:client/reviewsVet.php
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
        // create a PDO object
        $pdo = new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
 
@@ -75,10 +100,24 @@ if (!$result) {
 }
 
 exit('Your review has been submitted! <br><b>Thank You</b>');
+<<<<<<< HEAD
+=======
+========
+        
+        // Insert a new review (user submitted form)
+        $stmt = $pdo->prepare('INSERT INTO feedback (page_id, name, content, rating, submit_date) VALUES (?,?,?,?,NOW())');
+        $stmt->execute([$_GET['page_id'], $_POST['name'], $_POST['content'], $_POST['rating']]);
+        exit('Your review has been submitted! <br><b>Thank You</b>');
+>>>>>>>> 0db3d1641deba66d1c6084948fe6c79c2c42a949:vet/reviewsVet.php
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
 
     }
 
 
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:client/reviewsVet.php
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
     $page_id = $_GET['page_id'];
 // Modify the query to retrieve only the reviews submitted by the logged-in user
 $sql = "SELECT * FROM feedback WHERE page_id = '$page_id' AND userid = '$userid' ORDER BY submit_date DESC";
@@ -90,6 +129,23 @@ $result = $pdo->query($query);
 $reviews_info = $result->fetch(PDO::FETCH_ASSOC);
 
 
+<<<<<<< HEAD
+=======
+========
+    
+     // Get all reviews by the Page ID ordered by the submit date
+    $stmt = $pdo->prepare('SELECT * FROM feedback WHERE page_id = ? ORDER BY submit_date DESC');
+    $stmt->execute([$_GET['page_id']]);
+    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+    // Get the overall rating and total amount of reviews
+    $stmt = $pdo->prepare('SELECT AVG(rating) AS overall_rating, COUNT(*) AS total_reviews FROM feedback WHERE page_id = ?');
+    $stmt->execute([$_GET['page_id']]);
+    $reviews_info = $stmt->fetch(PDO::FETCH_ASSOC);
+>>>>>>>> 0db3d1641deba66d1c6084948fe6c79c2c42a949:vet/reviewsVet.php
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
 } else {
     exit('Please provide the page ID.');
 }

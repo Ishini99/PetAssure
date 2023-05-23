@@ -1,5 +1,6 @@
 <?php
 session_start();
+<<<<<<< HEAD
 $uid="";
 $userid ="";
 if(isset($_SESSION["userid"]) ){
@@ -7,6 +8,15 @@ if(isset($_SESSION["userid"]) ){
 }else{
    //header("location:login.php");
    exit("You must log in to access this page.");
+=======
+$uid = "";
+$userid = "";
+if (isset($_SESSION["userid"])) {
+    $userid = $_SESSION["userid"];
+} else {
+    //header("location:login.php");
+    exit("You must log in to access this page.");
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
 }
 
 $fname = isset($_POST['fname']) ? $_POST['fname'] : '';
@@ -19,7 +29,7 @@ require '../config/db.php';
 
 // Updating user profile details
 if (isset($_POST['update'])) {
-    $query =  "UPDATE user SET fname='$fname', district='$district', email='$email', mobile='$mobile', uname='$uname' WHERE userid = '$userid'";
+    $query = "UPDATE user SET fname='$fname', district='$district', email='$email', mobile='$mobile', uname='$uname' WHERE userid = '$userid'";
     $sql = mysqli_query($con, $query);
     if ($sql) {
         echo "<script>alert('Record update successfully')</script>";
@@ -30,8 +40,9 @@ if (isset($_POST['update'])) {
 }
 
 // Adding a new vet image
-if(isset($_POST["submit"])){
+if (isset($_POST["submit"])) {
     $name = $_POST["name"];
+<<<<<<< HEAD
     if($_FILES["image"]["error"] == 4){
       echo "<script> alert('Image Does Not Exist'); </script>";
     }
@@ -57,11 +68,46 @@ if(isset($_POST["submit"])){
         mysqli_query($con, $query);
         echo "<script>alert('Successfully Added');</script>";
       }
+=======
+    if ($_FILES["image"]["error"] == 4) {
+        echo "<script> alert('Image Does Not Exist'); </script>";
+    } else {
+        $fileName = $_FILES["image"]["name"];
+        $fileSize = $_FILES["image"]["size"];
+        $tmpName = $_FILES["image"]["tmp_name"];
+
+        $validImageExtension = ['jpg', 'jpeg', 'png'];
+
+        //The explode() function is used to split a string into an array based on a delimiter. In this case, the delimiter is a period (.), which is commonly used to separate the file name and its extension.
+// The explode('.', $fileName) statement splits the $fileName string into an array at each occurrence of a period. For example, if $fileName is "example.jpg", the resulting array would be ["example", "jpg"].
+// The resulting array is assigned to the variable $imageExtension.
+// $imageExtension = strtolower(end($imageExtension));:
+
+// The end() function is used to retrieve the last element from an array. In this case, it retrieves the last element of the $imageExtension array obtained from the previous line.
+// The end($imageExtension) statement returns the last element of the array, which in the above example would be "jpg".
+// The strtolower() function is used to convert the file extension to lowercase. This is typically done for consistency since file extensions are often written in lowercase.
+// The resulting lowercase file extension is assigned back to the variable $imageExtension.
+
+        $imageExtension = explode('.', $fileName);
+        $imageExtension = strtolower(end($imageExtension));
+        if (!in_array($imageExtension, $validImageExtension)) {
+            echo "<script>alert('Invalid Image Extension');</script>";
+        } else if ($fileSize > 10000000) {
+            echo "<script>alert('Image Size Is Too Large');</script>";
+        } else {
+            $newImageName = uniqid() . '.' . $imageExtension;
+
+            move_uploaded_file($tmpName, 'vet_img/' . $newImageName);
+            $query = "INSERT INTO vetimage (name, image,uid) VALUES('$name', '$newImageName','$userid')";
+            mysqli_query($con, $query);
+            echo "<script>alert('Successfully Added');</script>";
+        }
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
     }
 }
 
 // Deleting a vet image
-if(isset($_POST["delete"])){
+if (isset($_POST["delete"])) {
     $imgId = $_POST["imgId"];
     $imageName = $_POST["imageName"];
     if (!isset($imgId) || !is_numeric($imgId)) {
@@ -85,7 +131,11 @@ if(isset($_POST["delete"])){
 
 
     <title>Update Profile</title>
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
 
 
 
@@ -114,9 +164,15 @@ if(isset($_POST["delete"])){
             <center>
                 <table class="styled-table1" cellspacing=0px cellpadding=5px>
                     <?php
+<<<<<<< HEAD
       $rows = mysqli_query($con, "SELECT * FROM vetimage WHERE uid ='$userid'");
       foreach ($rows as $row) :
         ?>
+=======
+$rows = mysqli_query($con, "SELECT * FROM vetimage WHERE uid ='$userid'");
+foreach ($rows as $row):
+?>
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
                     <td>
                         <img src="vet_img/<?php echo $row["image"]; ?>" width=100 height=150
                             title="<?php echo $row['image']; ?>">
@@ -129,10 +185,14 @@ if(isset($_POST["delete"])){
 
                         </form>
                     </td>
-                    <?php endforeach; ?>
+                    <?php endforeach;?>
                 </table>
                 <br>
+<<<<<<< HEAD
                
+=======
+
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
 
             </center>
 
@@ -152,6 +212,7 @@ if(isset($_POST["delete"])){
 
 <div class="clearfix">
   <div class="form-column">
+<<<<<<< HEAD
     
     <form class="form-container" action="" method="post" autocomplete="off" enctype="multipart/form-data">
   <div class="form-group">
@@ -190,6 +251,46 @@ if(isset($_POST["delete"])){
       <input type="text" name="district" id="district" value="<?php echo $district; ?>" class="form-input">
     </div>
 
+=======
+
+    <form class="form-container" action="" method="post" autocomplete="off" enctype="multipart/form-data">
+  <div class="form-group">
+    <label class="form-label" for="name">Image Description:</label>
+    <input class="form-input" type="text" name="name" id="name" required value="">
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="image">Select Image:</label>
+    <input class="form-input" type="file" name="image" id="image" accept=".jpg, .jpeg, .png" value="">
+  </div>
+  <div class="form-group">
+    <button class="form-btn" type="submit" name="submit">Insert Image</button>
+  </div>
+</form>
+
+  </div>
+
+  <div class="form-column">
+
+    <form action="" method="post">
+  <div class="form-container">
+    <h2 class="form-header">Update Profile</h2>
+
+    <div class="form-group">
+      <label for="fname" class="form-label">Name:</label>
+      <input type="text" name="fname" id="fname" value="<?php echo $fname; ?>" required class="form-input">
+    </div>
+
+    <div class="form-group">
+      <label for="mobile" class="form-label">Mobile Number:</label>
+      <input type="text" name="mobile" id="mobile" value="<?php echo $mobile; ?>" required class="form-input">
+    </div>
+
+    <div class="form-group">
+      <label for="district" class="form-label">Address:</label>
+      <input type="text" name="district" id="district" value="<?php echo $district; ?>" class="form-input">
+    </div>
+
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
     <div class="form-group">
       <label for="email" class="form-label">Email:</label>
       <input type="text" name="email" id="email" value="<?php echo $email; ?>" required class="form-input">
@@ -205,7 +306,11 @@ if(isset($_POST["delete"])){
     </div>
   </div>
 </form>
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
   </div>
 </div>
 

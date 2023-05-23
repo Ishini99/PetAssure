@@ -39,11 +39,13 @@ $result = mysqli_query($con, $sql);
             </div>
         </div>
         <div>
+        <center>   <h2>User Profile</h2></center>
             <div class="center">
                 <div class="bodycontent">
 
 
                     <center>
+                      
                         <table class="styled-table1">
                             <?php
     $rows = mysqli_query($con, "SELECT * FROM vetimage WHERE uid ='$userid'");
@@ -65,10 +67,14 @@ $result = mysqli_query($con, $sql);
   <div class="profile-card">
     <table class="profile-table">
       <tbody>
+<<<<<<< HEAD
         <tr>
           <td class="profile-label">NIC:</td>
           <td class="profile-data"><?php echo $rows['nic']; ?></td>
         </tr>
+=======
+       
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
         <tr>
           <td class="profile-label">Full Name:</td>
           <td class="profile-data"><?php echo $rows['fname']; ?></td>
@@ -82,6 +88,13 @@ $result = mysqli_query($con, $sql);
           <td class="profile-data"><?php echo $rows['district']; ?></td>
         </tr>
         <tr>
+<<<<<<< HEAD
+=======
+          <td class="profile-label">NIC:</td>
+          <td class="profile-data"><?php echo $rows['nic']; ?></td>
+        </tr>
+        <tr>
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
           <td class="profile-label">Email:</td>
           <td class="profile-data"><?php echo $rows['email']; ?></td>
         </tr>

@@ -39,12 +39,24 @@ $result = mysqli_query($con, $sql);
       </div>
     </div>
     <div>
+<<<<<<< HEAD
       <div class="center">
+=======
+   
+      <div class="center">
+   <center>   <h2>User Profile</h2></center>
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
         <div class="bodycontent">
 
 
           <center>
+<<<<<<< HEAD
             <table class="styled-table1">
+=======
+          
+            <table class="styled-table1">
+           
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
               <?php
               $rows = mysqli_query($con, "SELECT * FROM groomerimage");
               foreach ($rows as $row):
@@ -66,12 +78,16 @@ $result = mysqli_query($con, $sql);
               <div class="profile-card">
                 <table class="profile-table">
                   <tbody>
+<<<<<<< HEAD
                     <tr>
                       <td class="profile-label">NIC:</td>
                       <td class="profile-data">
                         <?php echo $rows['nic']; ?>
                       </td>
                     </tr>
+=======
+                   
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
                     <tr>
                       <td class="profile-label">Full Name:</td>
                       <td class="profile-data">
@@ -85,6 +101,15 @@ $result = mysqli_query($con, $sql);
                       </td>
                     </tr>
                     <tr>
+<<<<<<< HEAD
+=======
+                      <td class="profile-label">NIC:</td>
+                      <td class="profile-data">
+                        <?php echo $rows['nic']; ?>
+                      </td>
+                    </tr>
+                    <tr>
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
                       <td class="profile-label">Address:</td>
                       <td class="profile-data">
                         <?php echo $rows['district']; ?>
@@ -118,7 +143,11 @@ $result = mysqli_query($con, $sql);
                 <input type="hidden" name="mobile" value="<?php echo $rows['mobile']; ?>">
                 <br><br>
                 <button class="form_btn2" type="submit">Update</button>
+<<<<<<< HEAD
                 <a href="./notifications/deleteAccount.php"><button class="form_btn2" type="button">Request to
+=======
+                <a href="../notifications/deleteAccount.php"><button class="form_btn2" type="button">Request to
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
                     Delete</button></a>
 
               </form>
