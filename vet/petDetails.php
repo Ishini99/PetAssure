@@ -4,6 +4,10 @@ session_start();
 $userid = "";
 
 if (isset($_SESSION["userid"])) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
     $userid = $_SESSION["userid"];
 
     // Assuming you have a database connection established
@@ -48,6 +52,47 @@ if (isset($_POST["submit"])) {
 
 ?>
 
+<<<<<<< HEAD
+=======
+=======
+  $userid = $_SESSION["userid"];
+} else {
+  //header("location:login.php");
+}
+
+// Check if form has been submitted
+if (isset($_POST['submit'])) {
+  // Initialize a counter to keep track of the number of successful inserts
+  $successCount = 0;
+
+  // Loop through each dynamically added field and insert into the database
+  for ($i = 0; $i < count($_POST['package_type']); $i++) {
+    $package_name = $_POST['package_name'][$i];
+    $package_type = $_POST['package_type'][$i];
+    $price = $_POST['price'][$i];
+    $description = $_POST['description'][$i];
+
+    $sql = "INSERT INTO groomer_posts (`package_name`, `package_type`, `price`, `description`, `date`, `userid`) VALUES ('" . mysqli_real_escape_string($con, $package_name) . "', '" . mysqli_real_escape_string($con, $package_type) . "', '" . mysqli_real_escape_string($con, $price) . "', '" . mysqli_real_escape_string($con, $description) . "', NOW(), '" . mysqli_real_escape_string($con, $_SESSION['userid']) . "')";
+
+    if (mysqli_query($con, $sql)) {
+      $successCount++;
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    }
+  }
+
+  // Check if any records were successfully inserted
+  if ($successCount > 0) {
+    echo "<script>alert('New record(s) created successfully');</script>";
+  }
+}
+
+mysqli_close($con);
+?>
+
+
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
 <!DOCTYPE html>
 <html lang="en">
 

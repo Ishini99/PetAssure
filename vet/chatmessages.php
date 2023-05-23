@@ -36,7 +36,15 @@ if (isset($_POST['post_message'])) {
     if (isset($_POST['message_body'])) {
         //        $body = mysqli_real_escape_string($con, $_POST['message_body']);
         $body = $_POST['message_body'];
+<<<<<<< HEAD
         $date = date("Y-m-d H:i:s");
+=======
+<<<<<<< HEAD
+        $date = date("Y-m-d H:i:s");
+=======
+        // $date = date("Y-m-d H:i:s");
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
         $message_obj->sendMessage($user_to, $body, $date);
 
         header("Location: chatmessages.php?$user_to");

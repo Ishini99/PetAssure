@@ -148,10 +148,20 @@ if (isset($_POST['submit']))
             <i class="uil uil-user"></i>
             <span class="link-name">User Profile</span>
           </a></li>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
         <li><a href="notifications.php">
             <i class="uil uil-bell"></i>
             <span class="link-name">Notifications</span>
           </a></li>
+<<<<<<< HEAD
+=======
+=======
+       
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
         <li><a href="history.php">
             <i class="uil uil-history"></i>
             <span class="link-name">Records</span>

@@ -9,6 +9,10 @@ if (isset($_SESSION["userid"])) {
   //header("location:login.php");
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
 // Check if form has been submitted
 if (isset($_POST['submit'])) {
   // Initialize a counter to keep track of the number of successful inserts
@@ -24,6 +28,23 @@ if (isset($_POST['submit'])) {
     // Insert data into the groomer_posts table
     // Enclose the $description variable in single quotes
     $sql = "INSERT INTO groomer_posts (package_name, price, description, date, userid) VALUES ('$package_name','$price','$description', NOW(), '{$_SESSION['userid']}')";
+<<<<<<< HEAD
+=======
+=======
+if (isset($_POST['submit'])) {
+  $successCount = 0;
+
+
+  for ($i = 0; $i < count($_POST['package_type']); $i++) {
+    
+    $package_name = $_POST['package_name'][$i];
+    $package_type = $_POST['package_type'][$i];
+    $price = $_POST['price'][$i];
+    $description = $_POST['description'][$i];
+
+    $sql = "INSERT INTO groomer_posts (`package_name`, `package_type`, `price`, `description`, `date`, `userid`) VALUES ('" . mysqli_real_escape_string($con, $package_name) . "', '" . mysqli_real_escape_string($con, $package_type) . "', '" . mysqli_real_escape_string($con, $price) . "', '" . mysqli_real_escape_string($con, $description) . "', NOW(), '" . mysqli_real_escape_string($con, $_SESSION['userid']) . "')";
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
 
     if (mysqli_query($con, $sql)) {
       $successCount++;
@@ -32,15 +53,33 @@ if (isset($_POST['submit'])) {
     }
   }
 
+<<<<<<< HEAD
   // Check if any records were successfully inserted
   if ($successCount > 0) {
     echo "<script>alert('New record created successfully');</script>";
+=======
+<<<<<<< HEAD
+  // Check if any records were successfully inserted
+  if ($successCount > 0) {
+    echo "<script>alert('New record created successfully');</script>";
+=======
+  if ($successCount > 0) {
+    echo "<script>alert('New record(s) created successfully');</script>";
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
   }
 }
 
 mysqli_close($con);
 ?>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
 <!DOCTYPE html>
 <html lang="en">
 
@@ -130,6 +169,10 @@ mysqli_close($con);
     </div>
     <div style="padding-bottom: 20px;"></div>
     <form method="POST">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
       <div class="row">
         <div class="container">
           <h4>My packages</h4>
@@ -164,10 +207,54 @@ mysqli_close($con);
         </div>
       </div>
     </form>
+<<<<<<< HEAD
+=======
+=======
+  <div class="row">
+    <div class="container">
+      <h4>My Packages</h4>
+
+      <div id="package-container">
+        <div class="input-group">
+          <h5>Package Name</h5>
+          <input type="text" class="form-control" name="package_name[]" placeholder="Enter your package name">
+        </div>
+
+        <div class="additional-fields">
+          <div class="input-group">
+            <h5>Package Type</h5>
+            <input type="text" class="form-control" name="package_type[]" placeholder="Enter your package type">
+          </div>
+
+          <div class="input-group">
+            <h5>Enter Price</h5>
+            <input type="text" class="form-control" name="price[]" placeholder="Enter your package price">
+          </div>
+
+          <div class="input-group">
+            <h5>Description</h5>
+            <textarea class="form-control" name="description[]" rows="3" placeholder="Enter your package details"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <button type="button" class="btn btn-primary" onclick="addFields()">Add More Package Types</button>
+        <button type="submit" class="btn btn-primary btn-user btn-block" name="submit" id="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
 
     </div>
     </div>
     <script>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
       function addFields() {
         // Clone the package container and its contents
         var packageContainer = document.getElementById("package-container");
@@ -188,6 +275,39 @@ mysqli_close($con);
         additionalFields.appendChild(newContainer);
       }
     </script>
+<<<<<<< HEAD
+=======
+=======
+  function addFields() {
+    var additionalFieldsContainer = document.querySelector('.additional-fields');
+    var packageTypeField = document.createElement('div');
+    packageTypeField.classList.add('input-group');
+    packageTypeField.innerHTML = `
+      <h5>Package Type</h5>
+      <input type="text" class="form-control" name="package_type[]" placeholder="Enter your package type">
+    `;
+
+    var priceField = document.createElement('div');
+    priceField.classList.add('input-group');
+    priceField.innerHTML = `
+      <h5>Enter Price</h5>
+      <input type="text" class="form-control" name="price[]" placeholder="Enter your package price">
+    `;
+
+    var descriptionField = document.createElement('div');
+    descriptionField.classList.add('input-group');
+    descriptionField.innerHTML = `
+      <h5>Description</h5>
+      <textarea class="form-control" name="description[]" rows="3" placeholder="Enter your package details"></textarea>
+    `;
+
+    additionalFieldsContainer.appendChild(packageTypeField);
+    additionalFieldsContainer.appendChild(priceField);
+    additionalFieldsContainer.appendChild(descriptionField);
+  }
+</script>
+>>>>>>> cd00ddc15620efcfc751e04b0ffc53311215f53b
+>>>>>>> 1cb1b5d35d8ba6a5b7f0a16f10af22c3a6cf5f9a
     <script src="../js/script.js"></script>
 
   </section>
