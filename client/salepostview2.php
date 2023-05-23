@@ -54,32 +54,23 @@ $result = mysqli_query($con, $sql);
             <ul class="nav-links">
 
 
-            <li><a href="../petboarding-Dashboard/petboarding-Dashboard.php">
-                        <i class="uil uil-dashboard"></i>
-                        <span class="link-name">Dashboard</span>
+            <li><a href="services1.php">
+                        <i class="uil uil-apps"></i>
+                        <span class="link-name">Services</span>
                     </a></li>
-                <li><a href="../updateProfile_petboarding/userProfile.php">
+                <li><a href="userProfile.php">
                         <i class="uil uil-user"></i>
                         <span class="link-name">User Profile</span>
                     </a></li>
-                <li><a href="../petboarding_notifications/notifications.php">
-                        <i class="uil uil-bell"></i>
-                        <span class="link-name">Notifications</span>
-                    </a></li>
-                <li><a href="../petboarding_history/history.php">
+               
+                <li><a href="history.php">
                         <i class="uil uil-history"></i>
                         <span class="link-name">History</span>
                     </a></li>
-                <li><a href="../petboarding_appointments/petboarding-Dashboard_shedule.php">
+                <li><a href="clientappointments.php">
                         <i class="uil uil-calender"></i>
                         <span class="link-name">Appointments</span>
                     </a></li>
-                <li><a href="../petboarding_feedbacks/feedbacks.php">
-                        <i class="uil uil-comments"></i>
-                        <span class="link-name">Feedbacks</span>
-                    </a></li>
-                
-
             </ul>
 
 
@@ -111,8 +102,8 @@ $result = mysqli_query($con, $sql);
         <div class="p_1">
         <p>Name :</p>
         <?php   echo '<p class="word">'.$_GET['name'].' </p>';?>
-        <p>Type of animal :</p>
-           <?php   echo ' <p class="word">'.$_GET['variety'].'</p>';?>
+        <!-- <p>Type of animal :</p>
+           <?php   echo ' <p class="word">'.$_GET['variety'].'</p>';?> -->
         
             <p>Location :</p>
             <?php   echo '<p class="word">'.$_GET['district'].'</p>';?>

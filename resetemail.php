@@ -1,10 +1,12 @@
+
+
 <?php 
 
 session_start();
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP   ;
-require './vendor/autoload.php';
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\SMTP   ;
+require './vendor/PHPMailerAutoload.php';
 
 if (!isset($_POST['but_submit'])) {
     

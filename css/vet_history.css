@@ -274,92 +274,34 @@ nav.close ~ .dashboard .top{
         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;  
     }
     
-/* time slot*/
- .days {
-    width: 1000px;
-  }
-  
-  .day {
-    width: 120px;
-    height: 230px;
-    background-color: #E0E0E0;
-    padding:10px;
-    float:left;
-    margin-right:7px;
-    margin-bottom:5px;
-  }
-  
-  .datelabel {
-    margin-bottom: 15px;
-  }
-  
-  .timeslot {
-    background-color: #A6A6A6;
-    width: auto;
-    height: 28px;
-    color: white;
-    padding:7px;
-    margin-top: 5px;
-    font-size: 14px;
-    border-radius: 3px;
-    vertical-align: center;
-    text-align:center;
-  }
-  
-  .timeslot:hover { 
-    background-color: #525151;
-    cursor: pointer;
-  }
-  .info{
-    margin-bottom:20px;
-    margin-left:-76px;
-  }
-  
-  .container{
-     /* width: 432px;  */
-   /* height: 580px; */
-    /* background: #f0f0f0; */
-    margin: 20px 20px;
-    padding: 20px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top:20px;
-    /* background-color:rgba(232, 183, 183, 0.521); */
 
-}
- 
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+       
+      }
+      
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        word-break: break-word; /* Wrap the text within the cell */
+      }
+      
+      
+      th {
+        background-color: #ddd;
+       
+      }
+      
+      .active-row {
+        background-color: #f2f2f2;
+      }
+      
+      .styled-table {
+        border: none;
+      }
   
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #ddd;
-  }
-  
-  .active-row {
-    background-color: #f2f2f2;
-  }
-  
-  .styled-table {
-    border: none;
-  }
-  
-.cancel-button {
-  background-color: #ff0000;
-  color: #fff;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-}
 
 /*search bar*/
 #myInput {
@@ -372,3 +314,109 @@ nav.close ~ .dashboard .top{
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
   }
+ 
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+.btn{
+  background-color: #888;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+
+
+/* Float cancel and signup buttons and add an equal width */
+ .btn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 0;
+    left: 527px;
+    top: 159px;
+    width: 50%;
+    height: 70%;
+    /* overflow: auto; */
+    /* background-color: #474e5d; */
+    padding-top: 50px;
+    align-content: center;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 2px solid #888;
+  border-radius: 5px;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}

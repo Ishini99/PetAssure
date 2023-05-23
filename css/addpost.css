@@ -59,12 +59,12 @@ a.font{
     
 }
 .right{
-    flex:0.2;
+    flex:0.3;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    margin-right: -657px;
+    margin-right: -339px;
 }
 
 #font{
@@ -176,7 +176,7 @@ input[type="file"]{
 
 .contactDetails{
 
-    margin-left: -500PX;
+    margin-left: -104PX;
     margin-top: 266px;
 
 }

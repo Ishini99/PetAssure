@@ -287,6 +287,12 @@ nav.close ~ .dashboard .top{
     color: white ;
     box-shadow: 0 3px 5px 0 rgba(57,108,240,0.3);
 }
+.btn2-primary{
+    background-color: gray ;
+    border: 1px solid var(--primarycolor) ;
+    color: white ;
+    box-shadow: 0 3px 5px 0 rgba(57,108,240,0.3);
+}
 
 .btn{
     cursor: pointer;
@@ -295,6 +301,19 @@ nav.close ~ .dashboard .top{
     text-decoration: none;
     font-size: 14px;
     height: 40px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn2{
+    cursor: pointer;
+    padding: 8px 20px;
+    outline: none;
+    text-decoration: none;
+    font-size: 12px;
+    height: 20px;
     letter-spacing: 0.5px;
     transition: all 0.3s;
     border-radius: 5px;
@@ -829,4 +848,76 @@ nav.close ~ .dashboard .top{
     color: #a6a6a6;
 }
 
-  
+.card-deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    width: calc(33.33% - 1rem);
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: all .2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.table-responsive {
+    margin-top: 2rem;
+}
+
+@media (max-width: 992px) {
+    .card {
+        width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        width: 100%;
+    }
+}
+
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-body {
+    font-size: 16px;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+#modal-userid {
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .modal-dialog {
+        max-width: 800px;
+        margin: 1.75rem auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-dialog {
+        max-width: 800px;
+        margin: 1.75rem auto;
+    }
+}
