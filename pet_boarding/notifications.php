@@ -41,14 +41,24 @@ if(isset($_SESSION["spid"]) ){
 
         <div class="menu-items">
             <ul class="nav-links">
-
-            <li><a href="petboarding-Dashboard.php">
+                <li><a href="petboarding-Dashboard.php">
                         <i class="uil uil-dashboard"></i>
-                        <span class="link-name">Dashboard</span>
-                    </a></li>
+                        <span class="link-name">Dashboard</span> </a></li>
                 <li><a href="userProfile.php">
                         <i class="uil uil-user"></i>
                         <span class="link-name">User Profile</span>
+                    </a></li>
+                    <li><a href="petboarding-Dashboard_shedule.php">
+                        <i class="uil uil-calender"></i>
+                        <span class="link-name">Add a cage category </span>
+                    </a></li>
+                <li><a href="feedbacks.php">
+                        <i class="uil uil-comments"></i>
+                        <span class="link-name">Booking details</span>
+                    </a></li>
+                    <li><a href="cages.php">
+                        <i class="uil uil-comments"></i>
+                        <span class="link-name">Cage availability</span>
                     </a></li>
                 <li><a href="notifications.php">
                         <i class="uil uil-bell"></i>
@@ -58,17 +68,7 @@ if(isset($_SESSION["spid"]) ){
                         <i class="uil uil-history"></i>
                         <span class="link-name">History</span>
                     </a></li>
-                <li><a href="petboarding-Dashboard_shedule.php">
-                        <i class="uil uil-calender"></i>
-                        <span class="link-name">Appointments</span>
-                    </a></li>
-                <li><a href="feedbacks.php">
-                        <i class="uil uil-comments"></i>
-                        <span class="link-name">Feedbacks</span>
-                    </a></li>
-                
 
-            </ul>
 
             <ul class="logout-mode">
                 <li><a href="../login.php">

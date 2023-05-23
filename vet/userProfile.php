@@ -46,7 +46,7 @@ $result = mysqli_query($con, $sql);
                     <center>
                         <table class="styled-table1">
                             <?php
-    $rows = mysqli_query($con, "SELECT * FROM vetimage");
+    $rows = mysqli_query($con, "SELECT * FROM vetimage WHERE uid ='$userid'");
     foreach ($rows as $row) :
     ?>
                             <td>
@@ -61,38 +61,40 @@ $result = mysqli_query($con, $sql);
                     <?php
         while ($rows = $result->fetch_assoc()) {
           ?>
+          <div class="profile-container">
+  <div class="profile-card">
+    <table class="profile-table">
+      <tbody>
+        <tr>
+          <td class="profile-label">NIC:</td>
+          <td class="profile-data"><?php echo $rows['nic']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">Full Name:</td>
+          <td class="profile-data"><?php echo $rows['fname']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">Mobile Number:</td>
+          <td class="profile-data"><?php echo $rows['mobile']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">Address:</td>
+          <td class="profile-data"><?php echo $rows['district']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">Email:</td>
+          <td class="profile-data"><?php echo $rows['email']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">User Name:</td>
+          <td class="profile-data"><?php echo $rows['uname']; ?></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-                    <center>
-                        <table class="styled-table">
-                            <tbody>
-                                <tr>
-                                    <td>NIC</td>
-                                    <td><?php echo $rows['nic']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Fullname</td>
-                                    <td><?php echo $rows['fname']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Mobile Number</td>
-                                    <td><?php echo $rows['mobile']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td><?php echo $rows['district']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td><?php echo $rows['email']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>UserName</td>
-                                    <td><?php echo $rows['uname']; ?></td>
-                                </tr>
 
-                            </tbody>
-                        </table>
-                    </center>
 
                     <center>
                         <form action="updateProfile.php" method="post">
@@ -104,10 +106,10 @@ $result = mysqli_query($con, $sql);
                             <input type="hidden" name="email" value="<?php echo $rows['email']; ?>">
                             <input type="hidden" name="uname" value="<?php echo $rows['uname']; ?>">
                             <input type="hidden" name="mobile" value="<?php echo $rows['mobile']; ?>">
+                            <br><br>
                             <button class="form_btn2" type="submit">Update</button>
-                            <a href="./notifications/deleteAccount.php">
-                                <button class="form_btn2" type="button">Request to Delete</button>
-                            </a>
+<a href="../notifications/deleteAccount.php"><button class="form_btn2" type="button">Request to Delete</button></a>
+
                         </form>
 
 

@@ -59,7 +59,7 @@ a.font{
 }
 
 .right{
-    flex:5;
+    flex:3;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -107,6 +107,7 @@ a.font{
 
 .img{
     transition: 0.54s;
+    border-radius: 5%;
 }
 .img:hover {
   transform: scale(1.1);

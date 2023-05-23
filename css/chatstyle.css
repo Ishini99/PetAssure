@@ -1,0 +1,352 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* start on wrapper */
+.wrapper {
+  margin: 0 auto;
+  top: -18px;
+  position: relative;
+  padding: 0 10px;
+  width: 78%;
+}
+
+.column {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px #d3d3d3;
+  z-index: -1;
+}
+
+
+
+.main_column {
+  float: right;
+  width: 70%;
+  z-index: -1;
+}
+
+.post_form img {
+  width: 60px;
+  border-radius: 50%;
+  transition: width 0.5s, box-shadow 0.5s;
+}
+
+.message_post form {
+  
+  display: flex;
+  justify-content: space-evenly;
+  transition: height 1s;
+}
+#message_textarea {
+  resize: none;
+  padding: 5px;
+  width: 60%;
+  outline-color: #000;
+  border: 1px solid gray;
+  box-shadow: 0 5px 5px gray;
+  border-radius: 10px;
+  transition: height 0.5s, box-shadow 0.5s;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.message {
+  
+  font-size: 16px;
+  border-radius: 20px;
+  padding: 4px 10px;
+  display: inline-block;
+  color: white;
+  font-family: "Bellota-LI", sans-serif;
+}
+#green {
+  
+  box-shadow: 1px 5px 5px #3b4d61;
+  background-color: #3b4d61;
+}
+#blue {
+
+  box-shadow: 1px 5px 5px #8d99ae;
+  background-color: #6b7b8c;
+  float: right;
+}
+.loaded_messages {
+  margin-bottom: 10px;
+  padding: 10px;
+  height: 45%;
+  min-height: 100px;
+  max-height: 383px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+/* Hide default scrollbar */ 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  /*oni*/
+  background-color: #aaa;
+  border-radius: 5px;
+  border: 3px solid #f5f5f5;
+}
+
+/* Show custom scrollbar only on hover */ 
+::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+  border-color: #999;
+}
+
+/* Make scrollbar track more visible */ 
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* Make scrollbar track more visible on hover */ 
+::-webkit-scrollbar-track:hover {
+  background-color: #ddd;
+}
+
+/*conversations style*/
+
+.userDetails {
+  
+  max-height: 500px;
+  margin-bottom: 10px;
+  padding: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+
+
+
+
+#message_submit {
+  
+  font-size: 28px;
+
+  width: 22%;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  background-color: #5c6b73;
+  box-shadow: 0 5px 10px gray;
+  transition: box-shadow 0.5s;
+}
+#message_submit:hover {
+  /*meka oni*/
+  box-shadow: 5px 5px 5px 5px rgb(207, 206, 206);
+}
+
+
+
+
+    /* Removes transitions on all elements */
+    * {
+      transition: all 0s ease-in-out 0s;
+    }
+
+    
+
+    /* Defines various CSS variables */
+    :root {
+      
+      --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+      --bs-body-font-family: var(--bs-font-sans-serif);
+      --bs-body-font-size: 1rem;
+      --bs-body-font-weight: 400;
+      --bs-body-line-height: 1.5;
+      --bs-body-color: #212529;
+      --bs-body-bg: #fff;
+    }
+
+    /* Applies the defined variables to the body element */
+    body {
+      font-family: var(--bs-body-font-family);
+      font-size: var(--bs-body-font-size);
+      font-weight: var(--bs-body-font-weight);
+      line-height: var(--bs-body-line-height);
+      color: var(--bs-body-color);
+      background-color: var(--bs-body-bg);
+      text-align: var(--bs-body-text-align);
+      -webkit-text-size-adjust: 100%;
+    }
+
+   
+    .h4,
+    h4 {
+      font-size: calc(1.275rem + 0.3vw);
+    }
+
+    @media (min-width: 1200px) {
+
+      .h4,
+      h4 {
+        font-size: 1.5rem;
+      }
+    }
+
+    .h5,
+    h5 {
+      font-size: 1.25rem;
+      font-weight: 200px;
+    }
+
+   
+    .h6,
+    h6 {
+      font-size: 1rem;
+    }
+
+
+    b,
+    strong {
+      font-weight: bolder;
+    }
+
+    .small,
+    small {
+      font-size: 0.875em;
+    }
+
+  
+/* navigation */
+.nav {
+  height: 70px;
+  opacity: 95%;
+  background-color: #A6A6A6;
+  display: flex;
+  flex-direction: row;
+  z-index: 1;
+
+}
+
+a.font:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  right: 0;
+  background-color: #FFF;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+a.font:hover:before {
+  visibility: visible;
+  width: 100%;
+}
+
+a.font {
+  font-size: 20px;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-decoration: none;
+  position: relative;
+}
+
+.left {
+  flex: 0.5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 30px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 48px;
+  color: #ffffff;
+
+}
+
+.right {
+  flex: 0.5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 30px;
+}
+
+#font {
+  font-size: 20px;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-decoration: none;
+}
+
+.user_details {
+  font-family: "Bellota-BI", sans-serif;
+  width: 292px;
+  float: left;
+  margin-bottom: 20px;
+  height: 550px;
+ 
+}
+
+.userDetails a {
+  text-decoration: none;
+  color: #000;
+}
+
+.userDetails ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.userDetails li {
+  margin-bottom: 10px;
+}
+
+
+.userDetails h6 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.userDetails li a:hover {
+  text-decoration: underline;
+}
+
+.userDetails::-webkit-scrollbar {
+  width: 8px;
+}
+
+.userDetails::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.userDetails::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.userDetails::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+.userDetails h6 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}

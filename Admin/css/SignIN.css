@@ -1,0 +1,471 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(246, 244, 241, 0.898);
+  outline: 1px solid black;
+  outline-offset: -1px;
+  position: relative;
+}
+
+.image7 {
+  width: 392px;
+  height: 392px;
+  vertical-align: top;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center top;
+  object-position: center top;
+  position: absolute;
+  top: 364px;
+  left: 375px;
+}
+
+.decorator1 {
+  width: 430px;
+  height: 430px;
+  vertical-align: top;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center top;
+  object-position: center top;
+  position: absolute;
+  top: -3px;
+  left: -161px;
+}
+
+.decorator {
+  width: 1446px;
+  height: 721px;
+  vertical-align: top;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center top;
+  object-position: center top;
+  position: absolute;
+  top: -2px;
+  right: 0px;
+}
+
+.row {
+  display: flex;
+  width: 80.29%;
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 3.39% 101px 16.32%;
+}
+@media (max-width: 1199px) {
+  .row {
+    flex-wrap: wrap;
+    align-content: flex-start;
+    -moz-column-gap: 0px;
+    column-gap: 0px;
+    row-gap: 90px;
+  }
+}
+
+.row > .item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1 1 478px;
+}
+@media (max-width: 1199px) {
+  .row > .item {
+    flex: 0 0 100%;
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex-grow: 1;
+  margin: 68px 0px 419px;
+}
+
+.image3 {
+  width: 434px;
+  height: 500px;
+  vertical-align: top;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center top;
+  object-position: center top;
+  position: absolute;
+  bottom: -482px;
+  left: -192px;
+}
+
+.image8 {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center top;
+  object-position: center top;
+  position: relative;
+  flex-grow: 1;
+}
+
+.row > .spacer {
+  flex: 0 1 46px;
+}
+@media (max-width: 1199px) {
+  .row > .spacer {
+    display: none;
+  }
+}
+
+.row > .item1 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1 1 637px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex-grow: 1;
+}
+
+.row1 {
+  display: flex;
+  position: relative;
+}
+
+.row1 > .item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 0 1 237px;
+}
+
+.image4 {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center top;
+  object-position: center top;
+  position: relative;
+  flex-grow: 1;
+}
+
+.title {
+  font: 400 32px/1.2 "Rubik", Helvetica, Arial, serif;
+  color: black;
+  letter-spacing: 0px;
+  position: relative;
+  flex: 1 1 394px;
+  margin: 101px 0px 40px;
+}
+
+
+.white_box {
+  display: flex;
+  flex-direction: column;
+  background-color: #fdfdfd;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
+  border-radius: 50px 50px 50px 50px;
+  outline: 0.1000000015px solid black;
+  outline-offset: -0.1000000015px;
+  position: relative;
+  margin: 6px 0px 0px;
+}
+
+.image {
+  width: 48px;
+  height: 17px;
+  vertical-align: top;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center top;
+  object-position: center top;
+  position: absolute;
+  bottom: -7px;
+  right: 271px;
+}
+
+.col1 {
+  display: flex;
+  flex-direction: column;
+  width: 62.95%;
+  position: relative;
+  flex-grow: 1;
+  margin: 30px 24.18% 57px 12.87%;
+}
+
+.title1 {
+  font: 600 32px/1.2 "Open Sans", Helvetica, Arial, serif;
+  color: black;
+  letter-spacing: 0px;
+  position: relative;
+}
+
+
+.medium_title1 {
+  font: 400 20.5px/1.2 "Rubik", Helvetica, Arial, serif;
+  color: black;
+  letter-spacing: 0px;
+  position: relative;
+}
+
+
+
+
+.medium_title11 {
+  font: 200 20.5px/1.2 "Rubik", Helvetica, Arial, serif;
+  color: black;
+  letter-spacing: 0px;
+  position: relative;
+  margin: 20px 0px 0px;
+}
+@media (max-width: 1199px) {
+  .medium_title11 {
+    font-size: 23px;
+    text-align: left;
+  }
+}
+@media (max-width: 991px) {
+  .medium_title11 {
+    font-size: 21px;
+  }
+}
+@media (max-width: 767px) {
+  .medium_title11 {
+    font-size: 19px;
+  }
+}
+@media (max-width: 575px) {
+  .medium_title11 {
+    font-size: 18px;
+  }
+}
+@media (max-width: 479px) {
+  .medium_title11 {
+    font-size: 17px;
+  }
+}
+
+.cancelbutn {
+  display: flex;
+  flex-direction: column;
+  background-color: #a6a6a6;
+  border-radius: 10px 10px 10px 10px;
+  width: 85px;
+  position: relative;
+  padding: 10px 18px;  
+  font-size : 18px;
+  text-align: middle;
+  margin: 18px 53.37% 0px 0%;
+}
+
+.medium_title2 {
+  font: 700 24.5px/1.2 "Rubik", Helvetica, Arial, serif;
+  color: white;
+  letter-spacing: 0px;
+  flex-direction: row;
+  width: auto;
+  position: relative;
+  flex-grow: 1;
+  margin: 1px 4.28% 1px 42.99%;
+}
+@media (max-width: 1199px) {
+  .medium_title2 {
+    font-size: 23px;
+    text-align: left;
+  }
+}
+@media (max-width: 991px) {
+  .medium_title2 {
+    font-size: 21px;
+  }
+}
+@media (max-width: 767px) {
+  .medium_title2 {
+    font-size: 19px;
+  }
+}
+@media (max-width: 575px) {
+  .medium_title2 {
+    font-size: 18px;
+  }
+}
+@media (max-width: 479px) {
+  .medium_title2 {
+    font-size: 17px;
+  }
+}
+
+.group1 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 10px 32px 0px;
+}
+@media (max-width: 1199px) {
+  .group1 {
+    margin: 50px 28px 0px;
+  }
+}
+@media (max-width: 991px) {
+  .group1 {
+    margin: 50px 24px 0px;
+  }
+}
+@media (max-width: 767px) {
+  .group1 {
+    margin: 50px 20px 0px;
+  }
+}
+@media (max-width: 575px) {
+  .group1 {
+    margin: 50px 18px 0px;
+  }
+}
+@media (max-width: 479px) {
+  .group1 {
+    margin: 50px 16px 0px;
+  }
+}
+@media (max-width: 383px) {
+  .group1 {
+    margin: 50px 15px 0px;
+  }
+}
+
+.image1 {
+  width: 197px;
+  height: 54px;
+  vertical-align: top;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center top;
+  object-position: center top;
+  position: absolute;
+  bottom: -74px;
+  right: 90px;
+}
+
+.row2 {
+  display: flex;
+  position: relative;
+  flex-grow: 1;
+}
+
+.medium_title {
+  margin: 10px 110px 4px;
+  font: 600 24.5px/1.2 "Rubik", Helvetica, Arial, serif;
+  color: black;
+  letter-spacing: 0px;
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 374px;
+}
+@media (max-width: 1199px) {
+  .medium_title {
+    font-size: 23px;
+    text-align: middle;
+  }
+}
+@media (max-width: 991px) {
+  .medium_title {
+    font-size: 21px;
+  }
+}
+@media (max-width: 767px) {
+  .medium_title {
+    font-size: 19px;
+  }
+}
+@media (max-width: 575px) {
+  .medium_title {
+    font-size: 18px;
+  }
+}
+@media (max-width: 479px) {
+  .medium_title {
+    font-size: 17px;
+  }
+}
+
+.row2 > .spacer {
+  flex: 0 1 26px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  background: var(--src) center center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+  flex: auto;
+  margin: auto;
+}
+
+button:hover {   
+  opacity: 0.7;   
+}   
+.cancelbtn {   
+  width: auto;   
+  padding: 10px 18px;  
+  margin: 10px 5px;  
+}   
+  
+
+.container {   
+  padding: 25px;   
+  background-color: lightblue;  
+}   
+
+.image2 {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center top;
+  object-position: center top;
+  position: relative;
+  flex-grow: 1;
+}
+
+.subtitle {
+  display: flex;
+  justify-content: center;
+  font: 400 21px/1.51 "Roboto", Helvetica, Arial, serif;
+  color: black;
+  text-align: center;
+  letter-spacing: 0px;
+  width: 86px;
+  height: -moz-min-content;
+  height: min-content;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+@media (max-width: 1199px) {
+  .subtitle {
+    font-size: 20px;
+    text-align: center;
+  }
+}
+@media (max-width: 991px) {
+  .subtitle {
+    font-size: 19px;
+  }
+}
+@media (max-width: 767px) {
+  .subtitle {
+    font-size: 17px;
+  }
+}
+@media (max-width: 479px) {
+  .subtitle {
+    font-size: 16px;
+  }
+}

@@ -15,7 +15,7 @@ $result = mysqli_query($con, $sql);
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head> 
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,14 +42,14 @@ $result = mysqli_query($con, $sql);
         <div class="right">
           <a href="homepage.php" class="font">HOME</a>
           <a href="./userprofile.php" class="font">PROFILE</a>
-          <a href="services.php" class="font">SERVICES</a>
+          <a href="services.php" class="font">SERVICES</a>  
           <a href="signIn.php" class="font">LOG OUT </a>
         </div>
       </div>
     </div>
     <div class="content" style="margin-top: 70px">
       <div class="filter" style="margin-left: 10px">
-        <div>
+        <div> 
           <select
             style="
               margin-left: 10px;
@@ -170,3 +170,4 @@ $result = mysqli_query($con, $sql);
     </div>
   </body>
 </html>
+ 

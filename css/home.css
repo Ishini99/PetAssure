@@ -1,0 +1,239 @@
+
+/* CSS for the header */
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    height: 80px;
+    position: relative;
+    z-index: 999;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .wrapper {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  h1 {
+    float: left;
+    margin: 0;
+    padding: 20px 0;
+    font-size: 32px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  
+  nav {
+    float: right;
+    margin: 0;
+    padding: 30px 0;
+  }
+  
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  nav li {
+    display: inline-block;
+    margin-left: 40px;
+  }
+  
+  nav a {
+    color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    transition: all 0.2s ease;
+  }
+  
+ nav a:hover {
+  color: #666;
+  border-bottom: 2px solid #666;
+  transition: border-bottom 0.3s ease-in-out;
+}
+  
+  /* CSS for the image section */
+  #image {
+    background-image: url('../images/home.png');
+    background-size: cover;
+    height: 500px;
+    position: relative;
+    z-index: -1;
+  }
+  
+  /* CSS for the features section */
+  #features {
+    background-color: #f2f2f2;
+    padding: 50px 0;
+  }
+  
+  #features ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space items evenly */
+  }
+  
+  .wrapper1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  #features li {
+    width: calc(33.33% - 20px); /* Set width to 33.33% minus margin */
+    height: 142px; /* Increase height */
+    margin: 0 10px; /* Add margin */
+    padding: 30px 0;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #ccc;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack content */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Center content horizontally */
+  }
+  
+  #features li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  #features li:last-child {
+    margin-right: 0;
+  }
+  
+  .feature {
+    background-color: #efefef;
+  }
+ 
+  .feature h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: bold; 
+    margin: 0;
+    padding: 0 0 10px 0;
+    text-transform: uppercase; }
+  
+  .feature p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+  }
+  
+  /* CSS for the primary content section */
+  #primary-content {
+    padding: 50px 0;
+    text-align: center;
+  }
+  #primary-content h2 {
+    margin: 0 0 50px 0;
+    padding: 0;
+    font-size: 36px;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  
+  #primary-content h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+#primary-content h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+  /* CSS for the secondary content section */
+  #secondary-content {
+    padding: 50px 0;
+    background-color: #f2f2f2;
+  }
+  
+  #secondary-content article {
+    display: inline-block;
+    width: 31%;
+    height: 200px;
+    margin-right: 2%;
+    margin-bottom: 20px;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0px 0px 5px #ccc;
+  }
+  
+  #secondary-content article:nth-child(2n) {
+    margin-right: 0;
+  }
+  
+  #secondary-content article .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  #secondary-content article:hover .overlay {
+    opacity: 1;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    #secondary-content article {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+  #secondary-content h3 {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  #secondary-content h5 {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.4;
+  }
+  
+  
+  .footerr{
+    height: 50px;
+    opacity: 100%;
+    background-color: #A6A6A6;
+    padding: 2px 2px 5px 2px;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+    color: white;
+}hr {
+    height: 1px;
+    border: none;
+    background-color: #ccc;
+    margin: 20px 0;
+  }
+  

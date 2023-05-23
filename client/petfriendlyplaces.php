@@ -3,7 +3,7 @@ require_once('../config/db.php');
 
 session_start();
 
-$sql = "SELECT * FROM pet_crossing";
+$sql = "SELECT * FROM hotelreview";
 $result = mysqli_query($con, $sql);
 
 
@@ -123,43 +123,31 @@ $result = mysqli_query($con, $sql);
         "
       >
       
+      <?php
+$sql = "SELECT * FROM hotelreview";
+$result = mysqli_query($con, $sql);
+?>
 
-      <?php 
-      while($row = mysqli_fetch_assoc($result)){
-        echo '
-        <div class="card">
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              margin: 10px;
-            "
-          >
-          <a href="petfriendlyplacespostview.php?variety='.$row['name'].'&image='.$row['image'].'&district='.$row['district'].'&description='.$row['description'].'&phone_number='.$row['phone_number'].'&name='.$row['name'].'">
-            <img
-              src="../images/'.$row['image'].'"
-              width="150px"
-              height="150px"
-              style="border-radius: 8%"
-              
-            />
-            </a>
-          </div>
-          <div style="margin: 10px">
-            <h3>'.$row['name'].'</h3>
-            
-            <p>
-            '.$row['district'].'
-            </p>
-            <p>
-            '.$row['description'].'
-            </p>
-            <p style="font-weight: 800">Rs. '.$row['price'].'</p>
-          </div> 
+<!-- HTML code for displaying the fetched data -->
+<?php 
+while ($row = mysqli_fetch_assoc($result)) {
+    echo '
+    <div class="card">
+        <div style="display: flex; justify-content: center; align-items: center; margin: 10px;">
+        
+        <a href="salepostview3.php?name='.$row['hotelname'].'&image='.$row['address'].'&district='.$row['districts'].'&description='.$row['comments'].'"> 
+         <img  src="images/' . $row['address'] . '" width="150px" height="150px" style="border-radius: 8%" />
+         </a>
+        </div>
+        <div style="margin: 10px">
+            <h3>' . $row['hotelname'] . '</h3>
+            <p>' . $row['districts'] . '</p>
+            <p>' . $row['comments'] . '</p>
         </div> 
-        ';
-      };?>
+    </div>
+    ';
+}
+?>
 
       </div>
       

@@ -1,6 +1,7 @@
 <?php
 session_start();
-$nic ="";
+$uid="";
+$userid ="";
 if(isset($_SESSION["userid"]) ){
    $userid =$_SESSION["userid"];
 }else{
@@ -52,7 +53,7 @@ if(isset($_POST["submit"])){
         $newImageName = uniqid() . '.' . $imageExtension;
   
         move_uploaded_file($tmpName, 'vet_img/' . $newImageName);
-        $query = "INSERT INTO vetimage (name, image) VALUES('$name', '$newImageName')";
+        $query = "INSERT INTO vetimage (name, image,uid) VALUES('$name', '$newImageName','$userid')";
         mysqli_query($con, $query);
         echo "<script>alert('Successfully Added');</script>";
       }
@@ -84,8 +85,7 @@ if(isset($_POST["delete"])){
 
 
     <title>Update Profile</title>
-    <style>
-    </style>
+  
 
 
 
@@ -114,7 +114,7 @@ if(isset($_POST["delete"])){
             <center>
                 <table class="styled-table1" cellspacing=0px cellpadding=5px>
                     <?php
-      $rows = mysqli_query($con, "SELECT * FROM vetimage");
+      $rows = mysqli_query($con, "SELECT * FROM vetimage WHERE uid ='$userid'");
       foreach ($rows as $row) :
         ?>
                     <td>
@@ -132,15 +132,8 @@ if(isset($_POST["delete"])){
                     <?php endforeach; ?>
                 </table>
                 <br>
-                <form class="" action="" method="post" autocomplete="off" enctype="multipart/form-data">
-                    <label class="txt" for="name">Image Description: </label>
-                    <input class="input_box" type="text" name="name" id="name" required value="">
-                    <br><br>
-                    <label class="txt" for="image">Select Image : </label>
-                    <input class="input_box" type="file" name="image" id="image" accept=".jpg, .jpeg, .png" value="">
-                    <br><br>
-                    <button class="btn2" type="submit" name="submit">Insert Image</button>
-                </form>
+               
+
             </center>
 
 
@@ -155,45 +148,66 @@ if(isset($_POST["delete"])){
 
 
 
-    <center>
-        <form action="" method="post">
-            <div class="form-container">
-                <h2>Update Profile</h2>
-                <input name="spid" type="hidden" maxlength="10" value="<?php echo $spid; ?>" />
 
-                <input name="nic" type="hidden" maxlength="10" value="<?php echo $nic; ?>" />
 
-                <div class="form-group">
-                    <div class="form-label">Name</div>
-                    <input type="text" name="fname" value="<?php echo $fname; ?>" required class="form-input">
-                </div>
+<div class="clearfix">
+  <div class="form-column">
+    
+    <form class="form-container" action="" method="post" autocomplete="off" enctype="multipart/form-data">
+  <div class="form-group">
+    <label class="form-label" for="name">Image Description:</label>
+    <input class="form-input" type="text" name="name" id="name" required value="">
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="image">Select Image:</label>
+    <input class="form-input" type="file" name="image" id="image" accept=".jpg, .jpeg, .png" value="">
+  </div>
+  <div class="form-group">
+    <button class="form-btn" type="submit" name="submit">Insert Image</button>
+  </div>
+</form>
+    
+  </div>
+  
+  <div class="form-column">
+   
+    <form action="" method="post">
+  <div class="form-container">
+    <h2 class="form-header">Update Profile</h2>
 
-                <div class="form-group">
-                    <div class="form-label">Mobile Number:</div>
-                    <input type="text" name="mobile" value="<?php echo $mobile; ?>" required class="form-input">
-                </div>
+    <div class="form-group">
+      <label for="fname" class="form-label">Name:</label>
+      <input type="text" name="fname" id="fname" value="<?php echo $fname; ?>" required class="form-input">
+    </div>
 
-                <div class="form-group">
-                    <div class="form-label">Address:</div>
-                    <input type="text" name="district" value="<?php echo $district; ?>" class="form-input">
-                </div>
-                <div class="form-group">
-                    <div class="form-label">Email:</div>
-                    <input type="text" name="email" value="<?php echo $email; ?>" required class="form-input">
-                </div>
-                <div class="form-group">
-                    <div class="form-label">User Name:</div>
-                    <input type="text" name="uname" value="<?php echo $uname; ?>" required class="form-input">
-                </div>
+    <div class="form-group">
+      <label for="mobile" class="form-label">Mobile Number:</label>
+      <input type="text" name="mobile" id="mobile" value="<?php echo $mobile; ?>" required class="form-input">
+    </div>
 
-               
+    <div class="form-group">
+      <label for="district" class="form-label">Address:</label>
+      <input type="text" name="district" id="district" value="<?php echo $district; ?>" class="form-input">
+    </div>
 
-                <div class="form-group">
-                    <button type="submit" name="update" class="btn">Update Profile</button>
-                </div>
-            </div>
-        </form>
-    </center>
+    <div class="form-group">
+      <label for="email" class="form-label">Email:</label>
+      <input type="text" name="email" id="email" value="<?php echo $email; ?>" required class="form-input">
+    </div>
+
+    <div class="form-group">
+      <label for="uname" class="form-label">User Name:</label>
+      <input type="text" name="uname" id="uname" value="<?php echo $uname; ?>" required class="form-input">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" name="update" class="btn">Update Profile</button>
+    </div>
+  </div>
+</form>
+    
+  </div>
+</div>
 
 
     <div class="footerr">

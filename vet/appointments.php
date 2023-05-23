@@ -71,13 +71,10 @@ AND serviceprovider.spid = '$spid'";
                         <i class="uil uil-user"></i>
                         <span class="link-name">User Profile</span>
                     </a></li>
-                <li><a href="notifications.php">
-                        <i class="uil uil-bell"></i>
-                        <span class="link-name">Notifications</span>
-                    </a></li>
+                
                 <li><a href="history.php">
                         <i class="uil uil-history"></i>
-                        <span class="link-name">History</span>
+                        <span class="link-name">Records</span>
                     </a></li>
                 <li><a href="appointments.php">
                         <i class="uil uil-calender"></i>
@@ -88,10 +85,12 @@ AND serviceprovider.spid = '$spid'";
                         <span class="link-name">Feedbacks</span>
                     </a></li>
 
-                <li><a href="freeConsultation.php">
+
+                    <li><a href="ChatIndex.php">
                         <i class="uil uil-chat"></i>
                         <span class="link-name">Free Consultation</span>
                     </a></li>
+
 
             </ul>
              
@@ -105,7 +104,8 @@ AND serviceprovider.spid = '$spid'";
                     </a></li>
 
 
-            </ul>
+
+                    </ul>
         </div>
     </nav>
 
@@ -162,78 +162,42 @@ AND serviceprovider.spid = '$spid'";
 
                             </a>
                         </div>
-                        <!-- appointment table-->
-                        <center>
-                            <table class="styled-table">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Starting Time</th>
-                                        <th>Ending Time</th>
-                                        <th>Client's Name</th>
-                                        <th>Mobile Number</th>
-                                        <th>
-                                            <center>View</center>
-                                        </th>
-                                        <th>
-                                            <center>Status</center>
-                                        </th>
-                                        <th>
-                                            <center>Completed</center>
-                                        </th>
-                                        <th>Update</th>
-                                        <th>Cancel</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                    
-                    
-   
-                    $rows = mysqli_query($con,   
-                    $sql = "SELECT appointment.appoDate, appointment.startTime, appointment.endTime, user.fname,user.mobile
-                    FROM appointment
-                    LEFT JOIN user ON appointment.userid = user.userid
-                    INNER JOIN serviceprovider ON appointment.spid = serviceprovider.spid
-                    WHERE serviceprovider.spid = '$spid'
-                    ORDER BY appointment.appoDate DESC, appointment.startTime DESC"
-                    ); ?>
-                                    <?php foreach ($rows as $row) : ?>
-
-                                    <tr>
-
-                                        <td><?php echo $row['appoDate']?></td>
-                                        <td><?php echo $row['startTime']?></td>
-                                        <td><?php echo $row['endTime']?></td>
-                                        <td><?php echo $row['fname']?></td>
-                                        <td><?php echo $row['mobile']?></td>
-                                        <td><button class="login-btn btn-primary btn button-icon"" style="
-                                                height:30px;">View<button></td>
-                                        <td></td>
-                                        <td>
-                                            <center>
-
-                                                <input type='checkbox' class='inputUncheck' name='foo' value='bar' />
-                                                <script>
-                                                $('input.inputUncheck').prop('checked', false);
-                                                </script>
-                                            </center>
-                                        </td>
-                                        <td><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                        </td>
-                                        <td> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+<!-- card view of appointments -->
+<!-- date available slots and  -->
+<div class="card-deck">
+    <?php
+    $prev_date = null;
+    $rows = mysqli_query($con,   
+        $sql = "SELECT appointment.appoDate, COUNT(*) AS num_slots,
+                SUM(CASE WHEN appointment.status = 0 THEN 1 ELSE 0 END) AS num_available_slots,
+                SUM(CASE WHEN appointment.status = 1 THEN 1 ELSE 0 END) AS num_notavailable_slots
+                FROM appointment
+                INNER JOIN serviceprovider ON appointment.spid = serviceprovider.spid
+                WHERE serviceprovider.spid = '$spid'
+                GROUP BY appointment.appoDate
+                HAVING appointment.appoDate >= CURDATE() 
+                ORDER BY appointment.appoDate ASC"
+    );
+    foreach ($rows as $row) :
+        $date_str = date('l, d F Y', strtotime($row['appoDate']));
+        $num_slots = $row['num_slots'];
+        $num_available_slots = $row['num_available_slots'];
+        $num_notavailable_slots = $row['num_notavailable_slots'];
+    ?>
+        <div class="card" data-date="<?php echo $row['appoDate']; ?>">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $date_str; ?></h5>
+                <p class="card-text">Available Slots = <?php echo $num_available_slots; ?> <br>Already Booked Slots=<?php echo $num_notavailable_slots; ?> </p><br><br>
+                <a href="appointment-details.php?date=<?php echo $row['appoDate']; ?>" class="btn2 btn2-primary">Show Table</a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
 
 
-                                    </tr>
-                                    <?php endforeach; ?>
 
-                                </tbody>
-                            </table>
-                        </center>
-                        <!--END OF APPOINTMENT TABLE-->
-
-                        <?php
-//add shedule form
+<!-- form details-->
+<?php
 $spid = "";
 $query = "SELECT spid FROM serviceprovider WHERE userid = '$userid'";
 
@@ -241,15 +205,32 @@ $result = mysqli_query($con, $query);
 if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $spid = $row['spid'];
-} else {
+}
 
-}                    
-if ($_POST) {  
+if ($_POST) {
     $appoDate = $_POST["appoDate"];
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
+    $numSlots = $_POST["numSlots"];
 
-    $sql = "INSERT INTO appointment (spid,appoDate,startTime,endTime) VALUES ('$spid','$appoDate','$startTime','$endTime');";
+    $duration = strtotime($endTime) - strtotime($startTime);
+    $slotDuration = $duration / $numSlots;
+
+    $slots = array();
+    $time = strtotime($startTime);
+    for ($i = 0; $i < $numSlots; $i++) {
+        $slots[] = date("H:i:s", $time);
+        $time += $slotDuration;
+    }
+
+    $sql = "INSERT INTO appointment (spid, appoDate, startTime, endTime,status) VALUES ";
+    $values = array();
+    foreach ($slots as $slot) {
+        $endTime = date("H:i:s", strtotime($slot) + $slotDuration);
+        $values[] = "('$spid', '$appoDate', '$slot', '$endTime','0' )";
+    }
+    $sql .= implode(", ", $values);
+
     if (mysqli_query($con, $sql)) {
         echo '<script type="text/javascript"> alert("Session was added.")</script>';
         echo "<meta http-equiv='refresh' content='0'>";
@@ -262,95 +243,117 @@ if ($_POST) {
 ?>
 
 
-                        <div id="id01" class="modal">
+<div id="id01" class="modal">
+    <form action="" method="post" class="add-new-form">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <center>
+                    <div style="display: flex;justify-content: center;">
+                        <div class="abc">
+                            <table width="80%" class="sub-table scrolldown add-doc-form-container" border="0">
+                                <tr>
+                                    <td>
+                                        <p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Add New Session.</p><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <label for="date" class="form-label">Session Date:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                    <input type="date" name="appoDate" class="input-text" min="<?php echo date('Y-m-d'); ?>" required>
+                                    </td>
+                                    <tr>
+                                    <td class="label-td" colspan="2">
+                                        <label for="startTime" class="form-label">Session Start Time:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <input type="time" name="startTime" class="input-text" required><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <label for="endTime" class="form-label">Session End Time:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <input type="time" name="endTime" class="input-text" required><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <label for="numSlots" class="form-label">Number of Slots:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <input type="number" name="numSlots" class="input-text" min="1" required><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <input type="submit" value="Add Session" class="btn btn-primary">
+                                        <a class="close" href="appointments.php">&times;</a>
+</td>
+</tr>
+                                </table>
+                                </div>
+                                </div>
+                                </center>
+                                </form>
+                                </div> 
 
 
-                            <form action="" method="post" class="add-new-form">
-                                <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                                    title="Close Modal">&times;</span>
+<!-- remember to add this code in js file-->
+<script>                 
+   var today = new Date();
+    var dateInput = document.querySelector('input[name="appoDate"]');
+    var startTimeInput = document.querySelector('input[name="startTime"]');
+    var endTimeInput = document.querySelector('input[name="endTime"]');
 
+    function updateTimeRange() {
+        var selectedDate = new Date(dateInput.value);
+        var startDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), 0, 0, 0);
+        var endDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), 23, 59, 59);
 
-                                <div id="popup1" class="overlay">
-                                    <div class="popup">
-                                        <center>
-
-                                            <div style="display: flex;justify-content: center;">
-                                                <div class="abc">
-                                                    <table width="80%"
-                                                        class="sub-table scrolldown add-doc-form-container" border="0">
-
-
-                                                        <tr>
-                                                            <td>
-                                                                <p
-                                                                    style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">
-                                                                    Add New Session.</p><br>
-                                                            </td>
-                                                        </tr>
-
-
-                                                        <tr>
-                                                            <td class="label-td" colspan="2">
-                                                                <label for="date" class="form-label">Session Date:
-                                                                </label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="label-td" colspan="2">
-                                                                <input type="date" name="appoDate" class="input-text"
-                                                                    min="' . date('Y-m-d') . '" required><br>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="label-td" colspan="2">
-                                                                <label for="time" class="form-label">Starting time:
-                                                                </label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="label-td" colspan="2">
-                                                                <input type="time" name="startTime" class="input-text"
-                                                                    placeholder="Time" required><br>
-                                                            </td>
-                                                        </tr>
-                                                        <td class="label-td" colspan="2">
-                                                            <label for="time" class="form-label">Ending time:
-                                                            </label>
-                                                        </td>
-                </tr>
-                <tr>
-                    <td class="label-td" colspan="2">
-                        <input type="time" name="endTime" class="input-text" placeholder="Time" required><br>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="2">
-
-                        <center> <input type="submit" value="Place this Session" class="login-btn btn-primary btn"
-                                name="submit"></center>
-                        <a class="close" href="petsitter_shedule.php">&times;</a>
-
-        </div>
-        </td>
-
-
-        </form>
-        </div>
-
-        <script>
-        // Get the modal
-        var modal = document.getElementById('id01');
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+        if (selectedDate.getTime() === today.getTime()) {
+            // Today: disable options before the current time
+            var currentHour = today.getHours();
+            var currentMinute = today.getMinutes();
+            startTimeInput.min = (currentHour < 10 ? "0" : "") + currentHour + ":" + (currentMinute < 10 ? "0" : "") + currentMinute;
+        } else {
+            // Other days: enable all options
+            startTimeInput.min = "00:00";
         }
-        </script>
+        startTimeInput.max = "23:59";
 
+        endTimeInput.min = startTimeInput.value;
+        endTimeInput.max = "23:59";
+        if (selectedDate.getTime() === endDate.getTime()) {
+            // End of day: disable options after the end of the day
+            var currentHour = today.getHours();
+            var currentMinute = today.getMinutes();
+            endTimeInput.max = (currentHour < 10 ? "0" : "") + currentHour + ":" + (currentMinute < 10 ? "0" : "") + currentMinute;
+        }
+    }
+
+
+    dateInput.addEventListener("change", updateTimeRange);
+    startTimeInput.addEventListener("change", updateTimeRange);
+
+    updateTimeRange(); //
+    </script>
         </div>
+
+
+</div>
 </body>
 
 </html>

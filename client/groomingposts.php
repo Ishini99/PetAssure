@@ -4,7 +4,7 @@ require_once('../config/db.php');
 
 session_start();
 
-$sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
+$sql = "SELECT * FROM user WHERE role IN ( 'petgrooming')";
     $result = $con->query($sql);
  
 ?>
@@ -37,11 +37,11 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
       </div>
 
       <div class="right">
-        <a href="#" class="font">HOME</a>
-        <a href="#" class="font">PROFILE</a>
-        <a href="#" class="font">SERVICES</a>
-        <a href="signIn.php" class="font">LOG OUT </a>
-      </div>
+                <a href="homepage.html" class="font">HOME</a>
+                <a href="userProfile.php" class="font">PROFILE</a>
+                <a href="services1.php" class="font">SERVICES</a>
+                <a href="../login.php" class="font">LOG OUT </a>
+            </div>
     </div>
   </div>
   <div class="content" style="margin-top: 70px">
@@ -115,36 +115,43 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
     >
 
     <div class="posts" >
-    <?php
-    $sql = "SELECT * FROM user WHERE role IN ('groomer')";
-    $result = $con->query($sql);
+    
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) { 
-    ?>
+
+<?php
+ $sql = "SELECT user.*, MIN(groomerimage.imgId) AS first_image_id
+ FROM user
+ INNER JOIN groomerimage ON user.role = 'petgrooming' AND user.userid = groomerimage.uid
+ GROUP BY user.userid";
+$result = $con->query($sql);
+
+if ($result->num_rows > 0) {
+while ($row1 = $result->fetch_assoc()) {
+    // Use $row['first_image_id'] to retrieve only the first image for each user
+    $image_sql = "SELECT * FROM groomerimage WHERE imgId = " . $row1['first_image_id'];
+    $image_result = $con->query($image_sql);
+    if ($image_result->num_rows > 0) {
+        $image_row = $image_result->fetch_assoc();
+    }
+
+
+?>
+
+
       <div class="product-card" id="product-card">
-          <img src="../images/groom2.jpg" class="product-card-thumbnail-image">
+          <img src="./../groomer/groomer_img/<?php echo $image_row['image'] ?>" class="product-card-thumbnail-image">
           <div class="swiper-container">
-              <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                      <img class="scale-down" src="../images/groom2.jpg">
-                  </div>
-                  <div class="swiper-slide">
-                      <img class="scale-down" src="https://images.unsplash.com/photo-1470859624578-4bb57890378a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
-                  </div>
-                  <div class="swiper-slide">
-                      <img class="scale-down" src="https://images.unsplash.com/photo-1508169351866-777fc0047ac5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
-                  </div>
-              </div>
           </div>
           <div class="pagination"></div>
   
           <div class="product-details">
               <div id="hide_on_hover">
-                  <p class="book-title"><?php echo "<h2>" . $row['uname'] . "</h2>"; ?></p>
-                  <p class="author"></p>
-                  <span class="rating"> 4.5
-                        <p class="fa fa-star"></p>
+                  <p class="book-title"><?php echo "<h2>" . $row1['uname'] . "</h2>"; ?></p>
+                  <!-- <p class="author"></p> -->
+                  
+                <?php  $sql = "SELECT * FROM feedback WHERE feedback.spid= ('')"; ?>
+                  <!-- <span class="rating"> <?php echo "<h2>" . $row1['uname'] . "</h2>"; ?></p> -->
+                        <!-- <p class="fa fa-star"></p> -->
                   </span>
               </div>
               <div id="show_on_hover">
@@ -154,7 +161,7 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
               <div class="not_change_on_hover">
                   <div class="product-quality">
                       <!-- <div class="input-chip active"> -->
-                       <a href="groombook.php"> <button class="btn add-to-card">BOOK NOW</button></a>
+                       <a href="groombook.php?uid=<?php echo $row1['userid'] ?>" > <button class="btn add-to-card">BOOK NOW</button></a>
                       </div>
                       <!-- <div class="input-chip">
                           <!-- <input type="radio">Good  -->
@@ -166,7 +173,7 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
                   <div class="price">
                       <!-- <span class="new-price"> </span> -->
                       <!-- <span> <del class="original-price"> ₹20 </del> </span> -->
-                      <span class="discount"> <?php echo "<p>" . $row['district'] . "</p>"; ?></span> 
+                      <span class="discount"> <?php echo "<p>" . $row1['district'] . "</p>"; ?></span> 
                   </div>
               </div>
               <?php
@@ -174,66 +181,8 @@ $sql = "SELECT * FROM user WHERE role IN ( 'groomer')";
     }
     $con->close();
     ?>
-          
-              <div class="product-card" id="product-card">
-                <img src="../images/groom3.jpg" class="product-card-thumbnail-image">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img class="scale-down" src="../images/groom5.jpg">
-                        </div>
-                        <div class="swiper-slide">
-                            <!-- <img class="scale-down" src="https://images.unsplash.com/photo-1470859624578-4bb57890378a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"> -->
-                        </div>
-                        <div class="swiper-slide">
-                            <!-- <img class="scale-down" src="https://images.unsplash.com/photo-1508169351866-777fc0047ac5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="pagination"></div>
-        
-                <div class="product-details">
-                    <div id="hide_on_hover">
-                        <p class="book-title">BOW BOW GROOMERS</p>
-                        <p class="author"></p>
-                        <span class="rating"> 4.5
-                              <p class="fa fa-star"></p> (124)
-                        </span>
-                    </div>
-                    <div id="show_on_hover">
-                        <!-- <i class="material-icons heart">favorite</i> -->
-                        <!-- <button class="btn add-to-card">Add To Card</button> -->
-                    </div>
-                    <div class="not_change_on_hover">
-                        <div class="product-quality">
-                            <!-- <div class="input-chip active"> -->
-                              <a href="./groombook.php"> <button class="btn add-to-card">BOOK NOW</button></a>
-                            </div>
-                            <!-- <div class="input-chip">
-                                <!-- <input type="radio">Good  -->
-                            </div>
-                             <div class="input-chip">
-                                <!-- <input type="radio">Acceptable -->
-                            </div> 
-                        </div>
-                        <div class="price">
-                            <span class="new-price"> 1000/= </span>
-                            <!-- <span> <del class="original-price"> ₹20 </del> </span> -->
-                            <!-- <span class="discount"> (50% Off)</span> -->
-                        </div>
-                    </div>
-
-                    
-      
-        
-                
-          
-            </div>
-        </div>
-
   
-          
-              </div>
+          </div>
           </div>
         
         </div>
