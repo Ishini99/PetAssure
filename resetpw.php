@@ -4,19 +4,20 @@ session_start();
 include_once("config/db.php");
 
 if(isset($_POST['but_submit'])){
-    if($_POST['pwd'] == $_POST['con-pwd']){
-        $pwd =$_POST['pwd'];
-        $mail = $_SESSION['email_reset'];
-        $sql = "UPDATE client SET password = '$pwd 'where emailClient = '$mail' ";
-        if (mysqli_query($con, $sql))
-        {
-             print_r("Password Updated Go Back To Login Page And Login With username And New Password");die();
+    if($_POST['password'] == $_POST['con-pwd']){
+        $password =$_POST['password'];
+        $email = $_SESSION['email_reset'];
+        $sql = "UPDATE user SET password = '$password 'where email = '$email' ";
+        if (mysqli_query($con, $sql)) {
+            echo "Password Updated. Please go back to the login page and login with your username and new password.";
+            // You can redirect the user to the login page if needed
+             header('Location: login.php');
         } else {
-            print(mysqli_query($con, $sql));
+            echo "Error updating password: " . mysqli_error($con);
         }
-        header('Location: /GroupProject/petassure/resetpw.php');
-    }else{
-        echo "Passwords don't match";
+    } else {
+        // Passwords don't match
+        echo "<script>alert('Passwords don\'t match');</script>";
     }
 
 }
@@ -71,7 +72,7 @@ if(isset($_POST['but_submit'])){
 
                         <div class="formcontent">
                             <div class="formlabel"> New Password: </div>
-                            <div class="formin"><input class="input_box" type="text" name="pwd" required></div>
+                            <div class="formin"><input class="input_box" type="text" name="password" required></div>
                         </div><br><br>
                         <div class="formlabel"> Cofirm Password: </div>
                         <div class="formin"><input class="input_box" type="text" name="con-pwd" required></div>

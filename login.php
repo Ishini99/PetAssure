@@ -17,8 +17,9 @@ if (isset($_POST['but_submit'])) {
         if ($row1['uname'] == $uname && $row1['password'] == $password) {
          
            $_SESSION['userid'] = $row1['userid'];
+           $_SESSION['uname'] = $row1['uname'];
         if( $row1['role']=='admin'){        
-            header("Location:Admin/Admin/AdminClientDash.php");
+            header("Location:Admin/AdminClientDash.php");
         }
         else if( $row1['role']=='Client' || $row1['role']=='client' ){
             header("Location:client/services1.php");

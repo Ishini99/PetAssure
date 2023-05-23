@@ -31,7 +31,7 @@ body{
 nav{
    
     position: fixed;
-    top: 0;
+    top: 10px;
     left: 0;
     height: 100%;
     width: 250px;
@@ -46,6 +46,7 @@ nav.close{
 nav .logo-name{
     display: flex;
     align-items: center;
+    margin-top: 39px;
 }
 nav .logo-image{
     display: flex;
@@ -109,6 +110,7 @@ nav .menu-items{
     font-weight: 400;
     color: var(--black-light-color);    
     transition: var(--tran-05);
+    margin-top: -5px;
 }
 nav.close li a .link-name{
     opacity: 0;
@@ -133,7 +135,7 @@ body.dark .nav-links li a:hover .link-name{
 }
 
 .dashboard{
-    background-image: url(../Images/bg2.PNG) ;
+    /* background-image: url(../Images/bg2.PNG) ; */
     height: 100%; 
     background-position: center;
     background-repeat: no-repeat;

@@ -7,6 +7,26 @@ if(isset($_SESSION["spid"]) ){
  }else{
    //header("location:login.php");
 }
+
+// // check if the trash icon is clicked
+// if(isset($_GET['delete_id'])) {
+//     // get the feedback ID to be deleted
+//     $delete_id = $_GET['delete_id'];
+
+//     // prepare the SQL statement to delete the feedback record
+//     $delete_sql = "DELETE FROM appointment WHERE appNo = $delete_id";
+
+//     // execute the SQL statement
+//     if (mysqli_query($con, $delete_sql)) {
+//         // feedback record deleted successfully
+       
+//         header("Location: history.php");
+//     } else {
+//         // error deleting feedback record
+//         echo "<script>alert('Error deleting : " . mysqli_error($con) . "');</script>";
+//     }
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +85,7 @@ if(isset($_SESSION["spid"]) ){
                         <span class="link-name">Feedbacks</span>
                     </a></li>
                 
-                <li><a href="freeConsultation.php">
+                    <li><a href="ChatIndex.php">
                         <i class="uil uil-chat"></i>
                         <span class="link-name">Free Consultation</span>
                     </a></li>
@@ -90,60 +110,86 @@ if(isset($_SESSION["spid"]) ){
         </div>
         <div style="padding-bottom: 20px;"></div>
       
-       
         <center>
-     <h2>Notifications</h2>
-       <table class="styled-table">
-        <!-- <thead>
-            <tr>
-                <th>Date</th>
-                <th>Appointment No:</th>
-                <th>Description</th>
-                <th></th>
-            </tr>
-        </thead> -->
-        <tbody>
-            <tr>
-            <td>1</td>
-                <td>14/02/2020</td>
-                
-                <td>Ishini booked the time slot</td>
-                <td> <i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-            </tr>
-            <tr class="active-row">
-            <td>2</td>
-                <td>18/02/2020</td>
-
-
-             
-
-                <td>Teek booked the time slot</td>
-                <td><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-            </tr>
-            <tr>
-            <td>3</td>
-                <td>15/03/2020</td>
-                
-                <td>Nippi booked the time slot</td>
-                <td> <i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-            </tr>
-            <tr class="active-row">
-            <td>3</td>
-                <td>15/03/2020</td>
-               
-                <td>Sangee booked the time slot</td>
-                <td> <i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-            </tr>
-            <!-- and so on... -->
-        </tbody>
-    </table>
+  <h2> Notifications</h2>
+  <br><br>
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Names..">
+  <table class="styled-table" id="myTable">
+    <thead>
+      <tr>
+        <th>Appointment No</th>
+        <th>Appointment Date</th>
+        <th>Appointment Time</th>
+        <th>Client Name</th>
+      
+       
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+    //   while($rows = mysqli_fetch_assoc($result)) {
+      ?>
+      <tr class="active-row">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <!-- <td> echo $rows['appNo']</td>
+        <td> echo $rows['appoDate'];</td>
+        <td> echo $rows['fname'];</td>
+        <td>echo $rows['mobile'];?</td>
+        <td> echo $rows['description'];</td> -->
+        <td>
+          <a href="?delete_id=<?php echo $rows['appNo']; ?>"
+            onclick="return confirm('Are you sure you want to delete this feedback record?')">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </a>
+        </td>
+      </tr>
+      <?php
+    //  }
+      ?>
+    </tbody>
+  </table>
 </center>
+
+       
           
            
 </div>
 
 
-
+ 
+<script>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      if (tr[i].getElementsByTagName("td").length > 0) {
+        var match = false;
+        td = tr[i].getElementsByTagName("td");
+        for (var j = 0; j < td.length; j++) {
+          if (td[j]) {
+            txtValue = td[j].textContent || td[j].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              match = true;
+              break;
+            }
+          }
+        }
+        if (match) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
 
 <script src="../js/script.js"></script>
 

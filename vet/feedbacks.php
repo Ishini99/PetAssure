@@ -1,17 +1,30 @@
 <?php
 require '../config/db.php';
 session_start();
-$nic ="";
+$spid ="";
+$userid="";
 if(isset($_SESSION["userid"]) ){
-   $nic =$_SESSION["userid"];
+   $userid = $_SESSION["userid"];
 }else{
    //header("location:login.php");
 }
 
-$sql = "SELECT *
-FROM feedback";
-$result = mysqli_query($con, $sql);
+$query = "SELECT spid FROM serviceprovider WHERE userid = '$userid'";
+$result = mysqli_query($con, $query);
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $spid = $row['spid'];
+} else {
+    
+}
 
+$sql = "SELECT feedback.submit_date, feedback.name, feedback.rating, feedback.content
+FROM feedback
+INNER JOIN user ON feedback.userid = user.userid
+INNER JOIN serviceprovider ON feedback.spid = serviceprovider.spid
+WHERE serviceprovider.spid = '$spid'";
+
+$result = mysqli_query($con, $sql);
 ?>
 
 
@@ -55,13 +68,10 @@ $result = mysqli_query($con, $sql);
                         <i class="uil uil-user"></i>
                         <span class="link-name">User Profile</span>
                     </a></li>
-                <li><a href="notifications.php">
-                        <i class="uil uil-bell"></i>
-                        <span class="link-name">Notifications</span>
-                    </a></li>
+                
                 <li><a href="history.php">
                         <i class="uil uil-history"></i>
-                        <span class="link-name">History</span>
+                        <span class="link-name">Records</span>
                     </a></li>
                 <li><a href="appointments.php">
                         <i class="uil uil-calender"></i>
@@ -72,10 +82,11 @@ $result = mysqli_query($con, $sql);
                         <span class="link-name">Feedbacks</span>
                     </a></li>
 
-                <li><a href="freeConsultation.php">
+                    <li><a href="ChatIndex.php">
                         <i class="uil uil-chat"></i>
                         <span class="link-name">Free Consultation</span>
                     </a></li>
+
 
 
 
@@ -102,31 +113,30 @@ $result = mysqli_query($con, $sql);
         </nav>
 
 
-
         <center>
-            <h2>Feedbacks</h2>
-            <br><br>
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Names..">
-            <table id="myTable" class="styled-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Client Name</th>
-                        <th>Rating</th>
-                        <th>Message</th>
-                        <!-- <th>Cancel</th> -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+    <h2>Feedbacks</h2>
+    <br><br>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Names..">
+    <table id="myTable" class="styled-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Client Name</th>
+                <th>Rating</th>
+                <th>Message</th>
+                <!-- <th>Cancel</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <?php
         while($rows = $result->fetch_assoc()) {
         ?>
-                    <tr class="active-row">
-                        <td><?php echo $rows['submit_date'];?></td>
-                        <td><?php echo $rows['name'];?></td>
-                        <td>
-                            <ul style="list-style: none; display: flex;">
-                                <?php
+            <tr class="active-row">
+                <td><?php echo $rows['submit_date'];?></td>
+                <td><?php echo $rows['name'];?></td>
+                <td>
+                    <ul style="list-style: none; display: flex;">
+                        <?php
                     $rating = $rows['rating'];
                     $starNumber = intval($rating);
 
@@ -144,34 +154,16 @@ $result = mysqli_query($con, $sql);
                         $x++;
                     }
                     ?>
-                            </ul>
-                        </td>
-                        <td><?php echo $rows['content'];?></td>
-
-                        <!-- <td>
-                            <a href="?delete_id=<?php echo $rows['fid']; ?>"
-                                onclick="return confirm('Are you sure you want to delete this feedback record?')">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </a>
-                        </td> -->
-
-
-
-
-
-
-                    </tr>
-                    <?php
+                    </ul>
+                </td>
+                <td><?php echo $rows['content'];?></td>
+            </tr>
+            <?php
         }
         ?>
-                </tbody>
-            </table>
-
-
-
-
-        </center>
-
+        </tbody>
+    </table>
+</center>
 
 
 

@@ -1,37 +1,24 @@
 <?php
 require '../config/db.php';
 session_start();
-$nic ="";
-if(isset($_SESSION["spid"]) ){
-   $spid =$_SESSION["spid"];
+$userid ="";
+if(isset($_SESSION["userid"]) ){
+   $userid = $_SESSION["userid"];
 }else{
    //header("location:login.php");
 }
 
-  $sql = "SELECT * FROM serviceprovider WHERE spid =1" ;
-
-  ($result = mysqli_query($con, $sql));
+$sql = "SELECT * FROM user WHERE userid = '$userid'";
+$result = mysqli_query($con, $sql);
 ?>
-
-
-
 
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/Userprofile.css">
+    <link rel="stylesheet" href="../css/Userprofile_i.css">
 
     <title>User Profile</title>
-    <script>
-    function adminRequest() {
-        var adminText = "Your account has been requested to be deleted.";
-        alert(adminText);
-    }
-    </script>
 
-    <style>
-
-    </style>
 
 </head>
 
@@ -46,10 +33,9 @@ if(isset($_SESSION["spid"]) ){
 
             <div class="right">
                 <a href="../index.php" class="font">HOME</a>
-                <a href="groomerDashboard.php" class="font">DASHBOARD</a>
+                <a href="vetDashboard.php" class="font">DASHBOARD</a>
 
-                <a href="
-                ../logout.php" class="font">LOG OUT </a>
+                <a href="../logout.php" class="font">LOG OUT </a>
             </div>
         </div>
         <div>
@@ -58,14 +44,15 @@ if(isset($_SESSION["spid"]) ){
 
 
                     <center>
-                        <table class="styled-table" cellspacing="0" cellpadding="30">
+                        <table class="styled-table1">
                             <?php
-    $rows = mysqli_query($con, "SELECT * FROM groomerimage");
+    $rows = mysqli_query($con, "SELECT * FROM boardingimage WHERE uid ='$userid'");
     foreach ($rows as $row) :
     ?>
                             <td>
-                                <img src="../groomer_img/<?php echo $row['image']; ?>" width="100" height="150"
+                                <img src="boarding_img/<?php echo $row['image']; ?>" width="100" height="150"
                                     title="<?php echo $row['image']; ?>">
+
                             </td>
                             <?php endforeach; ?>
                         </table>
@@ -74,51 +61,60 @@ if(isset($_SESSION["spid"]) ){
                     <?php
         while ($rows = $result->fetch_assoc()) {
           ?>
+          <div class="profile-container">
+  <div class="profile-card">
+    <table class="profile-table">
+      <tbody>
+        <tr>
+          <td class="profile-label">NIC:</td>
+          <td class="profile-data"><?php echo $rows['nic']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">Full Name:</td>
+          <td class="profile-data"><?php echo $rows['fname']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">Mobile Number:</td>
+          <td class="profile-data"><?php echo $rows['mobile']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">Address:</td>
+          <td class="profile-data"><?php echo $rows['district']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">Email:</td>
+          <td class="profile-data"><?php echo $rows['email']; ?></td>
+        </tr>
+        <tr>
+          <td class="profile-label">User Name:</td>
+          <td class="profile-data"><?php echo $rows['uname']; ?></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
 
                     <center>
-                        <table class="styled-table">
-                            <tbody>
-                                <tr>
-                                    <td>NIC</td>
-                                    <td><?php echo $rows['nic']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Fullname</td>
-                                    <td><?php echo $rows['fname']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Mobile Number</td>
-                                    <td><?php echo $rows['mobile']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td><?php echo $rows['district']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td><?php echo $rows['email']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>UserName</td>
-                                    <td><?php echo $rows['uname']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Password</td>
-                                    <td><?php echo $rows['password']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Description</td>
-                                    <td><?php echo $rows['details']; ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </center>
+                        <form action="updateProfile.php" method="post">
+                          
+                            <input type="hidden" name="fname" value="<?php echo $rows['fname']; ?>">
+                            <input type="hidden" name="spid" value="<?php echo $rows['userid']; ?>">
+                            <input type="hidden" name="nic" value="<?php echo $rows['nic']; ?>">
+                            <input type="hidden" name="district" value="<?php echo $rows['district']; ?>">
+                            <input type="hidden" name="email" value="<?php echo $rows['email']; ?>">
+                            <input type="hidden" name="uname" value="<?php echo $rows['uname']; ?>">
+                            <input type="hidden" name="mobile" value="<?php echo $rows['mobile']; ?>">
+                            <br><br>
+                            <button class="form_btn2" type="submit">Update</button>
+<a href="./notifications/deleteAccount.php"><button class="form_btn2" type="button">Request to Delete</button></a>
 
-                    <center>
-                        <button class="form_btn2"
-                            onclick="location.href='updateProfile.php?details=<?php echo $rows['details']; ?> &fname=<?php echo $rows['fname']; ?> &spid=<?php echo $rows['spid']; ?> &nic=<?php echo $rows['nic']; ?> &district=<?php echo $rows['district']; ?> &email=<?php echo $rows['email']; ?> &uname=<?php echo $rows['uname']; ?> &mobile=<?php echo $rows['mobile']; ?>'">Update</button>
-                        <button class="form_btn2" type="button" onclick="adminRequest()" id="btnEnable">Request to
-                            Delete</button>
+                        </form>
+
+
+
+
                     </center>
 
 
@@ -126,7 +122,7 @@ if(isset($_SESSION["spid"]) ){
            }
           ?>
                     <br><br>
-                    <div class="footerr" style="position:absolute; z-index: -1; width: 99%;">
+                    <div class="footerr">
                         <p> Telephone No: +94 11 233 5632
                             Fax: +94 11 233 5632
                             Email: petAssure@hotmail.com​</p>

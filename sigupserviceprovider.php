@@ -1,67 +1,69 @@
 <?php
 require_once('config/db.php');
 session_start();
-$fname= "";
-$nic = "";
-$mobile="";
-$email ="";
-$address="";
-$district="";
-$uname =" ";
-$password = "";
-$stype ="";
-$details ="";
-$myfile="";
 
+$fname = "";
+$lname = "";
+$nic = "";
+$mobile = "";
+$email = "";
+$address = "";
+$district = "";
+$uname = "";
+$password = "";
+$stype = "";
+$details = "";
+$myfile = "";
+$user_closed ="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-$fname = $_POST['fname'];
-$nic = $_POST['nic'];
-$mobile = $_POST['mobile'];
-$email = $_POST['email'];
-$address= $_POST['address'];
-$district= $_POST['district'];
-$uname = $_POST['uname'];
-$password = $_POST['password'];
-$stype = $_POST['stype'];
-$myfile=$_POST['myfile'];
-$details =trim($_POST['details']);
-$confirm_password = $_POST['confirm_password'];
-
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $nic = $_POST['nic'];
+    $mobile = $_POST['mobile'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $district = $_POST['district'];
+    $uname = $_POST['uname'];
+    $stype = $_POST['stype'];
+    $myfile = $_POST['myfile'];
+    $details = trim($_POST['details']);
+      $user_closed =$_POST['user_closed'];    
+    // Chat registration
+    $date = date("Y-m-d");
+    // send email for random password
+    $_SESSION['spemail'] = $email;
 
     // Insert data into user table
-    $sql_user = "INSERT INTO user (fname,nic, mobile, role,email, address,uname,password,district) VALUES ('$fname' ,'$nic','$mobile','$stype','$email','$address','$uname','$password','$district')";
-    
-   
-    if (mysqli_query($con, $sql_user)) {
-        if ($password !== $confirm_password) {
-            echo '<script type="text/javascript"> alert("Password do not match,Resubmit.")</script>';
-        } else {
+    $sql_user = "INSERT INTO user (fname, lname, nic, mobile, role, email, address, uname, password, district,user_closed) VALUES ('$fname', '$lname', '$nic', '$mobile', '$stype', '$email', '$address', '$uname', 'test', '$district','no')";
+    if (mysqli_query($con, $sql_user)) 
+    {
+
+           
             // Get the id of the newly inserted record in the user table
             $userid = mysqli_insert_id($con);
-    
+            $_SESSION['upuser'] = $userid;
             // Insert data into serviceprovider table
-            $sql_serviceprovider = "INSERT INTO serviceprovider (userid, proofs,details) VALUES ('$userid', '$myfile','$details')";
-    
+            $sql_serviceprovider = "INSERT INTO serviceprovider (userid, proofs,details, status) VALUES ('$userid', '$myfile','$details','pending')";
+            $sql_notification = "INSERT INTO `inf`(`notifications_name`, `message`, `active`) VALUES ('New User','New User is Registered','1')";
+            mysqli_query($con, $sql_notification);
             if (mysqli_query($con, $sql_serviceprovider)) {
-                echo '<script type="text/javascript"> alert("Congratulations. Your account was created.")</script>';
-                header("Location: login.php");
-                exit();
-            } else {
+                    
+                    echo '<script type="text/javascript"> alert("Congratulations. Your account was created.")</script>';
+                    header("Location: phpmailer/index.php");
+                    exit();
+                }
+             else {
                 echo '<script type="text/javascript"> alert("Your account was not created. Please try again.")</script>';
             }
-        }
-    } else {
-        echo '<script type="text/javascript"> alert("Your account was not created. Please try again.")</script>';
+        
     }
-    
+
     mysqli_close($con);
 }
-
-
-
 ?>
+
 
 <!DOCTYPE html>
 
@@ -151,8 +153,12 @@ function checkUsername() {
         
 <div class="user-details">
 <div class="input-box">
-<span class="details">Full Name</span>
-<input type="text" name="fname" placeholder="Enter your name" required>
+<span class="details">Fisrt Name</span>
+<input type="text" name="fname" placeholder="Enter your first name" required>
+</div>
+<div class="input-box">
+<span class="details">Last Name</span>
+<input type="text" name="lname" placeholder="Enter your last name" required>
 </div>
 <div class="input-box">
 <span class="details">NIC</span>
@@ -256,20 +262,7 @@ function checkUsername() {
         <br><br><span id="check-username"></span>
         </div>
 
-
-        <div class="input-box">
-        <span class="details">Password*</span>
-        <input type="password" name="password" placeholder="Enter your password"   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}"required>
-        </div>
-        <div class="input-box">
-        <span class="details">Confirm password</span>
-        <input type="password"name="confirm_password" placeholder="Re-enter your password" required>
-        </div>
-        <div>
-            
-            <p style="font-size: 12px;"><b>Password must contain:</b>
-            A <b>lowercase</b> letter ,a <b>capital (uppercase)</b> letter ,a  <b>number</b> and minimum <b>8 characters</b></p>
-       
+        
         <input type="submit" class="button" value="Register"name="submit" id="submit">
 
            

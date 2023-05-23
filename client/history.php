@@ -1,143 +1,222 @@
+<?php
+require_once('../config/db.php');
 
+// session_start();
+// $_SESSION['userid'] = $userid; // set the user ID obtained from the database after successful login
+
+session_start();
+if (isset($_SESSION["userid"])) {
+    $userid = $_SESSION["userid"];
+} else {
+    //header("location:login.php");
+    exit("You must log in to access this page.");
+}
+
+$sql = "SELECT * FROM pet_selling WHERE userid = '$userid'";
+$result = mysqli_query($con, $sql);
+
+
+// $query = "SELECT * FROM my_table WHERE user_id = '$user_id'";
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["selling_id"])) {
+    $selling_id = $_POST["selling_id"];
+
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <link rel="stylesheet" href="../css/style_history.css">
-    <script src="https://kit.fontawesome.com/ffeda24502.js" crossorigin="anonymous"></script>
-
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/posts.css" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
-    <title>PetAssure</title>
-
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <title>Pet Sale</title>
 </head>
+<style>
+    body {
+        background-image: url("../images/bg2.png");
+    }
+</style>
 
-<body class="body-scroller">
-    <nav>
-        <div class="logo-name">
-            <div class="logo-image">
-                <img src="../images/logo.png" alt="">
+<body>
+    <div class="page">
+        <div class="nav" style="width: 100%">
+            <div class="left">
+                <img src="../images/logo.png" width="100px" height="100px" />
+                <p style="margin-left: 20px">PetAssure</p>
             </div>
 
-          
-            <span class="logo_name">PetAssure</span>
+            <div class="right">
+                <a href="homepage.html" class="font">HOME</a>
+                <a href="userProfile.php" class="font">PROFILE</a>
+                <a href="services1.php" class="font">SERVICES</a>
+                <a href="../login.php" class="font">LOG OUT</a>
+            </div>
         </div>
-
-        <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="./Dashboard.php">
-                        <i class="uil uil-dashboard"></i>
-                        <span class="link-name">Dashboard</span>
-                    </a></li>
-                <li><a href="./userProfile.php">
-                        <i class="uil uil-user"></i>
-                        <span class="link-name">User Profile</span>
-                    </a></li>
-                <li><a href="./notifications.php">
-                        <i class="uil uil-bell"></i>
-                        <span class="link-name">Notifications</span>
-                    </a></li>
-                <li><a href="./history.php">
-                        <i class="uil uil-history"></i>
-                        <span class="link-name">Added Posts</span>
-                    </a></li>
-                <li><a href="./appointments.php">
-                        <i class="uil uil-calender"></i>
-                        <span class="link-name">Appointments</span>
-                    </a></li>
-               
-                    <li><a href="./payment.php">
-                        <i class="uil uil-comments"></i>
-                        <span class="link-name">payment</span>
-                    </a></li>
-
-
-
-            </ul>
-
-            <ul class="logout-mode">
-                <li><a href="./login.php">
-                        <i class="uil uil-signout"></i>
-                        <span class="link-name">Logout</span>
-                    </a></li>
-
-
-            </ul>
-        </div>
-    </nav>
-
-    <section class="dashboard">
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-        </div>
-        <div style="padding-bottom: 20px;"></div>
-
-
-        <center>
-            <h2>History</h2>
-            <table class="styled-table">
-
-                <tbody>
-                    <tr>
-                        <td>1.</td>
-                        <td>ghfghjk</td>
-
-                        <td>2020/4/7</td>
-                        <td> <i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr class="active-row">
-                        <td>2.</td>
-                        <td>dthjkl</td>
-
-
-
-
-                        <td>2021/1/8</td>
-                        <td><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td>xdfghjk</td>
-
-                        <td>2021/6/8</td>
-                        <td> <i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr class="active-row">
-                        <td>4.</td>
-                        <td>fghjkl</td>
-
-                        <td>2021/9/8</td>
-                        <td> <i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </center>
-
-
-        </div>
-
-
-
-
-
-        <script src="../js/history_script.js"></script>
-
-    </section>
-
-    <div class="footerr" style="position:absolute; z-index: -1; width: 99%;">
-        <p> Telephone No: +94 11 233 5632
-            Fax: +94 11 233 5632
-            Email: petAssure@hotmail.com​</p>
     </div>
-</body>
+    <div class="content" style="margin-top: 70px">
+        <div class="filter" style="margin-left: 10px">
+            <div>
+                <select style="
+              margin-left: 10px;
+              margin-top: 20px;
+              width: 200px;
+              height: 35px;
+            " name="districts" id="districts">
+                    <option value="Colombo">Colombo</option>
+                    <option value="Gampaha">Gampaha</option>
+                    <option value="Kalutara">Kalutara</option>
+                    <option value="Kandy">Kandy</option>
+                    <option value="Matale">Matale</option>
+                    <option value="NuwaraEliya">Nuwara Eliya</option>
+                    <option value="Galle">Galle</option>
+                    <option value="Matara">Matara</option>
+                    <option value="Hambantota">Hambantota</option>
+                    <option value="Jaffna">Jaffna</option>
+                    <option value="Kilinochchi">Kilinochchi</option>
+                    <option value="Mannar">Mannar</option>
+                    <option value="Vavuniya">Vavuniya</option>
+                    <option value="Mullaitivu">Mullaitivu</option>
+                    <option value="Batticaloa">Batticaloa</option>
+                    <option value="Ampara">Ampara</option>
+                    <option value="Trincomalee">Trincomalee</option>
+                    <option value="Kurunegala">Kurunegala</option>
+                    <option value="Puttalam">Puttalam</option>
+                    <option value="Anuradhapura">Anuradhapura</option>
+                    <option value="Polonnaruwa">Polonnaruwa</option>
+                    <option value="Badulla">Badulla</option>
+                    <option value="Moneragala">Moneragala</option>
+                    <option value="Ratnapura">Ratnapura</option>
+                    <option value="Kegalle">Kegalle</option>
+                </select>
+            </div>
+            <div>
+                <div>
+                    <input style="
+              margin-left: 10px;
+              margin-top: 20px;
+              width: 800px;
+              height: 30px;
+            " type="text" placeholder="Search Here" />
+                    <button class="sbtn">Search</button>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center">
+            <h1>My Posts</h1>
+        </div>
+        <div style="display: flex; justify-content: center">
+            <!-- <div style="display: flex; justify-content: space-around">
+        <a href="adoptposts.php"><button class="btn">Adoption</button></a>
+        <a href="saleposts.php"><button class="btn" >Sale</button></a>
+        <a href="crossposts.php"> <button class="btn">Crossing</button></a>
+        </div> -->
+        </div>
+        <div style="
+          display: flex;
+          flex-direction: column;
+          margin: 10px;
+          justify-content: center;
+          align-items: center;
+        ">
 
+
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '
+        <div class="card">
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin: 10px;
+            "
+          >
+          <a href="salepostview2.php?variety=' . $row['name'] . '&image=' . $row['image'] . '&district=' . $row['district'] . '&description=' . $row['description'] . '&phone_number=' . $row['phone_number'] . '&name=' . $row['name'] . '">
+            <img
+              src="../images/' . $row['image'] . '"
+              width="150px"
+              height="150px"
+              style="border-radius: 8%"
+              
+            />
+
+
+          
+            </a>
+          </div>
+          <div style="margin: 10px">
+            <h3>' . $row['name'] . '</h3>
+            
+            <p>
+            ' . $row['district'] . '
+            </p>
+            <p>
+            ' . $row['description'] . '
+            </p>
+            <p style="font-weight: 800">Rs. ' . $row['price'] . '</p> 
+
+            <style>
+
+                        form {
+                         display: inline;
+                         margin: 0;
+                         padding: 0;
+                         border: none;
+                            background: none;
+            }</style>
+
+            <form method="POST" action="history.php">
+            <input type="hidden" name="selling_id" value="' . $row['selling_id'] . '" />
+            <button type="submit" class="uil uil-trash-alt" style="
+            position: fixed;
+            height: 34px;
+            WIDTH: 25px;
+
+            MARGIN: -36px -174px -53px 517px;
+        }
+"></button>
+        </form>
+             
+          </div> 
+          
+        </div> 
+       
+        ';
+
+            }
+            ; ?>
+
+        </div>
+
+        <div>
+            <div style="display: flex; justify-content: right">
+                <button onclick="location.href='addpost.php'" class="addbtn"><span>&#43;</span><b> Add your
+                        post</b></button>
+            </div>
+        </div>
+    </div>
+    <div class="footerr" style="z-index: -1; width: 100%; position: relative">
+        <p>
+            Telephone No: +94 11 233 5632&nbsp;&nbsp;&nbsp;&nbsp; Fax: +94 11 233
+            5632 &nbsp;&nbsp;&nbsp;&nbsp;Email: petAssure@hotmail.com​
+        </p>
+    </div>
+
+    <script>
+
+        function deleteHistory(value) {
+            <?php
+            $sql = "DELETE FROM pet_selling WHERE selling_id = '$selling_id'";
+            $result = mysqli_query($con, $sql);
+            ?>
+        }
+    </script>
+</body>
 
 </html>

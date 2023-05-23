@@ -13,7 +13,7 @@
 <style>
     body  {
       background-image:  url("../images/bg2.png");
-      
+      background-size: cover;
     }
     </style>
 
@@ -23,16 +23,17 @@
 
         <div class="nav" style="width: 100%;">
             <div class="left">
-                <img src="../images/logo.png" width="100px" height="100px">
-                <p style="margin-left: 20px;">PetAssure</p>
+                <!-- <img src="../images/logo.png" width="100px" height="100px"> -->
+                <img src="../images/logo.png" width="100px" height="100px" style="padding: 0 10px 22px;">
+                <p style="margin-left: 18px;margin-top: 15px;">PetAssure</p>
             </div>
 
             <div class="right">
-                <a href="#" class="font">HOME</a>
-                <a href="#" class="font">PROFILE</a>
-                <a href="#" class="font">SERVICES</a>
+                <a href="../index.php" class="font">HOME</a>
+                <a href="userProfile.php" class="font">PROFILE</a>
+                <a href="services1" class="font">SERVICES</a>
 
-                <a href="#" class="font">LOG OUT </a>
+                <a href="../login.php" class="font">LOG OUT </a>
             </div>
         </div>
         <p style="text-align: center; font-size:xx-large; color:#000000; font-weight: 500;">OUR SERVICES</p>
@@ -42,40 +43,40 @@
 
             <div class="features">
                 <div class="feature_data">
-                    <a href="pets.html">
+                    <a href="saleposts.php">
                         <img src="../images/img4.jpg" class="img" width="300px" height="200px" ></a>
-                    <h3> Pets </h3>
+                    <h3> Find A Friend </h3>
 
 
                 </div>
                 <div class="feature_data">
-                    <a href="petSitterTermConditions.html">
+                    <a href="petsitterposts.php">
                         <img src="../images/img2.jpg" class="img" width="300px" height="200px" ></a>
-                    <h3> Pet Sitting Services </h3>
+                    <h3> Pet Sitters </h3>
 
                 </div>
                 <div class="feature_data">
-                    <a href="shelter.html">
+                    <a href="boardingposts.php">
                         <img src="../images/img3.jpg" class="img" width="300px" height="200px" ></a>
-                    <h3> Pet Shelter Services</h3>
+                    <h3> Pet Boarding Places</h3>
 
                 </div>
             </div>
             <div class="features">
                 <div class="feature_data">
-                    <a href="vet.html">
-                        <img src="../images/vet.jpg" class="img" width="300px" height="200px" > </a>
-                    <h3> Veterinarian Services </h3>
+                    <a href="Vetposts.php">
+                        <img src="../images/vet1.jpg" class="img" width="300px" height="200px"> </a>
+                    <h3> Veterinarians </h3>
 
                 </div>
                 <div class="feature_data">
-                    <a href="grooming.html">
+                    <a href="groomingposts.php">
                         <img src="../images/img5.jpg" class="img" width="300px" height="200px" ></a>
-                    <h3> Pet Grooming Services </h3>
+                    <h3> Pet Groomers </h3>
 
                 </div>
                 <div class="feature_data">
-                    <a href="viewhotel.php">
+                    <a href="petfriendlyplaces.php">
                         <img src="../images/img6.jpg" class="img" width="300px" height="200px" ></a>
                     <h3> Pet Friendly Places </h3>
 

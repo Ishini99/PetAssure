@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #C7BEBE;
+}
+.nav{
+  height: 70px;
+  opacity: 90%;
+  background-color: #A6A6A6;
+  display: flex;
+  flex-direction: row;
+  z-index:1;
+  position: absolute;
+ 
+}
+.left{
+  flex:0.5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:flex-start;
+  margin-left: 30px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 48px;
+  color: #ffffff;
+  
+}
+.right{
+  flex:0.5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 30px;
+}
+
+.flexx{
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper{
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  padding: 34px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+.wrapper h2{
+  position: relative;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+.wrapper h2::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 28px;
+  border-radius: 12px;
+  background: #818181;
+}
+.wrapper form{
+  margin-top: 30px;
+}
+.wrapper form .input-box{
+  height: 52px;
+  margin: 18px 0;
+}
+form .input-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  border: 1.5px solid #C7BEBE;
+  border-bottom-width: 2.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.input-box input:focus,
+.input-box input:valid{
+  border-color: #555555;
+}
+form .policy{
+  display: flex;
+  align-items: center;
+}
+form h3{
+  color: #707070;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.input-box.button input{
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: #666666;
+  cursor: pointer;
+}
+.input-box.button input:hover{
+  background: #2e2e2e;
+}
+form .text h3{
+ color: #333;
+ width: 100%;
+ text-align: center;
+}
+form .text h3 a{
+  color: #646464;
+  text-decoration: none;
+}
+form .text h3 a:hover{
+  text-decoration: underline;
+}
+
+.paybutton{
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: #666666;
+  cursor: pointer;
+}
+.paybutton:hover{
+  background: #2e2e2e;
+}

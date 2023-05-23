@@ -3,7 +3,7 @@ require_once('../config/db.php');
 
 session_start();
 
-$sql = "SELECT * FROM pet_selling";
+$sql = "SELECT * FROM pet_adoption";
 $result = mysqli_query($con, $sql);
 
 
@@ -40,11 +40,11 @@ $result = mysqli_query($con, $sql);
         </div>
 
         <div class="right">
-          <a href="#" class="font">HOME</a>
-          <a href="#" class="font">PROFILE</a>
-          <a href="#" class="font">SERVICES</a>
-          <a href="signIn.php" class="font">LOG OUT </a>
-        </div>
+                <a href="homepage.html" class="font">HOME</a>
+                <a href="userProfile.php" class="font">PROFILE</a>
+                <a href="services1.php" class="font">SERVICES</a>
+                <a href="../login.php" class="font">LOG OUT</a>
+          </div>
       </div>
     </div>
     <div class="content" style="margin-top: 70px">
@@ -136,7 +136,7 @@ $result = mysqli_query($con, $sql);
               margin: 10px;
             "
           >
-          <a href="postview.php?variety='.$row['name'].'&image='.$row['image'].'&district='.$row['district'].'&description='.$row['description'].'&phone_number='.$row['phone_number'].'&name='.$row['name'].'">
+          <a href="salepostview2.php?variety='.$row['name'].'&image='.$row['image'].'&district='.$row['district'].'&description='.$row['description'].'&phone_number='.$row['phone_number'].'&name='.$row['name'].'">
             <img
               src="../images/'.$row['image'].'"
               width="150px"

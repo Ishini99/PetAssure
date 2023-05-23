@@ -1,13 +1,24 @@
 <?php
 require '../config/db.php';
 session_start();
-$userid ="";
+$spid ="";
+$userid="";
+
+$date="";
 if(isset($_SESSION["userid"]) ){
-    $userid =$_SESSION["userid"];
+   $userid =$_SESSION["userid"];
 }else{
    //header("location:login.php");
 }
+$query = "SELECT spid FROM serviceprovider WHERE userid = '$userid'";
 
+$result = mysqli_query($con, $query);
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $spid = $row['spid'];
+} else {
+    
+}
 
 ?>
 
@@ -67,10 +78,7 @@ if(isset($_SESSION["userid"]) ){
                         <i class="uil uil-user"></i>
                         <span class="link-name">User Profile</span>
                     </a></li>
-                <li><a href="notifications.php">
-                        <i class="uil uil-bell"></i>
-                        <span class="link-name">Notifications</span>
-                    </a></li>
+               
                 <li><a href="history.php">
                         <i class="uil uil-history"></i>
                         <span class="link-name">Records</span>
@@ -83,12 +91,10 @@ if(isset($_SESSION["userid"]) ){
                         <i class="uil uil-comments"></i>
                         <span class="link-name">Feedbacks</span>
                     </a></li>
-
-                <li><a href="chat/Main/Index.php">
+                    <li><a href="ChatIndex.php">
                         <i class="uil uil-chat"></i>
                         <span class="link-name">Free Consultation</span>
                     </a></li>
-
 
 
             </ul>
@@ -153,26 +159,26 @@ if(isset($_SESSION["userid"]) ){
 
 
 
-                    <center>
+                                    <center>
                         <table class="filter-container" style="border: none;" border="0">
                             <tr>
                                 <td colspan="4">
                                     <p style="font-size: 25px;font-weight:600;padding-left: 32px;">Status</p><br>
                                 </td>
                             </tr>
-                            <br>
+                            
                             <tr>
-                                <td style="width: 25%;">
+                                <!-- <td style="width: 25%;">
                                     <div class="dashboard-items"
                                         style="padding:20px;margin:auto;width:95%;display: flex">
                                         <div>
                                             <div class="h1-dashboard">
-                                                <?php
-    // 1. Establish a database connection
-    require '../config/db.php';
+                                                //<?php
+   
+   
     
     // 2. Prepare and execute the query
-    $query = "SELECT COUNT(*) AS row_count FROM notification";
+    $query = "SELECT COUNT(*) AS row_count FROM notification WHERE userid = '$userid'";
     $query_run = mysqli_query($con, $query);
 
     // 3. Check for errors
@@ -193,10 +199,16 @@ if(isset($_SESSION["userid"]) ){
                                                 Notifications &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </div>
                                         </div>
-                                        <div class="btn-icon-back dashboard-icons" style="background-image: url('');">
+                                        <div class="dashboard-icons" style="background-image: url('../icon/notification.svg');">
                                         </div>
                                     </div>
-                                </td>
+                                </td> -->
+
+
+
+
+
+
 
                                 <td style="width: 25%;">
                                     <div class="dashboard-items"
@@ -205,11 +217,10 @@ if(isset($_SESSION["userid"]) ){
                                             <div class="h1-dashboard">
 
                                                 <?php
-    // 1. Establish a database connection
-    require '../config/db.php';
+   
     
     // 2. Prepare and execute the query
-    $query = "SELECT COUNT(*) AS row_count FROM appointment";
+    $query = "SELECT COUNT(*) AS row_count FROM appointment WHERE spid= '$spid'  && completed='1'";
     $query_run = mysqli_query($con, $query);
 
     // 3. Check for errors
@@ -229,12 +240,22 @@ if(isset($_SESSION["userid"]) ){
                                                 Consulted Pets &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </div>
                                         </div>
-                                        <div class="btn-icon-back dashboard-icons" style="background-image: url('');">
+                                        <div class="dashboard-icons" style="background-image: url('icon/veterinarian-svgrepo-com.svg');">
                                         </div>
                                     </div>
                                 </td>
 
                                 <br>
+
+
+
+
+
+
+
+
+
+
                                 <td style="width: 25%;">
                                     <div class="dashboard-items"
                                         style="padding:20px;margin:auto;width:95%;display: flex; ">
@@ -242,11 +263,11 @@ if(isset($_SESSION["userid"]) ){
                                             <div class="h1-dashboard">
 
                                                 <?php
-    // 1. Establish a database connection
-    require '../config/db.php';
+   
     
     // 2. Prepare and execute the query
-    $query = "SELECT COUNT(*) AS row_count FROM appointment";
+    $query = "SELECT COUNT(*) AS row_count FROM appointment WHERE spid = '$spid' && status='1'";
+
     $query_run = mysqli_query($con, $query);
 
     // 3. Check for errors
@@ -268,71 +289,81 @@ if(isset($_SESSION["userid"]) ){
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </div>
                                         </div>
-                                        <div class="btn-icon-back dashboard-icons"
-                                            style="margin-left: 0px;background-image: url('/images/0567c66917061177a7df6c35c0028444.jpg');">
+                                        <div class="dashboard-icons" style="background-image: url('icon/calendar-10-svgrepo-com.svg');"></div>
+    </div>
                                         </div>
                                     </div>
 
                                 </td>
 
+
                                 <td style="width: 25%;">
                                     <div class="dashboard-items"
-                                        style="padding:16px;margin:auto;width:95%;display: flex;">
+                                        style="padding:19px;margin:auto;width:95%;display: flex;">
                                         <div>
                                             <div class="h1-dashboard_avg">
 
                                                 <div class="star-list">
-                                                    <?php
-        // 1. Establish a database connection
-        require '../config/db.php';
+                                                <?php
+       
         
-        // 2. Prepare and execute the query
-        $query = "SELECT AVG(rating) AS average_value FROM feedback";
-        $query_run = mysqli_query($con, $query);
+       // 2. Prepare and execute the query
+       $query = "SELECT spid FROM serviceprovider WHERE userid = '$userid'";
+$result = mysqli_query($con, $query);
+if ($result && mysqli_num_rows($result) > 0) {
+   $row = mysqli_fetch_assoc($result);
+   $spid = $row['spid'];
+} else {
+   
+}
+       $query = "SELECT AVG(rating) AS average_value FROM feedback INNER JOIN user ON feedback.userid = user.userid
+       INNER JOIN serviceprovider ON feedback.spid = serviceprovider.spid
+       WHERE serviceprovider.spid = '$spid'";
+       $query_run = mysqli_query($con, $query);
 
-        // 3. Check for errors
-        if (!$query_run) {
-            die('Query Error: ' . mysqli_error($con));
-        }
+       // 3. Check for errors
+       if (!$query_run) {
+           die('Query Error: ' . mysqli_error($con));
+       }
 
-        // 4. Retrieve the result
-        $result = mysqli_fetch_assoc($query_run);
-        $average_value = $result['average_value'];
-        $starNumber = intval($average_value);
-
-        // 5. Display the result
-        for ($x = 1; $x <= $starNumber; $x++) {
-            echo '<li><i class="fa fa-star"></i></li>';
-        }
-        if ($average_value - $starNumber >= 0.5) {
-            echo '<li><i class="fa fa-star-half-o"></i></li>';
-            $x++;
-        }
-        while ($x <= 5) {
-            echo '<li><i class="fa fa-star-o"></i></li>';
-            $x++;
-        }
-    ?>
-                                                </div>
-
-
-                                            </div><br>
-                                            <div class="h3-dashboard">
-                                                Current Rate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            </div>
-                                        </div>
-                                        <div class="btn-icon-back dashboard-icons"
-                                            style="margin-left: 0px;background-image: url();">
-                                        </div>
-                                    </div>
-                                </td>
-
-                            </tr>
-                        </table>
-                    </center>
+       // 4. Retrieve the result
+       $result = mysqli_fetch_assoc($query_run);
+       $average_value = $result['average_value'];
+       $starNumber = intval($average_value);
+       echo '<h1>' . $starNumber . '</h1>';
+       // 5. Display the result
+       for ($x = 1; $x <= $starNumber; $x++) {
+           echo '<li><i class="fa fa-star"></i></li>';
+       }
+       if ($average_value - $starNumber >= 0.5) {
+           echo '<li><i class="fa fa-star-half-o"></i></li>';
+           $x++;
+       }
+       while ($x <= 5) {
+           echo '<li><i class="fa fa-star-o"></i></li>';
+           $x++;
+       }
+   ?>
+                                               </div>
 
 
+                                           </div><br>
+                                           <div class="h3-dashboard">
+                                               Rate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                           </div>
+                                       </div>
+                                       <div class="dashboard-icons" style="background-image: url('../icon/rating-rate-svgrepo-com.svg');"></div>
+                                   </div>
+                               </td>
 
+
+
+
+
+                               
+                           </tr>
+                       </table>
+                   </center>
 
 
 

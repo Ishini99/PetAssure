@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Popup Example</title>
+  <style>
+    /* Style the popup */
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    /* Style the popup content */
+    .popup-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    /* Style the close button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    /* Style the close button on hover */
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Button to open the popup -->
+<button onclick="openPopup()">Open Popup</button>
+
+<!-- The popup -->
+<div id="popup" class="popup">
+  <!-- Popup content -->
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <p>This is a popup!</p>
+  </div>
+</div>
+
+<!-- JavaScript to open and close the popup -->
+<script>
+  // Get the popup element
+  var popup = document.getElementById("popup");
+
+  // Get the button that opens the popup
+  var btn = document.getElementById("btn");
+
+  // When the user clicks the button, open the popup
+  function openPopup() {
+    popup.style.display = "block";
+  }
+
+  // When the user clicks on the close button, close the popup
+  function closePopup() {
+    popup.style.display = "none";
+  }
+</script>
+
+</body>
+</html>

@@ -42,31 +42,28 @@ if(isset($_SESSION["spid"]) ){
             <ul class="nav-links">
 
 
-            <li><a href="petsitterDashboard.php">
+            <ul class="nav-links">
+                <li><a href="petsitterDashboard.php">
                         <i class="uil uil-dashboard"></i>
-                        <span class="link-name">Dashboard</span>
-                    </a></li>
+                        <span class="link-name">Dashboard</span> </a></li>
                 <li><a href="userProfile.php">
                         <i class="uil uil-user"></i>
                         <span class="link-name">User Profile</span>
                     </a></li>
+                    <li><a href="petsitter_shedule.php">
+                        <i class="uil uil-calender"></i>
+                        <span class="link-name">Availlable dates</span>
+                    </a></li>
+                
+               
                 <li><a href="notifications.php">
                         <i class="uil uil-bell"></i>
                         <span class="link-name">Notifications</span>
                     </a></li>
                 <li><a href="history.php">
                         <i class="uil uil-history"></i>
-                        <span class="link-name">History</span>
+                        <span class="link-name">Past Bookings</span>
                     </a></li>
-                <li><a href="petsitter_shedule.php">
-                        <i class="uil uil-calender"></i>
-                        <span class="link-name">Appointments</span>
-                    </a></li>
-                <li><a href="feedbacks.php">
-                        <i class="uil uil-comments"></i>
-                        <span class="link-name">Feedbacks</span>
-                    </a></li>
-                
 
             </ul>
 
