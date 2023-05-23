@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+body  {
+    height: 80%; 
+  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    background-attachment: fixed;
+    margin: 0%;
+  }
+  
+.nav{
+    height: 70px;
+    opacity: 90%;
+    background-color: #A6A6A6;
+    display: flex;
+    flex-direction: row;
+    z-index:1;
+    position: fixed;
+   
+    
+}
+a.font:before {
+    
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    right: 0;
+    background-color: #FFF;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+a.font:hover:before {
+    visibility: visible;
+    width: 100%;
+}
+a.font{
+    font-size: 20px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    position: relative;
+}
+.left{
+    flex:0.5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:flex-start;
+    margin-left: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 48px;
+    color: #ffffff;
+    
+}
+.right{
+    flex:0.2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: -657px;
+}
+
+#font{
+    font-size: 20px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+}
+form {
+    background: linear-gradient(106.5deg, #e1e1e1a4 23%, #b9b9b9a4 35%, rgba(64, 64, 64, 0.556) 63%);    padding: 2em 4em 3em;
+    max-width: 630px;
+    margin:30% ;
+  
+   margin: auto;
+   margin-top: 110px;
+    box-shadow: 0 0 1em #222;
+    border-radius: 2px;
+  }
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    z-index: 1;
+}
+.footerr{
+    
+    height: 50px;
+    margin-top: 1350px;
+    opacity: 100%;
+    background-color: #A6A6A6;
+    padding: 2px 2px 10px 2px;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+    color: white;
+    
+}
+.footer_data a{
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    
+    
+}
+
+.addpicbtn {
+    margin-top: 50px;
+
+}
+.addpicbutton{
+    margin-top: 5%;
+    margin-bottom: 100%;
+
+
+}
+
+input[type="file"]{
+
+
+    display: none;
+
+}
+
+.attachment{
+
+    width: fit-content;
+    padding: 0.5%;
+
+}
+
+
+.attachmentLabel{
+
+    cursor: pointer;
+
+}
+
+#images{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.singleImage{
+
+    height: 100px;
+    width: 100px;
+    flex: 1;
+    margin: auto;
+    padding: 1%;
+
+}
+
+.singleImageFile{
+
+    height: 100px;
+    width: 100px;
+
+}
+
+.contactDetails{
+
+    margin-left: -500PX;
+    margin-top: 266px;
+
+}
+
+.page{
+    margin-bottom: 10px;
+}
